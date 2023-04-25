@@ -4,13 +4,29 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] protected LayerMask layerCharacter;
+
     public Animator animator;
+    public GameObject weapon;
+    public float rangeAttack;
+    public float timeSkill = 0.45f;
+    public float timeLimitAttack = 1f;
+    public float timeCount = 0;
 
-
-    protected float rangeAttack;
+    [SerializeField] protected Character target;
+    protected Vector3 positionTarget;
     protected float scaleGrowth;
-    protected float weapon;
     protected float speed;
-    protected float timeLimitAttack = 1;
-    protected float timeCount = 0;
+    protected OriginWeapon weaponCrl;
+
+    public void Awake()
+    {
+        OnInit();
+    }
+
+    public virtual void OnInit()
+    {
+        weaponCrl = weapon.GetComponent<OriginWeapon>();
+        weaponCrl.owner = this.gameObject;
+    }
 }

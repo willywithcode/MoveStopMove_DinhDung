@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class DeadState : BaseState
 {
-    protected override void EnterState(EnemyCrl enemy)
+    public override void EnterState(EnemyCtrl enemy)
+    {
+
+    }
+    public override void Update(EnemyCtrl enemy)
     {
 
     }

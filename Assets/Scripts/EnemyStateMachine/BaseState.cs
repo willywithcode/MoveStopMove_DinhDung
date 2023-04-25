@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseState 
+public abstract class BaseState 
 {
-   virtual protected void EnterState(EnemyCrl enemy)
-   {
-
-   } 
+    public abstract void EnterState(EnemyCtrl enemy);
+    public abstract void Update(EnemyCtrl enemy);
 }

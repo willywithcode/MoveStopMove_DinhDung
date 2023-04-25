@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class IdleState : BaseState
 {
-   protected override void EnterState(EnemyCrl enemy)
+   public override void EnterState(EnemyCtrl enemy)
     {
-        enemy.animator.SetBool("IsIdle", true);
+        enemy.animator.SetBool(Constant.ANIM_IDLE, true);
+    }
+    public override void Update(EnemyCtrl enemy)
+    {
+
     }
 }
