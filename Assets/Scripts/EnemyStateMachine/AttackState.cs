@@ -14,6 +14,11 @@ public class AttackState : BaseState
     }
     public override void Update(EnemyCtrl enemy)
     {
-
+        enemy.timeCountAttack += Time.deltaTime;
+        if (enemy.timeCountAttack >= enemy.timeLimitAttack) 
+        {
+            enemy.ChangeState(enemy.move);
+            enemy.timeCountAttack = 0;
+        }
     }
 }

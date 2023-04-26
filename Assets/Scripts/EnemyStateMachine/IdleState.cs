@@ -7,10 +7,19 @@ public class IdleState : BaseState
    public override void EnterState(EnemyCtrl enemy)
     {
         enemy.currentState= this;
-        enemy.animator.SetBool(Constant.ANIM_IDLE, true);
+        enemy.ChangeAnim(Constant.ANIM_IDLE);
     }
     public override void Update(EnemyCtrl enemy)
     {
-        enemy.timeCountCheck += Time.deltaTime;
+        enemy.timeCountCheckWait += Time.deltaTime;
+        if (enemy.CheckEnemy())
+        {
+            enemy.ChangeState(enemy.attack);
+        }
+        if (enemy.timeCountCheckWait >= enemy.timeCheckWait)
+        {
+            enemy.ChangeState(enemy.move);
+            enemy.timeCountCheckWait = 0;
+        }
     }
 }

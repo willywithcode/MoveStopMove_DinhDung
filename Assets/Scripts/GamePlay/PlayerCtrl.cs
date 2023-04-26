@@ -40,11 +40,7 @@ public class PlayerCtrl : Character
             ChangeAnim(Constant.ANIM_RUN);
             transform.position += direct * speed * Time.deltaTime;
             float angle = Mathf.Atan2(direct.x, direct.z) * Mathf.Rad2Deg;
-            if (angle != 0)
-            {
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            }
+            if (angle != 0) transform.rotation = Quaternion.Euler(0f, angle, 0f);
             if (Vector3.Distance(direct, Vector3.zero) <= 0.00001f) isRun = false;
         }
 

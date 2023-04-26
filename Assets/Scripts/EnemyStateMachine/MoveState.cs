@@ -13,7 +13,11 @@ public class MoveState : BaseState
     }
     public override void Update(EnemyCtrl enemy)
     {
-        
+
+        if (Vector3.Distance(enemy.transform.position, enemy.agent.destination) <= 0.01)
+        {
+            enemy.ChangeState(enemy.idle);
+        }
     }
 
     private void Move(EnemyCtrl enemy)

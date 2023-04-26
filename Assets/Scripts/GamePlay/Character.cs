@@ -12,10 +12,9 @@ public class Character : MonoBehaviour
     public GameObject weapon;
     public float rangeAttack;
     public float timeSkill = 0.45f;
-    public float timeLimitAttack = 1f;
-    public float timeCount = 0;
+    public float timeCountSkill = 0;
 
-    [SerializeField] protected Character target;
+    protected Character target;
     protected Vector3 positionTarget;
     protected float scaleGrowth;
     protected float speed;
@@ -54,10 +53,10 @@ public class Character : MonoBehaviour
         if (enemies.Length > 1)
         {
             ChangeAnim(Constant.ANIM_ATTACK);
-            timeCount += Time.deltaTime;
-            if (timeCount >= timeSkill)
+            timeCountSkill += Time.deltaTime;
+            if (timeCountSkill >= timeSkill)
             {
-                timeCount = 0;
+                timeCountSkill = 0;
                 weapon.SetActive(false);
             }
             target = Cache.GetScript(enemies[1]);

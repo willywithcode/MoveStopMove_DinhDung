@@ -5,14 +5,15 @@ using UnityEngine.AI;
 
 public class EnemyCtrl : Character
 {
-    private IdleState idle = new IdleState();
-    private MoveState move = new MoveState();
-    private AttackState attack = new AttackState();
-    private DeadState dead = new DeadState();
-    [SerializeField] private bool isIdle;
+    internal IdleState idle = new IdleState();
+    internal MoveState move = new MoveState();
+    internal AttackState attack = new AttackState();
+    internal DeadState dead = new DeadState();
 
-    public float timeCheck = 0.5f;
-    public float timeCountCheck = 0;
+    public float timeLimitAttack = 1f;
+    public float timeCountAttack = 0;
+    public float timeCheckWait = 0.5f;
+    public float timeCountCheckWait = 0;
 
     public BaseState currentState;
     public NavMeshAgent agent;
@@ -27,24 +28,6 @@ public class EnemyCtrl : Character
     void Update()
     {
         currentState.Update(this);
-        if (Vector3.Distance(transform.position, agent.destination) <= 0.1)
-        {
-            this.ChangeState(idle);
-            isIdle = true;
-        }
-        if (isIdle)
-        {
-            if (this.CheckEnemy())
-            {
-                this.ChangeState(attack);
-            }
-            if (timeCountCheck >= timeCheck)
-            {
-                this.ChangeState(move);
-                timeCountCheck = 0;
-                isIdle= false;
-            }
-        }
     }
 
     internal void ChangeState(BaseState newState)
