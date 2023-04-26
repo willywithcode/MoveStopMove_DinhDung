@@ -164,6 +164,7 @@ MonoBehaviour:
   timeSkill: 0.45
   timeLimitAttack: 1
   timeCount: 0
+  target: {fileID: 0}
   joystick: {fileID: 1659378330}
 --- !u!136 &70284521
 CapsuleCollider:
@@ -330,7 +331,6 @@ GameObject:
   - component: {fileID: 492366970}
   - component: {fileID: 492366969}
   - component: {fileID: 492366968}
-  - component: {fileID: 492366971}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -416,21 +416,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492366966}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &492366971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492366966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d7e04082f26d84f90fea0b83e0bc03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundLimit:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
 --- !u!4 &581087652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
@@ -1066,6 +1051,7 @@ MonoBehaviour:
   timeSkill: 0.45
   timeLimitAttack: 1
   timeCount: 0
+  target: {fileID: 0}
   agent: {fileID: 1022417176}
 --- !u!4 &1022417178
 Transform:

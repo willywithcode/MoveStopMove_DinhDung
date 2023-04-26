@@ -7,16 +7,13 @@ public class MoveState : BaseState
 {
     public override void EnterState(EnemyCtrl enemy)
     {
-        enemy.animator.SetBool("IsUlti", true);
-        enemy.animator.SetBool("IsIdle", false);
+        enemy.currentState = this;
+        enemy.ChangeAnim(Constant.ANIM_RUN);
         this.Move(enemy);
     }
     public override void Update(EnemyCtrl enemy)
     {
-        if (Vector3.Distance(enemy.transform.position, enemy.agent.destination) <= 0.1)
-        {
-            this.Move(enemy);
-        }
+        
     }
 
     private void Move(EnemyCtrl enemy)

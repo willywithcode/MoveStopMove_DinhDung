@@ -8,11 +8,9 @@ public class AttackState : BaseState
 {
     public override void EnterState(EnemyCtrl enemy)
     {
+        enemy.currentState = this;
         enemy.agent.SetDestination(enemy.transform.position);
-        enemy.animator.SetBool("IsAttack", true);
-        enemy.animator.SetBool("IsIdle", false);
-        enemy.timeCount += Time.deltaTime;
-        if (enemy.timeCount >= enemy.timeSkill) enemy.weapon.SetActive(false);
+        enemy.Attack();
     }
     public override void Update(EnemyCtrl enemy)
     {

@@ -29,12 +29,10 @@ public class Cache
     {
         if (!m_Scripts.ContainsKey(key))
         {
-            Debug.Log(3);
             Character burger = key.GetComponent<Character>();
 
             if (burger != null)
             {
-                Debug.Log(1);
                 m_Scripts.Add(key, burger);
             }
             else
@@ -42,7 +40,6 @@ public class Cache
                 return null;
             }
         }
-        Debug.Log(2);
         return m_Scripts[key];
     }
 }

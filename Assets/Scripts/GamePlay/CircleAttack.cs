@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CircleAttack : MonoBehaviour
 {
-    public int segments = 150;
+    public int segments = 360;
     public float radius = 10f;
 
     [SerializeField] private LineRenderer line;
