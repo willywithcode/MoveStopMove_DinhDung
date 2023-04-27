@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Character : MonoBehaviour
+public class Character : GameUnit
 {
     [SerializeField] protected LayerMask layerCharacter;
 
@@ -34,12 +34,7 @@ public class Character : MonoBehaviour
             animator.SetTrigger(currentAnimName);
         }
     }
-    public virtual void OnInit()
-    {
-        currentAnimName = Constant.ANIM_IDLE;
-        weaponCrl = weapon.GetComponent<OriginWeapon>();
-        weaponCrl.owner = this.gameObject;
-    }
+
     public bool CheckEnemy()
     {
         Collider[] enemies = Physics.OverlapSphere(transform.position, rangeAttack, layerCharacter);
@@ -65,6 +60,19 @@ public class Character : MonoBehaviour
             float targetAngleY = Mathf.Atan2(targetAngle.x, targetAngle.z) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, targetAngleY, 0f);
         }
+    }
+
+    public override void OnInit()
+    {
+        currentAnimName = Constant.ANIM_IDLE;
+        weaponCrl = weapon.GetComponent<OriginWeapon>();
+        weaponCrl.owner = this.gameObject;
+    }
+
+    public override void OnDespawn()
+    {
+        
+        SimplePool.Despawn(this);
     }
 }
 

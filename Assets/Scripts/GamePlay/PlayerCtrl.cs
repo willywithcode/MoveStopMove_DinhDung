@@ -21,30 +21,21 @@ public class PlayerCtrl : Character
 
     void Update()
     {
-        
         direct = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
         if (!isRun)
         {
-            if (this.CheckEnemy())
-            {
-                this.Attack();
-            } 
-            else
-            {
-                ChangeAnim(Constant.ANIM_IDLE);
-            }
+            if (this.CheckEnemy()) this.Attack();
+            else this.ChangeAnim(Constant.ANIM_IDLE);
             if (Vector3.Distance(direct, Vector3.zero) >= 0.00001f) isRun = true;
         }
-        else
-        {
-            ChangeAnim(Constant.ANIM_RUN);
-            transform.position += direct * speed * Time.deltaTime;
-            float angle = Mathf.Atan2(direct.x, direct.z) * Mathf.Rad2Deg;
-            if (angle != 0) transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            if (Vector3.Distance(direct, Vector3.zero) <= 0.00001f) isRun = false;
-        }
-
+        else this.Run();
     }
-    
-    
+    private void Run()
+    {
+        ChangeAnim(Constant.ANIM_RUN);
+        transform.position += direct * speed * Time.deltaTime;
+        float angle = Mathf.Atan2(direct.x, direct.z) * Mathf.Rad2Deg;
+        if (angle != 0) transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        if (Vector3.Distance(direct, Vector3.zero) <= 0.00001f) isRun = false;
+    }
 }
