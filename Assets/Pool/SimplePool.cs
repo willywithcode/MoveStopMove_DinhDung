@@ -327,5 +327,6 @@ public enum IngameType
 
 public enum PoolType
 {
-    EnemyCtrl
+    EnemyCtrl,
+    ThrowWeapon
 }

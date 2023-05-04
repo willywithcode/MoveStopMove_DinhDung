@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : BaseState
+public class EnemyIdleState : BaseState<EnemyCtrl>
 {
-   public override void EnterState(EnemyCtrl enemy)
+   public void EnterState(EnemyCtrl enemy)
     {
         enemy.currentState= this;
         enemy.ChangeAnim(Constant.ANIM_IDLE);
     }
-    public override void Update(EnemyCtrl enemy)
+    public void Update(EnemyCtrl enemy)
     {
         enemy.timeCountCheckWait += Time.deltaTime;
         if (enemy.CheckEnemy())

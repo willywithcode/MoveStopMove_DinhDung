@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MoveState : BaseState
+public class EnemyMoveState : BaseState<EnemyCtrl> 
 {
-    public override void EnterState(EnemyCtrl enemy)
+    public void EnterState(EnemyCtrl enemy)
     {
-        enemy.currentState = this;
         enemy.ChangeAnim(Constant.ANIM_RUN);
         this.Move(enemy);
     }
-    public override void Update(EnemyCtrl enemy)
+    public void Update(EnemyCtrl enemy)
     {
 
         if (Vector3.Distance(enemy.transform.position, enemy.agent.destination) <= 0.01)

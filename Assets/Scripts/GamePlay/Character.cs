@@ -7,19 +7,23 @@ using UnityEngine.EventSystems;
 public class Character : GameUnit
 {
     [SerializeField] protected LayerMask layerCharacter;
+    [SerializeField] protected ThrowWeapon weaponPrefab;
 
     public Animator animator;
-    public GameObject weapon;
+    public GameObject weaponImg;
+    public OriginWeapon weaponCrl;
     public float rangeAttack;
     public float timeSkill = 0.45f;
     public float timeCountSkill = 0;
+    public float timeLimitAttack = 1f;
+    public float timeCountAttack = 0;
+    public Vector3 positionTarget;
+    public bool isAttack;
+    public float speed;
 
     protected Character target;
-    protected Vector3 positionTarget;
     protected float scaleGrowth;
-    protected float speed;
-    protected OriginWeapon weaponCrl;
-    [SerializeField]protected string currentAnimName;
+    protected string currentAnimName;
 
     public void Awake()
     {
@@ -47,32 +51,38 @@ public class Character : GameUnit
         Array.Sort(enemies, new ColliderDistanceComparer(transform.position));
         if (enemies.Length > 1)
         {
-            ChangeAnim(Constant.ANIM_ATTACK);
-            timeCountSkill += Time.deltaTime;
-            if (timeCountSkill >= timeSkill)
-            {
-                timeCountSkill = 0;
-                weapon.SetActive(false);
-            }
             target = Cache.GetScript(enemies[1]);
             positionTarget = target.transform.position;
             Vector3 targetAngle = positionTarget - transform.position;
             float targetAngleY = Mathf.Atan2(targetAngle.x, targetAngle.z) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, targetAngleY, 0f);
+            timeCountSkill += Time.deltaTime;
+            if (timeCountSkill >= timeSkill && !isAttack)
+            {
+                timeCountSkill = 0;
+                isAttack = true;
+                weaponImg.SetActive(false);
+                this.SpawnWeapon();
+            }
         }
     }
 
     public override void OnInit()
     {
         currentAnimName = Constant.ANIM_IDLE;
-        weaponCrl = weapon.GetComponent<OriginWeapon>();
-        weaponCrl.owner = this.gameObject;
     }
 
     public override void OnDespawn()
     {
         
         SimplePool.Despawn(this);
+    }
+    protected void SpawnWeapon()
+    {
+        ThrowWeapon weapon = SimplePool.Spawn<ThrowWeapon>(weaponPrefab);
+        weapon.owner = this;
+        weapon.OnInit();
+        weapon.transform.position = this.transform.position + Vector3.up * 1f + weapon.direct*0.3f;
     }
 }
 

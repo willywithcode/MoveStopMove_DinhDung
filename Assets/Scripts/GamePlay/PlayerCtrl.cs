@@ -7,14 +7,17 @@ public class PlayerCtrl : Character
 {
     [SerializeField] private FloatingJoystick joystick;
 
-    private Vector3 direct;
-    private bool isRun;
 
-
+    public Vector3 direct;
+    public PlayerAttackState attack = new PlayerAttackState();
+    public PlayerMoveState move = new PlayerMoveState();   
+    public PlayerDeadState dead = new PlayerDeadState();
+    public PlayerIdleState idle = new PlayerIdleState();
+    public BaseState<PlayerCtrl> currentState;
     public override void OnInit()
     {
         base.OnInit();
-        isRun = false;
+        this.ChangeState(idle);
         rangeAttack = 5;
         speed = 5;
     }
@@ -22,20 +25,12 @@ public class PlayerCtrl : Character
     void Update()
     {
         direct = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
-        if (!isRun)
-        {
-            if (this.CheckEnemy()) this.Attack();
-            else this.ChangeAnim(Constant.ANIM_IDLE);
-            if (Vector3.Distance(direct, Vector3.zero) >= 0.00001f) isRun = true;
-        }
-        else this.Run();
+        currentState.Update(this);
     }
-    private void Run()
+    
+    public void ChangeState(BaseState<PlayerCtrl> nextState)
     {
-        ChangeAnim(Constant.ANIM_RUN);
-        transform.position += direct * speed * Time.deltaTime;
-        float angle = Mathf.Atan2(direct.x, direct.z) * Mathf.Rad2Deg;
-        if (angle != 0) transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        if (Vector3.Distance(direct, Vector3.zero) <= 0.00001f) isRun = false;
+        currentState = nextState;
+        currentState.EnterState(this);
     }
 }

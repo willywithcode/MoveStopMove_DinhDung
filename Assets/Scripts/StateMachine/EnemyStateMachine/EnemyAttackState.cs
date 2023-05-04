@@ -4,18 +4,19 @@ using System.Threading;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class AttackState : BaseState
+public class EnemyAttackState : BaseState<EnemyCtrl>
 {
-    public override void EnterState(EnemyCtrl enemy)
+    public void EnterState(EnemyCtrl enemy)
     {
-        enemy.currentState = this;
+
+        enemy.ChangeAnim(Constant.ANIM_ATTACK);
         enemy.agent.SetDestination(enemy.transform.position);
-        enemy.Attack();
     }
-    public override void Update(EnemyCtrl enemy)
+    public void Update(EnemyCtrl enemy)
     {
+        enemy.Attack();
         enemy.timeCountAttack += Time.deltaTime;
-        if (enemy.timeCountAttack >= enemy.timeLimitAttack) 
+        if (enemy.timeCountAttack >= enemy.timeLimitAttack)
         {
             enemy.ChangeState(enemy.move);
             enemy.timeCountAttack = 0;

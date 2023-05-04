@@ -5,17 +5,15 @@ using UnityEngine.AI;
 
 public class EnemyCtrl : Character
 {
-    internal IdleState idle = new IdleState();
-    internal MoveState move = new MoveState();
-    internal AttackState attack = new AttackState();
-    internal DeadState dead = new DeadState();
+    internal EnemyIdleState idle = new EnemyIdleState();
+    internal EnemyMoveState move = new EnemyMoveState();
+    internal EnemyAttackState attack = new EnemyAttackState();
+    internal EnemyDeadState dead = new EnemyDeadState();
 
-    public float timeLimitAttack = 1f;
-    public float timeCountAttack = 0;
     public float timeCheckWait = 0.5f;
     public float timeCountCheckWait = 0;
 
-    public BaseState currentState;
+    public BaseState<EnemyCtrl> currentState;
     public NavMeshAgent agent;
 
     public override void OnInit()
@@ -30,7 +28,7 @@ public class EnemyCtrl : Character
         currentState.Update(this);
     }
 
-    internal void ChangeState(BaseState newState)
+    internal void ChangeState(BaseState<EnemyCtrl> newState)
     {
         currentState = newState;
         currentState.EnterState(this);

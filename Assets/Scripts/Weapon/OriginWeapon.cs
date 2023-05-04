@@ -1,8 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class OriginWeapon : MonoBehaviour
+public class OriginWeapon : GameUnit
 {
-    public GameObject owner;
+    public Character owner;
+    public Vector3 direct;
+
+
+    public override void OnInit()
+    {
+        
+    }
+    public override void OnDespawn()
+    {
+       SimplePool.Despawn(this);
+    }
 }
