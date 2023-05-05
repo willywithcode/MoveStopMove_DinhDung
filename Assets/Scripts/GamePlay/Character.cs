@@ -82,7 +82,7 @@ public class Character : GameUnit
         ThrowWeapon weapon = SimplePool.Spawn<ThrowWeapon>(weaponPrefab);
         weapon.owner = this;
         weapon.OnInit();
-        weapon.transform.position = this.transform.position + Vector3.up * 1f + weapon.direct*0.3f;
+        weapon.transform.position = this.transform.position + Vector3.up * 1f;
     }
 }
 
