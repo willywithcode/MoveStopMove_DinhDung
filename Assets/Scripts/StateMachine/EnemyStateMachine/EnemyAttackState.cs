@@ -11,15 +11,17 @@ public class EnemyAttackState : BaseState<EnemyCtrl>
 
         enemy.ChangeAnim(Constant.ANIM_ATTACK);
         enemy.agent.SetDestination(enemy.transform.position);
+        enemy.isAttack = true;
     }
     public void Update(EnemyCtrl enemy)
     {
         enemy.Attack();
-        enemy.timeCountAttack += Time.deltaTime;
-        if (enemy.timeCountAttack >= enemy.timeLimitAttack)
+        enemy.timeCountAttack += Time.deltaTime; 
+        if (enemy.timeCountAttack >= enemy.timeLimitAttack || !enemy.isAttack)
         {
-            enemy.ChangeState(enemy.move);
+            enemy.timeCountSkill = 0;
             enemy.timeCountAttack = 0;
+            enemy.ChangeState(enemy.move);
         }
     }
 }

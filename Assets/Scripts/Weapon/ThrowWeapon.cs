@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class ThrowWeapon : OriginWeapon
 {
     public override void OnInit()
     {
         base.OnInit();
-        direct = (this.owner.positionTarget - this.owner.transform.position);
-        direct.y = 0;
+        speed = this.owner.rangeAttack;
+        direct = this.owner.positionTarget - this.owner.transform.position;
+        direct.Normalize();
     }
     void Update()
     {
@@ -22,6 +24,7 @@ public class ThrowWeapon : OriginWeapon
             this.EndAttack();
             EnemyCtrl enemy =  other.GetComponent<EnemyCtrl>();
             enemy.ChangeState(enemy.dead);
+            LevelManager.Instance.countCharacterCurrent--;
         }
         else if (other.CompareTag(Constant.PLAYER))
         {
@@ -34,14 +37,16 @@ public class ThrowWeapon : OriginWeapon
     {
         this.OnDespawn();
         this.owner.isAttack = false;
+        this.owner.haveWeapon =false;
         this.owner.weaponImg.SetActive(true);
     }
 
     private void MoveWeapon()
     {
-        this.transform.position += direct * Time.deltaTime;
-        if (Vector3.Distance(transform.position, this.owner.transform.position) >= this.owner.rangeAttack)
+        transform.position  += direct * speed * Time.deltaTime;
+        if (Vector3.Distance(transform.position, this.owner.transform.position) >= this.owner.rangeAttack || !this.owner.gameObject.activeSelf)
         {
+
             this.EndAttack();
         }
     }

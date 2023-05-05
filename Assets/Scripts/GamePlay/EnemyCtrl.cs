@@ -12,15 +12,15 @@ public class EnemyCtrl : Character
 
     public float timeCheckWait = 0.5f;
     public float timeCountCheckWait = 0;
-
     public BaseState<EnemyCtrl> currentState;
-    public NavMeshAgent agent;
+
 
     public override void OnInit()
     {
         base.OnInit();
         rangeAttack = 5;
         this.ChangeState(move);
+        this.GetComponent<Collider>().enabled = true;
     }
 
     void Update()
@@ -28,7 +28,7 @@ public class EnemyCtrl : Character
         currentState.Update(this);
     }
 
-    internal void ChangeState(BaseState<EnemyCtrl> newState)
+    public void ChangeState(BaseState<EnemyCtrl> newState)
     {
         currentState = newState;
         currentState.EnterState(this);

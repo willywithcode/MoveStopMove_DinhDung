@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolType: 1
   owner: {fileID: 0}
-  opponent: {fileID: 0}
+  direct: {x: 0, y: 0, z: 0}
 --- !u!54 &-3636301247136554720
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7298857615555735657}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

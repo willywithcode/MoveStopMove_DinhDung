@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
 public class Character : GameUnit
@@ -19,7 +20,9 @@ public class Character : GameUnit
     public float timeCountAttack = 0;
     public Vector3 positionTarget;
     public bool isAttack;
+    public bool haveWeapon;
     public float speed;
+    public NavMeshAgent agent;
 
     protected Character target;
     protected float scaleGrowth;
@@ -57,10 +60,10 @@ public class Character : GameUnit
             float targetAngleY = Mathf.Atan2(targetAngle.x, targetAngle.z) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, targetAngleY, 0f);
             timeCountSkill += Time.deltaTime;
-            if (timeCountSkill >= timeSkill && !isAttack)
+            if (timeCountSkill >= timeSkill && !haveWeapon)
             {
                 timeCountSkill = 0;
-                isAttack = true;
+                haveWeapon = true;
                 weaponImg.SetActive(false);
                 this.SpawnWeapon();
             }
@@ -71,6 +74,7 @@ public class Character : GameUnit
     {
         currentAnimName = Constant.ANIM_IDLE;
     }
+
 
     public override void OnDespawn()
     {
