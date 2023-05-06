@@ -14,19 +14,15 @@ public class Character : GameUnit
     public GameObject weaponImg;
     public OriginWeapon weaponCrl;
     public float rangeAttack;
-    public float timeSkill = 0.45f;
-    public float timeCountSkill = 0;
-    public float timeLimitAttack = 1f;
+    public float timeLimitAttack = 0.85f;
     public float timeCountAttack = 0;
     public Vector3 positionTarget;
-    public bool isAttack;
-    public bool haveWeapon;
     public float speed;
     public NavMeshAgent agent;
 
     protected Character target;
     protected float scaleGrowth;
-    protected string currentAnimName;
+    [SerializeField]protected string currentAnimName;
 
     public void Awake()
     {
@@ -45,12 +41,6 @@ public class Character : GameUnit
     public bool CheckEnemy()
     {
         Collider[] enemies = Physics.OverlapSphere(transform.position, rangeAttack, layerCharacter);
-        return enemies.Length > 1;
-    }
-
-    public void Attack()
-    {
-        Collider[] enemies = Physics.OverlapSphere(transform.position, rangeAttack, layerCharacter);
         Array.Sort(enemies, new ColliderDistanceComparer(transform.position));
         if (enemies.Length > 1)
         {
@@ -59,16 +49,16 @@ public class Character : GameUnit
             Vector3 targetAngle = positionTarget - transform.position;
             float targetAngleY = Mathf.Atan2(targetAngle.x, targetAngle.z) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, targetAngleY, 0f);
-            timeCountSkill += Time.deltaTime;
-            if (timeCountSkill >= timeSkill && !haveWeapon)
-            {
-                timeCountSkill = 0;
-                haveWeapon = true;
-                weaponImg.SetActive(false);
-                this.SpawnWeapon();
-            }
         }
+        return enemies.Length > 1;
     }
+    //public void DefindTarger()
+    //{
+
+    //    Collider[] enemies = Physics.OverlapSphere(transform.position, rangeAttack, layerCharacter);
+       
+    //}
+    
 
     public override void OnInit()
     {
@@ -81,7 +71,7 @@ public class Character : GameUnit
         
         SimplePool.Despawn(this);
     }
-    protected void SpawnWeapon()
+    protected internal void SpawnWeapon()
     {
         ThrowWeapon weapon = SimplePool.Spawn<ThrowWeapon>(weaponPrefab);
         weapon.owner = this;

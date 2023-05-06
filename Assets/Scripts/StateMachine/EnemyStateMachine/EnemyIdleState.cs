@@ -6,7 +6,6 @@ public class EnemyIdleState : BaseState<EnemyCtrl>
 {
    public void EnterState(EnemyCtrl enemy)
     {
-        enemy.currentState= this;
         enemy.ChangeAnim(Constant.ANIM_IDLE);
     }
     public void Update(EnemyCtrl enemy)

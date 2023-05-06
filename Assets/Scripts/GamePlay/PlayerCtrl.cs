@@ -9,6 +9,7 @@ public class PlayerCtrl : Character
 
 
     public Vector3 direct;
+
     public PlayerAttackState attack = new PlayerAttackState();
     public PlayerMoveState move = new PlayerMoveState();   
     public PlayerDeadState dead = new PlayerDeadState();

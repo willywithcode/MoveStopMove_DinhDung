@@ -222,16 +222,17 @@ MonoBehaviour:
   weaponImg: {fileID: 6748612008247462849}
   weaponCrl: {fileID: 0}
   rangeAttack: 0
-  timeSkill: 0.2
+  timeSkill: 0.45
   timeCountSkill: 0
   timeLimitAttack: 0.7
   timeCountAttack: 0
   positionTarget: {x: 0, y: 0, z: 0}
   isAttack: 0
+  haveWeapon: 0
   speed: 0
+  agent: {fileID: 5865528449853639621}
   timeCheckWait: 0.5
   timeCountCheckWait: 0
-  agent: {fileID: 5865528449853639621}
 --- !u!195 &5865528449853639621
 NavMeshAgent:
   m_ObjectHideFlags: 0
