@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Character
+  - Obtacle
   layers:
   - Default
   - TransparentFX
@@ -12,7 +13,7 @@ TagManager:
   - Character
   - Water
   - UI
-  - 
+  - Obtacle
   - 
   - 
   - 

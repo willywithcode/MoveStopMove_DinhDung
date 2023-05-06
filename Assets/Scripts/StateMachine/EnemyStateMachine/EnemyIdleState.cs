@@ -11,7 +11,7 @@ public class EnemyIdleState : BaseState<EnemyCtrl>
     public void Update(EnemyCtrl enemy)
     {
         enemy.timeCountCheckWait += Time.deltaTime;
-        if (enemy.CheckEnemy())
+        if (enemy.CheckEnemy() && enemy.weaponImg.activeSelf)
         {
             enemy.ChangeState(enemy.attack);
         }

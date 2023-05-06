@@ -233,14 +233,13 @@ MonoBehaviour:
   weaponImg: {fileID: 1836789032}
   weaponCrl: {fileID: 0}
   rangeAttack: 0
-  timeSkill: 0.2
-  timeCountSkill: 0
   timeLimitAttack: 0.7
   timeCountAttack: 0
   positionTarget: {x: 0, y: 0, z: 0}
-  isAttack: 0
   speed: 0
   agent: {fileID: 0}
+  target: {fileID: 0}
+  currentAnimName: 
   joystick: {fileID: 1659378330}
   direct: {x: 0, y: 0, z: 0}
 --- !u!136 &70284521
@@ -544,9 +543,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6905830323379202686, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -6905830323379202686, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_TagString
+      value: Obtacle
+      objectReference: {fileID: 0}
+    - target: {fileID: -5835871356435917588, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5835871356435917588, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_TagString
+      value: Obtacle
+      objectReference: {fileID: 0}
+    - target: {fileID: -3852341972610935857, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3852341972610935857, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_TagString
+      value: Obtacle
+      objectReference: {fileID: 0}
+    - target: {fileID: -3790086800359879910, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3790086800359879910, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_TagString
+      value: Obtacle
+      objectReference: {fileID: 0}
+    - target: {fileID: -1393701332811617065, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1393701332811617065, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_TagString
+      value: Obtacle
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
       propertyPath: m_Name
       value: Level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750613006811843721, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750613006811843721, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
+      propertyPath: m_TagString
+      value: Obtacle
       objectReference: {fileID: 0}
     - target: {fileID: 8936713268305004714, guid: 1c98f014b09e0a04fa9392d9e1fba1b8, type: 3}
       propertyPath: m_LocalPosition.y

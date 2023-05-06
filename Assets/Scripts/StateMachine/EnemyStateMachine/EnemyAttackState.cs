@@ -35,6 +35,7 @@ public class EnemyAttackState : BaseState<EnemyCtrl>
         if (timeCountSkill >= timeSkill && !isThrowing)
         {
             isThrowing = true;
+            enemy.Rotate();
             enemy.weaponImg.SetActive(false);
             enemy.SpawnWeapon();
         }

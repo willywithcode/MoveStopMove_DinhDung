@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerAttackState : BaseState<PlayerCtrl>
 {
@@ -34,6 +35,8 @@ public class PlayerAttackState : BaseState<PlayerCtrl>
         timeCountSkill += Time.deltaTime;
         if (timeCountSkill >= timeSkill && !isThrowing)
         {
+
+            ctrl.Rotate();
             isThrowing = true;
             ctrl.weaponImg.SetActive(false);
             ctrl.SpawnWeapon();

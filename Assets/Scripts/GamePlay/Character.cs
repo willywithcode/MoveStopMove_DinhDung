@@ -14,13 +14,13 @@ public class Character : GameUnit
     public GameObject weaponImg;
     public OriginWeapon weaponCrl;
     public float rangeAttack;
-    public float timeLimitAttack = 0.85f;
+    public float timeLimitAttack = 10f;
     public float timeCountAttack = 0;
     public Vector3 positionTarget;
     public float speed;
     public NavMeshAgent agent;
+    public Character target;
 
-    protected Character target;
     protected float scaleGrowth;
     [SerializeField]protected string currentAnimName;
 
@@ -45,19 +45,19 @@ public class Character : GameUnit
         if (enemies.Length > 1)
         {
             target = Cache.GetScript(enemies[1]);
-            positionTarget = target.transform.position;
-            Vector3 targetAngle = positionTarget - transform.position;
-            float targetAngleY = Mathf.Atan2(targetAngle.x, targetAngle.z) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, targetAngleY, 0f);
+            this.Rotate();
         }
         return enemies.Length > 1;
     }
-    //public void DefindTarger()
-    //{
 
-    //    Collider[] enemies = Physics.OverlapSphere(transform.position, rangeAttack, layerCharacter);
-       
-    //}
+    public void Rotate()
+    {
+        positionTarget = target.transform.position;
+        Vector3 targetAngle = positionTarget - transform.position;
+        float targetAngleY = Mathf.Atan2(targetAngle.x, targetAngle.z) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, targetAngleY, 0f);
+    }
+    
     
 
     public override void OnInit()
