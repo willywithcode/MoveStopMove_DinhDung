@@ -31,7 +31,10 @@ public class PlayerCtrl : Character
     
     public void ChangeState(BaseState<PlayerCtrl> nextState)
     {
-        currentState = nextState;
-        currentState.EnterState(this);
+        if(currentState != nextState)
+        {
+            currentState = nextState;
+            currentState.EnterState(this);
+        }
     }
 }

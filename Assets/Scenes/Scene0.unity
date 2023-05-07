@@ -228,7 +228,6 @@ MonoBehaviour:
   layerCharacter:
     serializedVersion: 2
     m_Bits: 8
-  weaponPrefab: {fileID: 6615312091088782894, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
   animator: {fileID: 581087653}
   weaponImg: {fileID: 1836789032}
   weaponCrl: {fileID: 0}
@@ -1011,6 +1010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205111285}
+  - component: {fileID: 1205111286}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -1033,6 +1033,21 @@ Transform:
   m_Father: {fileID: 1611917736}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1205111286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205111284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6019e29817d8c4b85740c5ef6e2d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPrfab: {fileID: 0}
+  weaponDatas: []
+  weaponPrefabs: {fileID: 6615312091088782894, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
 --- !u!1 &1213178631
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ using UnityEngine.EventSystems;
 public class Character : GameUnit
 {
     [SerializeField] protected LayerMask layerCharacter;
-    [SerializeField] protected ThrowWeapon weaponPrefab;
 
     public Animator animator;
     public GameObject weaponImg;
@@ -71,13 +70,7 @@ public class Character : GameUnit
         
         SimplePool.Despawn(this);
     }
-    protected internal void SpawnWeapon()
-    {
-        ThrowWeapon weapon = SimplePool.Spawn<ThrowWeapon>(weaponPrefab);
-        weapon.owner = this;
-        weapon.OnInit();
-        weapon.transform.position = this.transform.position + Vector3.up * 1f;
-    }
+    
 }
 
 

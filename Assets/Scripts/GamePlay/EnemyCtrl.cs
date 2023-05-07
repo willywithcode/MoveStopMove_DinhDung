@@ -30,7 +30,10 @@ public class EnemyCtrl : Character
 
     public void ChangeState(BaseState<EnemyCtrl> newState)
     {
-        currentState = newState;
-        currentState.EnterState(this);
+        if (currentState != newState)
+        {
+            currentState = newState;
+            currentState.EnterState(this);
+        }
     }
 }
