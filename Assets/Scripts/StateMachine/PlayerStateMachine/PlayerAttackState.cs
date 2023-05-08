@@ -39,7 +39,7 @@ public class PlayerAttackState : BaseState<PlayerCtrl>
             ctrl.Rotate();
             isThrowing = true;
             ctrl.weaponImg.SetActive(false);
-            WeaponManager.Instance.SpawnWeapon(ctrl);
+            WeaponManager.Instance.SpawnWeapon(ctrl,ctrl.weaponData.weaponCtrl);
         }
     }
 }

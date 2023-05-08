@@ -9,9 +9,13 @@ public class Character : GameUnit
 {
     [SerializeField] protected LayerMask layerCharacter;
 
-    public Animator animator;
     public GameObject weaponImg;
-    public OriginWeapon weaponCrl;
+    public TypeWeapon.Weapon weaponType = TypeWeapon.Weapon.Axe;
+    public WeaponSO weaponData;
+    //public OriginWeapon weaponCtrl;
+    public Transform weaponContainer;
+
+    public Animator animator;
     public float rangeAttack;
     public float timeLimitAttack = 10f;
     public float timeCountAttack = 0;
@@ -21,6 +25,7 @@ public class Character : GameUnit
     public Character target;
 
     protected float scaleGrowth;
+    
     [SerializeField]protected string currentAnimName;
 
     public void Awake()
@@ -55,13 +60,19 @@ public class Character : GameUnit
         Vector3 targetAngle = positionTarget - transform.position;
         float targetAngleY = Mathf.Atan2(targetAngle.x, targetAngle.z) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, targetAngleY, 0f);
+        Quaternion targetRotation = Quaternion.Euler(0f, targetAngleY, 0f);
+        float rotationSpeed = 50f; 
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+
     }
-    
-    
+
+
 
     public override void OnInit()
     {
         currentAnimName = Constant.ANIM_IDLE;
+        this.weaponContainer = GameObject.Find("Weapon").transform;
+        this.InitiazlizeWeapon();
     }
 
 
@@ -69,6 +80,10 @@ public class Character : GameUnit
     {
         
         SimplePool.Despawn(this);
+    }
+    protected void InitiazlizeWeapon()
+    {
+        SimplePool.Preload(weaponData.weaponType, 1, weaponContainer, false, false);
     }
     
 }

@@ -37,7 +37,7 @@ public class EnemyAttackState : BaseState<EnemyCtrl>
             isThrowing = true;
             enemy.Rotate();
             enemy.weaponImg.SetActive(false);
-            WeaponManager.Instance.SpawnWeapon(enemy);
+            WeaponManager.Instance.SpawnWeapon(enemy,enemy.weaponData.weaponCtrl);
         }
     }
 }

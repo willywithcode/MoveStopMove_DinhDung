@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27814986c81de241bfc82d5bfc3a9c1, type: 3}
   m_Name: Arrow
   m_EditorClassIdentifier: 
-  weaponType: {fileID: 919132149155446097, guid: 33b4132338f3ebc48be81dba5f8281bf, type: 3}
+  weaponType: {fileID: 8720232865380185368, guid: fd75101b1d66c314c8bee53826931afb, type: 3}
+  weaponCtrl: {fileID: 8720232865380185368, guid: fd75101b1d66c314c8bee53826931afb, type: 3}

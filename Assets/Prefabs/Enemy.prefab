@@ -217,20 +217,19 @@ MonoBehaviour:
   layerCharacter:
     serializedVersion: 2
     m_Bits: 8
-  weaponPrefab: {fileID: 6615312091088782894, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
-  animator: {fileID: 8833313703688288217}
   weaponImg: {fileID: 6748612008247462849}
-  weaponCrl: {fileID: 0}
+  weaponType: 1
+  weaponData: {fileID: 11400000, guid: 7bbfe76790d86a849a4a85d8220ea77a, type: 2}
+  weaponContainer: {fileID: 0}
+  animator: {fileID: 8833313703688288217}
   rangeAttack: 0
-  timeSkill: 0.45
-  timeCountSkill: 0
   timeLimitAttack: 0.7
   timeCountAttack: 0
   positionTarget: {x: 0, y: 0, z: 0}
-  isAttack: 0
-  haveWeapon: 0
   speed: 0
   agent: {fileID: 5865528449853639621}
+  target: {fileID: 0}
+  currentAnimName: 
   timeCheckWait: 0.5
   timeCountCheckWait: 0
 --- !u!195 &5865528449853639621

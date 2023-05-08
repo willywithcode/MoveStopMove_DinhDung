@@ -14,4 +14,7 @@ public class Constant
     public static readonly string CHARACTER = "Character";
     public static readonly string PLAYER = "Player";
     public static readonly string OBTACLE = "Obtacle";
+
+
+    public static readonly string pathWeaponData = "WeaponData";
 }

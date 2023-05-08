@@ -228,9 +228,11 @@ MonoBehaviour:
   layerCharacter:
     serializedVersion: 2
     m_Bits: 8
-  animator: {fileID: 581087653}
   weaponImg: {fileID: 1836789032}
-  weaponCrl: {fileID: 0}
+  weaponType: 0
+  weaponData: {fileID: 11400000, guid: 4923f96a73f4d014b84830f909952a5d, type: 2}
+  weaponContainer: {fileID: 1205111285}
+  animator: {fileID: 581087653}
   rangeAttack: 0
   timeLimitAttack: 0.7
   timeCountAttack: 0
@@ -1045,7 +1047,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6019e29817d8c4b85740c5ef6e2d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrfab: {fileID: 0}
   weaponDatas: []
   weaponPrefabs: {fileID: 6615312091088782894, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
 --- !u!1 &1213178631
@@ -1618,11 +1619,6 @@ MonoBehaviour:
   Pool:
   - root: {fileID: 1471389603}
     prefab: {fileID: 5865528449853639620, guid: a87806c62f6288d489e3b5585fa4a5c1, type: 3}
-    amount: 20
-    collect: 0
-    clamp: 0
-  - root: {fileID: 1205111285}
-    prefab: {fileID: 6615312091088782894, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
     amount: 20
     collect: 0
     clamp: 0
