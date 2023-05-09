@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f65c18e8ee5f6a46a205c76ddf0620d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 0
+  poolType: 3
   owner: {fileID: 0}
   speed: 0
   direct: {x: 0, y: 0, z: 0}

@@ -315,18 +315,10 @@ public class PoolAmount
     public bool collect;
     public bool clamp;
 }
-
-public enum IngameType 
-{ 
-    PLAYER, 
-    ENEMY,
-    None,
-    HpBar,
-}
-
-
 public enum PoolType
 {
     EnemyCtrl,
-    ThrowWeapon
+    Axe,
+    Arrow,
+    Candy
 }

@@ -231,11 +231,8 @@ MonoBehaviour:
   weaponImg: {fileID: 1836789032}
   weaponType: 0
   weaponData: {fileID: 11400000, guid: 4923f96a73f4d014b84830f909952a5d, type: 2}
-  weaponContainer: {fileID: 1205111285}
   animator: {fileID: 581087653}
   rangeAttack: 0
-  timeLimitAttack: 0.7
-  timeCountAttack: 0
   positionTarget: {x: 0, y: 0, z: 0}
   speed: 0
   agent: {fileID: 0}
@@ -1049,6 +1046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponDatas: []
   weaponPrefabs: {fileID: 6615312091088782894, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
+  prefabs: {fileID: 7298857615555735657, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
 --- !u!1 &1213178631
 GameObject:
   m_ObjectHideFlags: 0

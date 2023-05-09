@@ -6,22 +6,21 @@ using static UnityEngine.GraphicsBuffer;
 public class PlayerAttackState : BaseState<PlayerCtrl>
 {
 
+    public float timeCount = 0;
     public float timeSkill = 0.4f;
-    public float timeCountSkill = 0;
-
+    public float timeLimitAttack = 0.85f;
     private bool isThrowing;
     public void EnterState(PlayerCtrl ctrl)
     {
         ctrl.ChangeAnim(Constant.ANIM_ATTACK);
-        ctrl.timeCountAttack = 0;
-        this.timeCountSkill = 0;
+        this.timeCount = 0;
         isThrowing = false;
     }
     public void Update(PlayerCtrl ctrl)
     {
+        timeCount += Time.deltaTime;
         this.CountDownAttack(ctrl);
-        ctrl.timeCountAttack += Time.deltaTime;
-        if (ctrl.timeCountAttack >= ctrl.timeLimitAttack )
+        if (timeCount >= timeLimitAttack )
         {
             ctrl.ChangeState(ctrl.idle);
         }
@@ -32,14 +31,12 @@ public class PlayerAttackState : BaseState<PlayerCtrl>
     }
     private void CountDownAttack(PlayerCtrl ctrl)
     {
-        timeCountSkill += Time.deltaTime;
-        if (timeCountSkill >= timeSkill && !isThrowing)
+        if (timeCount >= timeSkill && !isThrowing)
         {
-
             ctrl.Rotate();
             isThrowing = true;
             ctrl.weaponImg.SetActive(false);
-            WeaponManager.Instance.SpawnWeapon(ctrl,ctrl.weaponData.weaponCtrl);
+            WeaponManager.Instance.SpawnWeapon(ctrl);
         }
     }
 }

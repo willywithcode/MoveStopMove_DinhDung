@@ -6,11 +6,20 @@ public class WeaponManager : Singleton<WeaponManager>
 {
     [SerializeField] protected List<WeaponSO> weaponDatas;
 
-    [SerializeField] protected OriginWeapon weaponPrefabs;
+    [SerializeField] protected ThrowWeapon weaponPrefabs;
+    [SerializeField] private GameObject prefabs;
 
     private void Awake()
     {
         this.LoadWeaponData();
+        this.LoadWeapon();
+    }
+    private void LoadWeapon()
+    {
+        for (int i = 0; i < weaponDatas.Count; i++)
+        {
+            SimplePool.Preload(weaponDatas[i].weaponType, 15, this.transform, false, false);
+        }
     }
     private void LoadWeaponData()
     {
@@ -23,14 +32,8 @@ public class WeaponManager : Singleton<WeaponManager>
     }
     public void SpawnWeapon(Character owner)
     {
-        OriginWeapon weapon = SimplePool.Spawn<OriginWeapon>(weaponPrefabs);
-        weapon.owner = owner;
-        weapon.OnInit();
-        weapon.transform.position = owner.transform.position + Vector3.up * 1f;
-    }
-    public void SpawnWeapon(Character owner,OriginWeapon prefab)
-    {
-        OriginWeapon weapon = SimplePool.Spawn<OriginWeapon>(prefab);
+        ThrowWeapon weapon = SimplePool.Spawn<ThrowWeapon>(weaponPrefabs);
+        //ThrowWeapon weapon = Instantiate(prefabs).GetComponent<ThrowWeapon>();
         weapon.owner = owner;
         weapon.OnInit();
         weapon.transform.position = owner.transform.position + Vector3.up * 1f;

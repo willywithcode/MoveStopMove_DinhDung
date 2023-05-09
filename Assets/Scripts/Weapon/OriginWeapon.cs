@@ -19,7 +19,8 @@ public class OriginWeapon : GameUnit
     }
     public override void OnDespawn()
     {
-       SimplePool.Despawn(this);
+        SimplePool.Despawn(this);
+        //Destroy(gameObject);
     }
 
     protected void OnTriggerEnter(Collider other)
@@ -32,12 +33,12 @@ public class OriginWeapon : GameUnit
             enemy.ChangeState(enemy.dead);
             LevelManager.Instance.countCharacterCurrent--;
         }
-        else if (other.CompareTag(Constant.PLAYER))
-        {
-            this.EndAttack();
-            PlayerCtrl playerCrtl = other.GetComponent<PlayerCtrl>();
-            playerCrtl.ChangeState(playerCrtl.dead);
-        }
+        //else if (other.CompareTag(Constant.PLAYER))
+        //{
+        //    this.EndAttack();
+        //    PlayerCtrl playerCrtl = other.GetComponent<PlayerCtrl>();
+        //    playerCrtl.ChangeState(playerCrtl.dead);
+        //}
         else if (other.CompareTag(Constant.OBTACLE)) isHitObtacle = true;
     }
     protected virtual void MoveWeapon()

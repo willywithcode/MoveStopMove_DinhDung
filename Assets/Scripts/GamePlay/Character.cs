@@ -13,12 +13,9 @@ public class Character : GameUnit
     public TypeWeapon.Weapon weaponType = TypeWeapon.Weapon.Axe;
     public WeaponSO weaponData;
     //public OriginWeapon weaponCtrl;
-    public Transform weaponContainer;
 
     public Animator animator;
     public float rangeAttack;
-    public float timeLimitAttack = 10f;
-    public float timeCountAttack = 0;
     public Vector3 positionTarget;
     public float speed;
     public NavMeshAgent agent;
@@ -71,8 +68,6 @@ public class Character : GameUnit
     public override void OnInit()
     {
         currentAnimName = Constant.ANIM_IDLE;
-        this.weaponContainer = GameObject.Find("Weapon").transform;
-        this.InitiazlizeWeapon();
     }
 
 
@@ -81,10 +76,7 @@ public class Character : GameUnit
         
         SimplePool.Despawn(this);
     }
-    protected void InitiazlizeWeapon()
-    {
-        SimplePool.Preload(weaponData.weaponType, 1, weaponContainer, false, false);
-    }
+   
     
 }
 
