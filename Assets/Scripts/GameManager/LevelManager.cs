@@ -27,7 +27,7 @@ public class LevelManager : Singleton<LevelManager>
     private void Update()
     {
         if (countCharacter >= maxCharacter) return;
-        if(countCharacterCurrent < maxCharacterCurrent)
+        if (countCharacterCurrent < maxCharacterCurrent)
         {
             this.SpawnEnemy();
         }

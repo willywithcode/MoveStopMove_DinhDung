@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
-
 public class Character : GameUnit
 {
     [SerializeField] protected LayerMask layerCharacter;
 
     public GameObject weaponImg;
-    public TypeWeapon.Weapon weaponType = TypeWeapon.Weapon.Axe;
+    public PoolType typeWeapon;
     public WeaponSO weaponData;
     //public OriginWeapon weaponCtrl;
 
@@ -38,7 +37,11 @@ public class Character : GameUnit
             animator.SetTrigger(currentAnimName);
         }
     }
-
+    public void RandomWeapon()
+    {
+        PoolType[] allColors = (PoolType[])Enum.GetValues(typeof(PoolType));
+        typeWeapon = allColors[UnityEngine.Random.Range(1,allColors.Length)];
+    }
     public bool CheckEnemy()
     {
         Collider[] enemies = Physics.OverlapSphere(transform.position, rangeAttack, layerCharacter);

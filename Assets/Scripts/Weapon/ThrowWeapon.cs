@@ -11,19 +11,14 @@ public class ThrowWeapon : OriginWeapon
         speed = this.owner.rangeAttack*1.5f ;
         direct = this.owner.positionTarget - this.owner.transform.position;
         direct.Normalize();
+        this.DirectToTarget();
     }
     void Update()
     {
-        if (!isHitObtacle)this.MoveWeapon();
-        else this.WaitForAttach();
-    }
-    protected override void MoveWeapon()
-    {
-        base.MoveWeapon();
-        transform.position  += direct * speed * Time.deltaTime;
-        if (Vector3.Distance(transform.position, this.owner.transform.position) >= this.owner.rangeAttack )
+        if (!isHitObtacle)
         {
-            this.EndAttack();
+            this.MoveToEnemy();
         }
+        else this.WaitForAttach();
     }
 }

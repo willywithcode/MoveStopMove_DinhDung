@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27814986c81de241bfc82d5bfc3a9c1, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  weaponType: {fileID: 6615312091088782894, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
-  weaponCtrl: {fileID: 6615312091088782894, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
+  weaponType: {fileID: 9057066549339552541, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
+  weaponCtrl: {fileID: 9057066549339552541, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
+  weaponImg: {fileID: 8018418483132483175, guid: 80cbf4e0c338c8843a49aa34a29ce847, type: 3}

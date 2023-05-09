@@ -7,4 +7,5 @@ public class WeaponSO : ScriptableObject
 {
     public GameUnit weaponType;
     public OriginWeapon weaponCtrl;
+    public GameObject weaponImg;
 }

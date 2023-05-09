@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: {fileID: 8720232865380185368, guid: fd75101b1d66c314c8bee53826931afb, type: 3}
   weaponCtrl: {fileID: 8720232865380185368, guid: fd75101b1d66c314c8bee53826931afb, type: 3}
+  weaponImg: {fileID: 2019041745332949954, guid: df4560439a1839249a549a9ac4d6434e, type: 3}

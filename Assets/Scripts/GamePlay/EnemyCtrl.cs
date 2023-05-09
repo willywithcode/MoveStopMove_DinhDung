@@ -18,6 +18,7 @@ public class EnemyCtrl : Character
     public override void OnInit()
     {
         base.OnInit();
+        this.RandomWeapon();
         rangeAttack = 5;
         this.ChangeState(move);
         this.GetComponent<Collider>().enabled = true;

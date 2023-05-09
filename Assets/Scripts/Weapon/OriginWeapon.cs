@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class OriginWeapon : GameUnit
 {
@@ -20,7 +21,6 @@ public class OriginWeapon : GameUnit
     public override void OnDespawn()
     {
         SimplePool.Despawn(this);
-        //Destroy(gameObject);
     }
 
     protected void OnTriggerEnter(Collider other)
@@ -41,9 +41,23 @@ public class OriginWeapon : GameUnit
         //}
         else if (other.CompareTag(Constant.OBTACLE)) isHitObtacle = true;
     }
-    protected virtual void MoveWeapon()
+    protected  void MoveToEnemy()
     {
 
+        transform.position += direct * speed * Time.deltaTime;
+        if (Vector3.Distance(transform.position, this.owner.transform.position) >= this.owner.rangeAttack)
+        {
+            this.EndAttack();
+        }
+    }
+    protected void Rotate()
+    {
+        int speed = 500;
+        transform.Rotate(0f, speed * Time.deltaTime, 0f, Space.World);
+    }
+    protected void DirectToTarget()
+    {
+        transform.rotation = this.owner.transform.rotation;
     }
     protected void EndAttack()
     {

@@ -5,8 +5,7 @@ using UnityEngine;
 public class WeaponManager : Singleton<WeaponManager>
 {
     [SerializeField] protected List<WeaponSO> weaponDatas;
-
-    [SerializeField] protected ThrowWeapon weaponPrefabs;
+    [SerializeField] protected OriginWeapon weaponPrefabs;
     [SerializeField] private GameObject prefabs;
 
     private void Awake()
@@ -18,7 +17,7 @@ public class WeaponManager : Singleton<WeaponManager>
     {
         for (int i = 0; i < weaponDatas.Count; i++)
         {
-            SimplePool.Preload(weaponDatas[i].weaponType, 15, this.transform, false, false);
+            SimplePool.Preload(weaponDatas[i].weaponType, 25, this.transform, false, false);
         }
     }
     private void LoadWeaponData()
@@ -30,12 +29,13 @@ public class WeaponManager : Singleton<WeaponManager>
             if (!weaponDatas.Contains(weaponData)) this.weaponDatas.Add(weaponData);
         }
     }
-    public void SpawnWeapon(Character owner)
+    public void SpawnWeapon(Character character)
     {
-        ThrowWeapon weapon = SimplePool.Spawn<ThrowWeapon>(weaponPrefabs);
+        OriginWeapon weapon = SimplePool.Spawn<OriginWeapon>(character.typeWeapon);
         //ThrowWeapon weapon = Instantiate(prefabs).GetComponent<ThrowWeapon>();
-        weapon.owner = owner;
+        Debug.Log(character.typeWeapon);
+        weapon.owner = character;
         weapon.OnInit();
-        weapon.transform.position = owner.transform.position + Vector3.up * 1f;
+        weapon.transform.position = character.transform.position + Vector3.up * 1f;
     }
 }
