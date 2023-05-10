@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class Character : GameUnit
 {
     [SerializeField] protected LayerMask layerCharacter;
-
+    [SerializeField] protected List<WeaponImg> listWeapon;
     public GameObject weaponImg;
     public PoolType typeWeapon;
     public WeaponSO weaponData;
@@ -41,6 +41,28 @@ public class Character : GameUnit
     {
         PoolType[] allColors = (PoolType[])Enum.GetValues(typeof(PoolType));
         typeWeapon = allColors[UnityEngine.Random.Range(1,allColors.Length)];
+    }
+    public void AssignWeapon()
+    {
+        for(int i = 0; i < listWeapon.Count; i++)
+        {
+            WeaponImg weapon = listWeapon[i];
+            if (weapon.weaponType == typeWeapon)
+            {
+                weapon.gameObject.SetActive(true);
+            }
+        }
+    }
+    public void ClearOldWeapon()
+    {
+        for (int i = 0; i < listWeapon.Count; i++)
+        {
+            WeaponImg weapon = listWeapon[i];
+            if (weapon.gameObject.activeSelf)
+            {
+                weapon.gameObject.SetActive(false);
+            }
+        }
     }
     public bool CheckEnemy()
     {

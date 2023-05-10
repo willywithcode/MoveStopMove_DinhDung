@@ -19,6 +19,7 @@ public class PlayerCtrl : Character
     {
         base.OnInit();
         this.ChangeState(idle);
+        this.AssignWeapon();
         rangeAttack = 5;
         speed = 5;
     }
