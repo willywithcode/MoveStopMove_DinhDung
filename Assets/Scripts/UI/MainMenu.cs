@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : BaseGameState
 {
-   public void  StartGame()
-    {
-        UIManager.Instance.EnterStateUI(GameState.InGame);
-    }
+ 
     public void WeaponShop()
     {
         UIManager.Instance.EnterStateUI(GameState.ShopWeaponMenu);

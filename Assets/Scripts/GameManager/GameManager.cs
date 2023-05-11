@@ -6,6 +6,7 @@ public enum GameState
     MainMenu,
     InGame,
     Pause,
+    Question,
     ShopSkinMenu,
     ShopWeaponMenu,
     EndGame

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InGame : BaseGameState
+public class Question : BaseGameState
 {
-    public void PauseGame()
+    public void GoBackSetting()
     {
         UIManager.Instance.EnterStateUI(GameState.Pause);
     }

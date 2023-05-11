@@ -12,6 +12,7 @@ public class UIManager : Singleton<UIManager>
     public Canvas shopWeaponMenu;
     public Canvas endGame;
     public Canvas pauseGame;
+    public Canvas question;
     private void Awake()
     {
         this.AddStates();
@@ -45,5 +46,6 @@ public class UIManager : Singleton<UIManager>
         dictState.Add(GameState.ShopWeaponMenu, shopWeaponMenu);
         dictState.Add(GameState.Pause, pauseGame);
         dictState.Add(GameState.EndGame, endGame);
+        dictState.Add(GameState.Question, question);
     }
 }

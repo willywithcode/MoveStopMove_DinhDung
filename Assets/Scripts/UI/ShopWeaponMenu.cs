@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopWeaponMenu : MonoBehaviour
+public class ShopWeaponMenu : BaseGameState
 {
     public TextMeshProUGUI textMeshName;
     public TextMeshProUGUI textMeshDescription;
@@ -19,24 +19,17 @@ public class ShopWeaponMenu : MonoBehaviour
     private void Start()
     {
         numWeapon = WeaponManager.Instance.weaponDatas.Count;
-        Debug.Log(numWeapon);
         this.ChangeWeapon(WeaponManager.Instance.weaponDatas[0], 0);
-    }
-    public void ExitMenu()
-    {
-        UIManager.Instance.EnterStateUI(GameState.MainMenu);
     }
     public void ChangeNext()
     {
         if (indexWeapon == numWeapon - 1) this.ChangeWeapon(WeaponManager.Instance.weaponDatas[0], 0);
         else this.ChangeWeapon(WeaponManager.Instance.weaponDatas[indexWeapon + 1], indexWeapon + 1);
-        //Debug.Log(1);
     }
     public void ChangePrevious()
     {
         if (indexWeapon == 0) this.ChangeWeapon(WeaponManager.Instance.weaponDatas[numWeapon - 1], numWeapon - 1);
         else this.ChangeWeapon(WeaponManager.Instance.weaponDatas[indexWeapon - 1], indexWeapon - 1);
-        //Debug.Log(2);
     }
     public void ChangeWeapon(WeaponSO nextWeapon,int index)
     {
@@ -52,6 +45,6 @@ public class ShopWeaponMenu : MonoBehaviour
     {
         this.playerCtrl.typeWeapon = currentWeapon.weaponType.poolType;
         this.playerCtrl.AssignWeapon();
-        this.ExitMenu();
+        this.GoMainMenu();
     }
 }
