@@ -11,6 +11,14 @@ public class PlayerDeadState : BaseState<PlayerCtrl>
     }
     public void Update(PlayerCtrl ctrl)
     {
+        if (GameManager.Instance.currentState != GameState.InGame)
+        {
+            ctrl.ChangeState(ctrl.pause);
+            return;
+        }
+    }
+    public void ExitState(PlayerCtrl ctrl)
+    {
 
     }
 }

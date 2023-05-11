@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerCtrl : Character
 {
-    [SerializeField] private FloatingJoystick joystick;
+    public FloatingJoystick joystick;
 
 
     public Vector3 direct;
@@ -14,6 +14,7 @@ public class PlayerCtrl : Character
     public PlayerMoveState move = new PlayerMoveState();   
     public PlayerDeadState dead = new PlayerDeadState();
     public PlayerIdleState idle = new PlayerIdleState();
+    public PlayerPauseState pause = new PlayerPauseState();
     public BaseState<PlayerCtrl> currentState;
     public override void OnInit()
     {
@@ -32,6 +33,7 @@ public class PlayerCtrl : Character
     
     public void ChangeState(BaseState<PlayerCtrl> nextState)
     {
+        if (currentState != null) currentState.ExitState(this);
         if(currentState != nextState)
         {
             currentState = nextState;

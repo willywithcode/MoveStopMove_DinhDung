@@ -18,6 +18,11 @@ public class PlayerAttackState : BaseState<PlayerCtrl>
     }
     public void Update(PlayerCtrl ctrl)
     {
+        if (GameManager.Instance.currentState != GameState.InGame)
+        {
+            ctrl.ChangeState(ctrl.pause);
+            return;
+         }
         timeCount += Time.deltaTime;
         this.CountDownAttack(ctrl);
         if (timeCount >= timeLimitAttack )
@@ -28,6 +33,10 @@ public class PlayerAttackState : BaseState<PlayerCtrl>
         {
             ctrl.ChangeState(ctrl.move);
         }
+    }
+    public void ExitState(PlayerCtrl ctrl)
+    {
+
     }
     private void CountDownAttack(PlayerCtrl ctrl)
     {

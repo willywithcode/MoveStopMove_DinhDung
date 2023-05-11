@@ -12,11 +12,19 @@ public class EnemyMoveState : BaseState<EnemyCtrl>
     }
     public void Update(EnemyCtrl enemy)
     {
-
+        if (GameManager.Instance.currentState != GameState.InGame)
+        {
+            enemy.ChangeState(enemy.pause);
+            return;
+        }
         if (Vector3.Distance(enemy.transform.position, enemy.agent.destination) <= 0.01)
         {
             enemy.ChangeState(enemy.idle);
         }
+    }
+    public void ExitState(EnemyCtrl enemy)
+    {
+
     }
 
     private void Move(EnemyCtrl enemy)

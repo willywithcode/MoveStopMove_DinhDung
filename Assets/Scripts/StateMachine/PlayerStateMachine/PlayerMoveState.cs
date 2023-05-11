@@ -10,7 +10,16 @@ public class PlayerMoveState : BaseState<PlayerCtrl>
     }
     public void Update(PlayerCtrl ctrl)
     {
+        if (GameManager.Instance.currentState != GameState.InGame)
+        {
+            ctrl.ChangeState(ctrl.pause);
+            return;
+        }
         this.Run(ctrl);
+    }
+    public void ExitState(PlayerCtrl ctrl)
+    {
+
     }
     private void Run(PlayerCtrl ctrl)
     {

@@ -9,6 +9,7 @@ public class EnemyCtrl : Character
     internal EnemyMoveState move = new EnemyMoveState();
     internal EnemyAttackState attack = new EnemyAttackState();
     internal EnemyDeadState dead = new EnemyDeadState();
+    internal EnemyPauseState pause = new EnemyPauseState();
 
     public float timeCheckWait = 0.5f;
     public float timeCountCheckWait = 0;
@@ -33,6 +34,7 @@ public class EnemyCtrl : Character
 
     public void ChangeState(BaseState<EnemyCtrl> newState)
     {
+        if (currentState != null) currentState.ExitState(this);
         if (currentState != newState)
         {
             currentState = newState;

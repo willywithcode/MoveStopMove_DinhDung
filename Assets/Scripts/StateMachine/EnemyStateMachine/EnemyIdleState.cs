@@ -10,6 +10,11 @@ public class EnemyIdleState : BaseState<EnemyCtrl>
     }
     public void Update(EnemyCtrl enemy)
     {
+        if (GameManager.Instance.currentState != GameState.InGame)
+        {
+            enemy.ChangeState(enemy.pause);
+            return;
+        }
         enemy.timeCountCheckWait += Time.deltaTime;
         if (enemy.CheckEnemy() && enemy.weaponImg.activeSelf)
         {
@@ -20,5 +25,9 @@ public class EnemyIdleState : BaseState<EnemyCtrl>
             enemy.ChangeState(enemy.move);
             enemy.timeCountCheckWait = 0;
         }
+    }
+    public void ExitState(EnemyCtrl enemy)
+    {
+
     }
 }

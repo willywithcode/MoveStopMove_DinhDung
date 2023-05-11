@@ -21,12 +21,21 @@ public class EnemyAttackState : BaseState<EnemyCtrl>
     }
     public void Update(EnemyCtrl enemy)
     {
+        if (GameManager.Instance.currentState != GameState.InGame)
+        {
+            enemy.ChangeState(enemy.pause);
+            return;
+        }
         timeCount += Time.deltaTime; 
         this.CountDownAttack(enemy);
         if (timeCount >= timeLimitAttack)
         {
             enemy.ChangeState(enemy.move);
         }
+    }
+    public void ExitState(EnemyCtrl enemy)
+    {
+
     }
     private void CountDownAttack(EnemyCtrl enemy)
     {

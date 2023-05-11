@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class WeaponManager : Singleton<WeaponManager>
 {
-    [SerializeField] protected List<WeaponSO> weaponDatas;
     [SerializeField] protected OriginWeapon weaponPrefabs;
-    [SerializeField] private GameObject prefabs;
+    public List<WeaponSO> weaponDatas;
 
     private void Awake()
     {
@@ -33,7 +32,6 @@ public class WeaponManager : Singleton<WeaponManager>
     {
         OriginWeapon weapon = SimplePool.Spawn<OriginWeapon>(character.typeWeapon);
         //ThrowWeapon weapon = Instantiate(prefabs).GetComponent<ThrowWeapon>();
-        Debug.Log(character.typeWeapon);
         weapon.owner = character;
         weapon.OnInit();
         weapon.transform.position = character.transform.position + Vector3.up * 1f;

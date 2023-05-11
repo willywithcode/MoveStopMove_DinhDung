@@ -6,4 +6,5 @@ public interface BaseState<T>
 {
     void EnterState(T character);
     void Update(T character);
+    void ExitState(T character);
 }

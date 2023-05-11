@@ -35,7 +35,7 @@ public class LevelManager : Singleton<LevelManager>
     private Vector3 RandomPos()
     {
         Vector3 currentPosition = player.transform.position;
-        Vector3 randomPos = Random.insideUnitSphere * 20f + currentPosition;
+        Vector3 randomPos = Random.insideUnitSphere * 40f + currentPosition;
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomPos, out hit, Mathf.Infinity, NavMesh.AllAreas))
         {
