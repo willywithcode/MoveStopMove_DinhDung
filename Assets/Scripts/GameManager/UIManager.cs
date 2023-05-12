@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class UIManager : Singleton<UIManager>
 {
     public Dictionary<GameState,Canvas> dictState = new Dictionary<GameState, Canvas>();
@@ -48,4 +52,32 @@ public class UIManager : Singleton<UIManager>
         dictState.Add(GameState.EndGame, endGame);
         dictState.Add(GameState.Question, question);
     }
+    public void FillCanvas()
+    {
+        mainMenu = GameObject.Find("MainMenu").GetComponent<Canvas>();
+        pauseGame = GameObject.Find("PauseGame").GetComponent<Canvas>();
+        mainMenu = GameObject.Find("MainMenu").GetComponent<Canvas>();
+        inGame = GameObject.Find("InGame").GetComponent<Canvas>();
+        shopSkinMenu = GameObject.Find("ShopSkinMenu").GetComponent<Canvas>();
+        shopWeaponMenu = GameObject.Find("ShopWeaponMenu").GetComponent<Canvas>();
+        endGame = GameObject.Find("EndGame").GetComponent<Canvas>();
+        question = GameObject.Find("Question").GetComponent<Canvas>();
+    }
 }
+#if UNITY_EDITOR
+[CustomEditor(typeof(UIManager))]
+public class UIManagerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+
+        UIManager fillCanvas = (UIManager)target;
+
+        if (GUILayout.Button("Fill Canvas"))
+        {
+            fillCanvas.FillCanvas();
+        }
+    }
+}
+#endif
