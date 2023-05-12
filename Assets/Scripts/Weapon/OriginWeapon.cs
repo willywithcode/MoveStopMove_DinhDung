@@ -22,6 +22,7 @@ public class OriginWeapon : GameUnit
     {
         SimplePool.Despawn(this);
     }
+   
 
     protected void OnTriggerEnter(Collider other)
     {

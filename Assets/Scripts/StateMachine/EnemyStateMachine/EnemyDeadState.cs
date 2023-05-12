@@ -14,11 +14,11 @@ public class EnemyDeadState : BaseState<EnemyCtrl>
     }
     public void Update(EnemyCtrl enemy)
     {
-        if (GameManager.Instance.currentState != GameState.InGame)
-        {
-            enemy.ChangeState(enemy.pause);
-            return;
-        }
+        //if (GameManager.Instance.currentState != GameState.InGame)
+        //{
+        //    enemy.ChangeState(enemy.pause);
+        //    return;
+        //}
         count += Time.deltaTime;
         if(count >= timeDestroy)
         {

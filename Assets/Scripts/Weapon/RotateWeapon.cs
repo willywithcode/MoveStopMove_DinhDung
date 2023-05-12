@@ -13,7 +13,11 @@ public class RotateWeapon : OriginWeapon
     }
     private void Update()
     {
-        this.MoveToEnemy();
-        this.Rotate();
+        if (!isHitObtacle)
+        {
+            this.MoveToEnemy();
+            this.Rotate();
+        }
+        else this.WaitForAttach();
     }
 }
