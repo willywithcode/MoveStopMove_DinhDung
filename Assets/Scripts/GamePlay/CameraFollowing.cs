@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollowing : MonoBehaviour
+public class CameraFollowing : Singleton<CameraFollowing>
 {
     [SerializeField] private Transform player;
 

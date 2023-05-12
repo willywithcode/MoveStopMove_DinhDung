@@ -17,7 +17,7 @@ public class EnemyAttackState : BaseState<EnemyCtrl>
 
         enemy.ChangeAnim(Constant.ANIM_ATTACK);
         isThrowing = false;
-        enemy.agent.SetDestination(enemy.transform.position);
+        enemy.agent.SetDestination(enemy.TF.position);
     }
     public void Update(EnemyCtrl enemy)
     {

@@ -11,7 +11,6 @@ public class Character : GameUnit
     public GameObject weaponImg;
     public PoolType typeWeapon;
     public WeaponSO weaponData;
-    //public OriginWeapon weaponCtrl;
 
     public Animator animator;
     public float rangeAttack;
@@ -21,7 +20,6 @@ public class Character : GameUnit
     public Character target;
 
     protected float scaleGrowth;
-    
     [SerializeField]protected string currentAnimName;
 
     public void Awake()
@@ -51,6 +49,7 @@ public class Character : GameUnit
             {
                 weapon.gameObject.SetActive(true);
             }
+            else weapon.gameObject.SetActive(false);
         }
     }
     public void ClearOldWeapon()
@@ -78,13 +77,13 @@ public class Character : GameUnit
 
     public void Rotate()
     {
-        positionTarget = target.transform.position;
-        Vector3 targetAngle = positionTarget - transform.position;
+        positionTarget = target.TF.position;
+        Vector3 targetAngle = positionTarget - TF.position;
         float targetAngleY = Mathf.Atan2(targetAngle.x, targetAngle.z) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, targetAngleY, 0f);
+        TF.rotation = Quaternion.Euler(0f, targetAngleY, 0f);
         Quaternion targetRotation = Quaternion.Euler(0f, targetAngleY, 0f);
         float rotationSpeed = 50f; 
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        TF.rotation = Quaternion.Slerp(TF.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
     }
 

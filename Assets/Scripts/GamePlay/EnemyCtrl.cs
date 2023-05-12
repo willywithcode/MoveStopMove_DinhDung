@@ -11,10 +11,8 @@ public class EnemyCtrl : Character
     internal EnemyDeadState dead = new EnemyDeadState();
     internal EnemyPauseState pause = new EnemyPauseState();
 
-    public float timeCheckWait = 0.5f;
-    public float timeCountCheckWait = 0;
     public BaseState<EnemyCtrl> currentState;
-
+    public Collider collider;
 
     public override void OnInit()
     {
@@ -24,7 +22,8 @@ public class EnemyCtrl : Character
         this.AssignWeapon();
         rangeAttack = 5;
         this.ChangeState(move);
-        this.GetComponent<Collider>().enabled = true;
+        collider= this.GetComponent<Collider>();
+        collider.enabled = true;
     }
 
     void Update()

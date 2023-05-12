@@ -14,7 +14,4 @@ public enum GameState
 public class GameManager : Singleton<GameManager>
 {
     public GameState currentState;
-    private void Awake()
-    {
-    }
 }

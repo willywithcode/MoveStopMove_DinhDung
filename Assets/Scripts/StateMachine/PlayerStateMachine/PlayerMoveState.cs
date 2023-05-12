@@ -23,9 +23,9 @@ public class PlayerMoveState : BaseState<PlayerCtrl>
     }
     private void Run(PlayerCtrl ctrl)
     {
-        ctrl.transform.position += ctrl.direct * ctrl.speed * Time.deltaTime;
+        ctrl.TF.position += ctrl.direct * ctrl.speed * Time.deltaTime;
         float angle = Mathf.Atan2(ctrl.direct.x, ctrl.direct.z) * Mathf.Rad2Deg;
-        if (angle != 0) ctrl.transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        if (angle != 0) ctrl.TF.rotation = Quaternion.Euler(0f, angle, 0f);
         if (Vector3.Distance(ctrl.direct, Vector3.zero) <= 0.001f) ctrl.ChangeState(ctrl.idle);
     }
 }

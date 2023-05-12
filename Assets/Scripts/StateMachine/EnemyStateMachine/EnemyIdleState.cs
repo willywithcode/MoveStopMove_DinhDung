@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class EnemyIdleState : BaseState<EnemyCtrl>
 {
-   public void EnterState(EnemyCtrl enemy)
+
+
+    public float timeCheckWait = 0.5f;
+    public float count = 0;
+    public void EnterState(EnemyCtrl enemy)
     {
         enemy.ChangeAnim(Constant.ANIM_IDLE);
     }
@@ -15,15 +19,16 @@ public class EnemyIdleState : BaseState<EnemyCtrl>
             enemy.ChangeState(enemy.pause);
             return;
         }
-        enemy.timeCountCheckWait += Time.deltaTime;
+        count += Time.deltaTime;
         if (enemy.CheckEnemy() && enemy.weaponImg.activeSelf)
         {
             enemy.ChangeState(enemy.attack);
+            return;
         }
-        if (enemy.timeCountCheckWait >= enemy.timeCheckWait)
+        if (count >= timeCheckWait)
         {
+            count = 0;
             enemy.ChangeState(enemy.move);
-            enemy.timeCountCheckWait = 0;
         }
     }
     public void ExitState(EnemyCtrl enemy)

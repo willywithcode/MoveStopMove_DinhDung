@@ -6,9 +6,8 @@ using UnityEngine;
 public class PlayerCtrl : Character
 {
     public FloatingJoystick joystick;
-
-
     public Vector3 direct;
+    public Collider collider;
 
     public PlayerAttackState attack = new PlayerAttackState();
     public PlayerMoveState move = new PlayerMoveState();   
@@ -21,6 +20,7 @@ public class PlayerCtrl : Character
         base.OnInit();
         this.ChangeState(idle);
         this.AssignWeapon();
+        collider = GetComponent<Collider>();
         rangeAttack = 5;
         speed = 5;
     }

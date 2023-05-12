@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    [SerializeField] private EnemyCtrl enemyPrefab;
     [SerializeField] private PlayerCtrl player;
 
     public List<GameObject> prefabsLevelState;
@@ -34,10 +33,9 @@ public class LevelManager : Singleton<LevelManager>
     }
     private Vector3 RandomPos()
     {
-        Vector3 currentPosition = player.transform.position;
+        Vector3 currentPosition = player.TF.position;
         Vector3 randomPos = Random.insideUnitSphere * 40f + currentPosition;
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPos, out hit, Mathf.Infinity, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, Mathf.Infinity, NavMesh.AllAreas))
         {
             randomPos = hit.position;
         }
@@ -45,9 +43,9 @@ public class LevelManager : Singleton<LevelManager>
     }
     private void SpawnEnemy()
     {
-        EnemyCtrl bot = SimplePool.Spawn<EnemyCtrl>(enemyPrefab);
+        EnemyCtrl bot = SimplePool.Spawn<EnemyCtrl>(PoolType.EnemyCtrl);
         bot.OnInit();
-        bot.transform.position = RandomPos();
+        bot.TF.position = RandomPos();
         countCharacter++;
         countCharacterCurrent++;
     }

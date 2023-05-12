@@ -37,7 +37,7 @@ public class WeaponManager : Singleton<WeaponManager>
         OriginWeapon weapon = SimplePool.Spawn<OriginWeapon>(character.typeWeapon);
         weapon.owner = character;
         weapon.OnInit();
-        weapon.transform.position = character.transform.position + Vector3.up * 1f;
+        weapon.TF.position = character.TF.position + Vector3.up * 1f;
     }
 }
 

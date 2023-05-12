@@ -44,8 +44,8 @@ public class OriginWeapon : GameUnit
     protected  void MoveToEnemy()
     {
 
-        transform.position += direct * speed * Time.deltaTime;
-        if (Vector3.Distance(transform.position, this.owner.transform.position) >= this.owner.rangeAttack)
+        TF.position += direct * speed * Time.deltaTime;
+        if (Vector3.Distance(TF.position, this.owner.TF.position) >= this.owner.rangeAttack)
         {
             this.EndAttack();
         }
@@ -53,11 +53,11 @@ public class OriginWeapon : GameUnit
     protected void Rotate()
     {
         int speed = 500;
-        transform.Rotate(0f, speed * Time.deltaTime, 0f, Space.World);
+        TF.Rotate(0f, speed * Time.deltaTime, 0f, Space.World);
     }
     protected void DirectToTarget()
     {
-        transform.rotation = this.owner.transform.rotation;
+        TF.rotation = this.owner.TF.rotation;
     }
     protected void EndAttack()
     {

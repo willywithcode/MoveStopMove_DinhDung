@@ -29,10 +29,9 @@ public class EnemyMoveState : BaseState<EnemyCtrl>
 
     private void Move(EnemyCtrl enemy)
     {
-        Vector3 currentPosition = enemy.transform.position;
+        Vector3 currentPosition = enemy.TF.position;
         Vector3 randomDes = Random.insideUnitSphere * 10f + currentPosition;
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDes, out hit, Mathf.Infinity, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(randomDes, out NavMeshHit hit, Mathf.Infinity, NavMesh.AllAreas))
         {
             randomDes = hit.position;
         }

@@ -9,8 +9,8 @@ public class EnemyDeadState : BaseState<EnemyCtrl>
     public void EnterState(EnemyCtrl enemy)
     {
         enemy.ChangeAnim(Constant.ANIM_DEAD);
-        enemy.GetComponent<Collider>().enabled = false;
-        enemy.agent.SetDestination(enemy.transform.position);
+        enemy.collider.enabled = false;
+        enemy.agent.SetDestination(enemy.TF.position);
     }
     public void Update(EnemyCtrl enemy)
     {

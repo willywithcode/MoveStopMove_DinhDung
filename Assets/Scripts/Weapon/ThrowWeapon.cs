@@ -9,7 +9,7 @@ public class ThrowWeapon : OriginWeapon
     {
         base.OnInit();
         speed = this.owner.rangeAttack*1.5f ;
-        direct = this.owner.positionTarget - this.owner.transform.position;
+        direct = this.owner.positionTarget - this.owner.TF.position;
         direct.Normalize();
         this.DirectToTarget();
     }
