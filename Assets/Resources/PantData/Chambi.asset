@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0198ce5278d3474199e0238e6b9ad80, type: 3}
+  m_Name: Chambi
+  m_EditorClassIdentifier: 
+  weaponType: {fileID: 0}
+  weaponCtrl: {fileID: 0}
+  weaponImg: {fileID: 0}
+  description: 
+  nameWeapon: 
+  price: 
+  imageInShop: {fileID: 21300000, guid: 6d8c21d8e55123441ba02ac0fce3d675, type: 3}
+  material: {fileID: 2100000, guid: e7d8d0a10e588f2409bfbb0f549617b1, type: 2}

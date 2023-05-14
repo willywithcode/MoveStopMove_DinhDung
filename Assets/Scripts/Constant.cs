@@ -18,5 +18,8 @@ public class Constant
 
     public static readonly string pathWeaponData = "WeaponData";
     public static readonly string pathHatData = "HatData";
+    public static readonly string pathPantData = "PantData";
+    public static readonly string pathShieldData = "ShieldData";
+
 
 }

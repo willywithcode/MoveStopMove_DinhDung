@@ -45,6 +45,26 @@ public class EquipmentManager : Singleton<EquipmentManager>
             this.hatDatas.Add(hatData);
         }
     }
+    public void LoadPantData()
+    {
+        //container = GameObject.Find("WeaponPool").transform;
+        pantDatas.Clear();
+        EquipmentSO[] pantDatasResource = Resources.LoadAll<EquipmentSO>(Constant.pathPantData);
+        foreach (EquipmentSO pantData in pantDatasResource)
+        {
+            this.pantDatas.Add(pantData);
+        }
+    }
+    public void LoadShieldData()
+    {
+        //container = GameObject.Find("WeaponPool").transform;
+        shieldDatas.Clear();
+        EquipmentSO[] shieldDatasResource = Resources.LoadAll<EquipmentSO>(Constant.pathShieldData);
+        foreach (EquipmentSO shieldData in shieldDatasResource)
+        {
+            this.shieldDatas.Add(shieldData);
+        }
+    }
     public void SpawnWeapon(Character character)
     {
         OriginWeapon weapon = SimplePool.Spawn<OriginWeapon>(character.typeWeapon);
@@ -68,6 +88,8 @@ public class EquipmentManagerEditor : Editor
         {
             equipmentManager.LoadWeaponData();
             equipmentManager.LoadHatData();
+            equipmentManager.LoadPantData();
+            equipmentManager.LoadShieldData();
         }
     }
 }
