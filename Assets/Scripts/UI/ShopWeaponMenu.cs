@@ -11,27 +11,27 @@ public class ShopWeaponMenu : BaseGameState
     public TextMeshProUGUI textMeshPrice;
     public Image weaponImage;
 
-    public WeaponSO currentWeapon;
+    public EquipmentSO currentWeapon;
     public int indexWeapon;
     public int numWeapon;
 
     public PlayerCtrl playerCtrl;
     private void Start()
     {
-        numWeapon = WeaponManager.Instance.weaponDatas.Count;
-        this.ChangeWeapon(WeaponManager.Instance.weaponDatas[0], 0);
+        numWeapon = EquipmentManager.Instance.weaponDatas.Count;
+        this.ChangeWeapon(EquipmentManager.Instance.weaponDatas[0], 0);
     }
     public void ChangeNext()
     {
-        if (indexWeapon == numWeapon - 1) this.ChangeWeapon(WeaponManager.Instance.weaponDatas[0], 0);
-        else this.ChangeWeapon(WeaponManager.Instance.weaponDatas[indexWeapon + 1], indexWeapon + 1);
+        if (indexWeapon == numWeapon - 1) this.ChangeWeapon(EquipmentManager.Instance.weaponDatas[0], 0);
+        else this.ChangeWeapon(EquipmentManager.Instance.weaponDatas[indexWeapon + 1], indexWeapon + 1);
     }
     public void ChangePrevious()
     {
-        if (indexWeapon == 0) this.ChangeWeapon(WeaponManager.Instance.weaponDatas[numWeapon - 1], numWeapon - 1);
-        else this.ChangeWeapon(WeaponManager.Instance.weaponDatas[indexWeapon - 1], indexWeapon - 1);
+        if (indexWeapon == 0) this.ChangeWeapon(EquipmentManager.Instance.weaponDatas[numWeapon - 1], numWeapon - 1);
+        else this.ChangeWeapon(EquipmentManager.Instance.weaponDatas[indexWeapon - 1], indexWeapon - 1);
     }
-    public void ChangeWeapon(WeaponSO nextWeapon,int index)
+    public void ChangeWeapon(EquipmentSO nextWeapon,int index)
     {
         if (nextWeapon == currentWeapon) return;
         currentWeapon = nextWeapon;

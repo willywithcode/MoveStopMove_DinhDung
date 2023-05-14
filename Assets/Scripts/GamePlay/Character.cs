@@ -8,9 +8,11 @@ public class Character : GameUnit
 {
     [SerializeField] protected LayerMask layerCharacter;
     [SerializeField] protected List<WeaponImg> listWeapon;
+
     public GameObject weaponImg;
     public PoolType typeWeapon;
-    public WeaponSO weaponData;
+    public EquipmentSO weaponData;
+    public Transform hatContainer;
 
     public Animator animator;
     public float rangeAttack;
@@ -74,7 +76,6 @@ public class Character : GameUnit
         }
         return enemies.Length > 1;
     }
-
     public void Rotate()
     {
         positionTarget = target.TF.position;
@@ -86,22 +87,15 @@ public class Character : GameUnit
         TF.rotation = Quaternion.Slerp(TF.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
     }
-
-
-
     public override void OnInit()
     {
         currentAnimName = Constant.ANIM_IDLE;
     }
-
-
     public override void OnDespawn()
     {
         
         SimplePool.Despawn(this);
     }
-   
-    
 }
 
 

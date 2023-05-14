@@ -8,6 +8,7 @@ public class PlayerCtrl : Character
     public FloatingJoystick joystick;
     public Vector3 direct;
     public Collider collider;
+    public GameObject hat;
 
     public PlayerAttackState attack = new PlayerAttackState();
     public PlayerMoveState move = new PlayerMoveState();   

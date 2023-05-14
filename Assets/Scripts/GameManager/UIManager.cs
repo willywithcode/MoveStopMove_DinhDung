@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -26,12 +27,13 @@ public class UIManager : Singleton<UIManager>
     public GameObject endGameContainer;
     public GameObject pauseGameContainer;
     public GameObject questionContainer;
+
     private void Awake()
     {
         this.AddStates();
         this.AwakeState();
     }
-    
+   
     public void EnterStateUI(GameState nextGameState)
     {
         if (GameManager.Instance.currentState == nextGameState) return;
@@ -89,15 +91,6 @@ public class UIManager : Singleton<UIManager>
     }
     public void FillCanvas()
     {
-        mainMenu = GameObject.Find("MainMenu").GetComponent<Canvas>();
-        pauseGame = GameObject.Find("PauseGame").GetComponent<Canvas>();
-        mainMenu = GameObject.Find("MainMenu").GetComponent<Canvas>();
-        inGame = GameObject.Find("InGame").GetComponent<Canvas>();
-        shopSkinMenu = GameObject.Find("ShopSkinMenu").GetComponent<Canvas>();
-        shopWeaponMenu = GameObject.Find("ShopWeaponMenu").GetComponent<Canvas>();
-        endGame = GameObject.Find("EndGame").GetComponent<Canvas>();
-        question = GameObject.Find("Question").GetComponent<Canvas>();
-
         mainMenuContainer = GameObject.Find("MainMenu");
         pauseGameContainer = GameObject.Find("PauseGame");
         mainMenuContainer = GameObject.Find("MainMenu");
@@ -106,6 +99,16 @@ public class UIManager : Singleton<UIManager>
         shopWeaponMenuContainer = GameObject.Find("ShopWeaponMenu");
         endGameContainer = GameObject.Find("EndGame");
         questionContainer = GameObject.Find("Question");
+
+        mainMenu = mainMenuContainer.GetComponent<Canvas>();
+        pauseGame = pauseGameContainer.GetComponent<Canvas>();
+        mainMenu = mainMenuContainer.GetComponent<Canvas>();
+        inGame = inGameContainer.GetComponent<Canvas>();
+        shopSkinMenu = shopSkinMenuContainer.GetComponent<Canvas>();
+        shopWeaponMenu = shopWeaponMenuContainer.GetComponent<Canvas>();
+        endGame = endGameContainer.GetComponent<Canvas>();
+        question = questionContainer.GetComponent<Canvas>();
+
     }
 }
 #if UNITY_EDITOR

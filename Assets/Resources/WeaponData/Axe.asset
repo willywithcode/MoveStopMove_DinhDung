@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27814986c81de241bfc82d5bfc3a9c1, type: 3}
+  m_Script: {fileID: 11500000, guid: d0198ce5278d3474199e0238e6b9ad80, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
   weaponType: {fileID: 9057066549339552541, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}

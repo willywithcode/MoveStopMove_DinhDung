@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0198ce5278d3474199e0238e6b9ad80, type: 3}
   m_Name: Arrow
   m_EditorClassIdentifier: 
-  weaponType: {fileID: 8720232865380185368, guid: fd75101b1d66c314c8bee53826931afb, type: 3}
-  weaponCtrl: {fileID: 8720232865380185368, guid: fd75101b1d66c314c8bee53826931afb, type: 3}
-  weaponImg: {fileID: 2019041745332949954, guid: df4560439a1839249a549a9ac4d6434e, type: 3}
+  weaponType: {fileID: 0}
+  weaponCtrl: {fileID: 0}
+  weaponImg: {fileID: -927199367670048503, guid: b535a5d9e925da743af04915aebb5351, type: 3}
   description: 
-  nameWeapon: Arrow
-  price: 200
-  imageInShop: {fileID: 21300000, guid: 317ab2e33cd06af499894eac0b795074, type: 3}
+  nameWeapon: 
+  price: 
+  imageInShop: {fileID: 21300000, guid: 2f8937590677b044b8619858abca9ecf, type: 3}
+  material: {fileID: 0}

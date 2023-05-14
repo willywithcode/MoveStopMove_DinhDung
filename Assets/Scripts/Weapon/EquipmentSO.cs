@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEditor.VersionControl;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Data Weapon", menuName = "ScriptableObjects/WeaponData", order = 1)]
-public class WeaponSO : ScriptableObject
+[CreateAssetMenu(fileName = "New Data Weapon", menuName = "ScriptableObjects/EquipmentData", order = 1)]
+public class EquipmentSO : ScriptableObject
 {
     public GameUnit weaponType;
     public OriginWeapon weaponCtrl;
@@ -13,4 +13,5 @@ public class WeaponSO : ScriptableObject
     public string nameWeapon;
     public string price;
     public Sprite imageInShop;
+    public Material material;
 }
