@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BaseGameState : MonoBehaviour
 {
-    public void EnterInGame()
+    public virtual void EnterInGame()
     {
         UIManager.Instance.EnterStateUI(GameState.InGame);
     }
-    public void GoMainMenu()
+    public virtual void GoMainMenu()
     {
         UIManager.Instance.EnterStateUI(GameState.MainMenu);
     }

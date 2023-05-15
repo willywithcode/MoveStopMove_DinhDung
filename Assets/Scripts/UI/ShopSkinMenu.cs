@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,6 +12,8 @@ public class ShopSkinMenu : BaseGameState
 {
 
     public GameObject prefabButton;
+    public TextMeshProUGUI textMeshPrice;
+
 
     public Transform contentHatShop;
     public Transform contentPantShop;
@@ -19,6 +23,8 @@ public class ShopSkinMenu : BaseGameState
     public List<GameObject> buttons = new List<GameObject>();
     public List<GameObject> views = new List<GameObject>();
     public PlayerCtrl player;
+
+    GameObject tempHat;
     private void Start()
     {
         this.AddDictButtonView();
@@ -34,10 +40,17 @@ public class ShopSkinMenu : BaseGameState
             button.GetComponent<ButtonNavi>().action += CheckOnClickButton;
         }
     }
+    public override void GoMainMenu()
+    {
+        base.GoMainMenu();
+        this.ClearChoices();
+        player.ChangeAnim(Constant.ANIM_IDLE);
+    }
     public void CheckOnClickButton(GameObject button)
     {
         for (int i = 0; i < buttons.Count; i++)
         {
+            this.ClearChoices();
             if (buttons[i] == button)
             {
                 buttonViews[buttons[i]].enabled = true;
@@ -50,15 +63,32 @@ public class ShopSkinMenu : BaseGameState
             }
         }
     }
+    private void ClearChoices()
+    {
+        player.pantType.material = player.pantCurrent;
+        if (player.hatCurrent != null) player.hatCurrent.SetActive(true);
+        Destroy(this.tempHat);
+    }
+    public void ChooseItem()
+    {
+        if (player.pantCurrent != player.pantType.material) player.pantCurrent = player.pantType.material;
+        if (player.hatCurrent != null && tempHat != null) Destroy(player.hatCurrent);
+        if (tempHat != null)
+        {
+            player.hatCurrent = Instantiate(tempHat, player.hatContainer);
+            Destroy(tempHat);
+        }
+    }
+
     private void LoadShopHatUI()
     {
         int count = EquipmentManager.Instance.hatDatas.Count;
         for (int i = 0; i < count; i++)
         {
             GameObject myButton = Instantiate(prefabButton, contentHatShop);
-            myButton.GetComponent<ButtonCrl>().index = i;
+            myButton.GetComponent<ButtonCtrl>().index = i;
             myButton.GetComponent<Image>().sprite = EquipmentManager.Instance.hatDatas[i].imageInShop;
-            myButton.GetComponent<Button>().onClick.AddListener(delegate { ChangeHat(myButton.GetComponent<ButtonCrl>().index); });
+            myButton.GetComponent<ButtonCtrl>().action += ChangeHat;
         }
 
     }
@@ -68,9 +98,10 @@ public class ShopSkinMenu : BaseGameState
         for (int i = 0; i < count; i++)
         {
             GameObject myButton = Instantiate(prefabButton, contentPantShop);
-            myButton.GetComponent<ButtonCrl>().index = i;
+            myButton.GetComponent<ButtonCtrl>().index = i;
             myButton.GetComponent<Image>().sprite = EquipmentManager.Instance.pantDatas[i].imageInShop;
-            myButton.GetComponent<Button>().onClick.AddListener(delegate { ChangePant(myButton.GetComponent<ButtonCrl>().index); });
+            myButton.GetComponent<ButtonCtrl>().action += ChangePant;
+
         }
 
     }
@@ -80,24 +111,31 @@ public class ShopSkinMenu : BaseGameState
         for (int i = 0; i < count; i++)
         {
             GameObject myButton = Instantiate(prefabButton, contentShieldShop);
-            myButton.GetComponent<ButtonCrl>().index = i;
+            myButton.GetComponent<ButtonCtrl>().index = i;
             myButton.GetComponent<Image>().sprite = EquipmentManager.Instance.shieldDatas[i].imageInShop;
-            myButton.GetComponent<Button>().onClick.AddListener(delegate { ChangeShield(myButton.GetComponent<ButtonCrl>().index); });
+            myButton.GetComponent<ButtonCtrl>().action += ChangeShield;
+
         }
 
     }
     public void ChangeHat(int index)
     {
-        if (player.hat != null) Destroy(player.hat);
-        player.hat = Instantiate(EquipmentManager.Instance.hatDatas[index].weaponImg, player.hatContainer);
+        if (player.hatCurrent != null) player.hatCurrent.SetActive(false);
+        if(tempHat != null) Destroy(tempHat);
+        tempHat = Instantiate(EquipmentManager.Instance.hatDatas[index].weaponImg, player.hatContainer);
+        textMeshPrice.text = EquipmentManager.Instance.hatDatas[index].price;
     }
     public void ChangePant(int index)
     {
-        Debug.Log(index);
+        player.pantType.material = EquipmentManager.Instance.pantDatas[index].material;
+        textMeshPrice.text = EquipmentManager.Instance.hatDatas[index].price;
+
     }
     public void ChangeShield(int index)
     {
         Debug.Log(index);
+        textMeshPrice.text = EquipmentManager.Instance.hatDatas[index].price;
+
     }
 }
 

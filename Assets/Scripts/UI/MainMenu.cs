@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainMenu : BaseGameState
 {
- 
+    public PlayerCtrl player;
     public void WeaponShop()
     {
         UIManager.Instance.EnterStateUI(GameState.ShopWeaponMenu);
@@ -13,5 +13,6 @@ public class MainMenu : BaseGameState
     public void SkinShop()
     {
         UIManager.Instance.EnterStateUI(GameState.ShopSkinMenu);
+        player.ChangeAnim(Constant.ANIM_DanceShop);
     }
 }

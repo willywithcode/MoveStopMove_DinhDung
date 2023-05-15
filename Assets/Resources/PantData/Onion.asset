@@ -17,6 +17,6 @@ MonoBehaviour:
   weaponImg: {fileID: 0}
   description: 
   nameWeapon: 
-  price: 
+  price: 100
   imageInShop: {fileID: 21300000, guid: be770e2a4bda55147bff7cac14cb8b34, type: 3}
   material: {fileID: 2100000, guid: 37d95ae247dc5df4f89008d3e1925b8e, type: 2}

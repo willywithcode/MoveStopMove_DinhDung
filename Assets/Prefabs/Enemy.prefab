@@ -259,6 +259,7 @@ MonoBehaviour:
   typeWeapon: 0
   weaponData: {fileID: 11400000, guid: 7bbfe76790d86a849a4a85d8220ea77a, type: 2}
   hatContainer: {fileID: 5363095842578076818}
+  pantType: {fileID: 3008809981897318960}
   animator: {fileID: 8833313703688288217}
   rangeAttack: 0
   positionTarget: {x: 0, y: 0, z: 0}
@@ -593,6 +594,11 @@ Transform:
 --- !u!4 &1883784594587546321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3800467336962686104, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
+  m_PrefabInstance: {fileID: 5865528448728117689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &3008809981897318960 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -529177695146175607, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
   m_PrefabInstance: {fileID: 5865528448728117689}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &8833313703688288217 stripped

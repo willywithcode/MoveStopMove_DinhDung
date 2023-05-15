@@ -10,6 +10,8 @@ public class Constant
     public static readonly string ANIM_DANCE = "Dance";
     public static readonly string ANIM_DEAD = "Dead";
     public static readonly string ANIM_ULTI = "Ulti";
+    public static readonly string ANIM_DanceShop = "DanceShop";
+
 
     public static readonly string CHARACTER = "Character";
     public static readonly string PLAYER = "Player";

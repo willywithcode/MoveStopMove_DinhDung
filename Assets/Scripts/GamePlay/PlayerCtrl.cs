@@ -8,7 +8,11 @@ public class PlayerCtrl : Character
     public FloatingJoystick joystick;
     public Vector3 direct;
     public Collider collider;
-    public GameObject hat;
+    public GameObject attackRoundObject;
+
+    public GameObject hatCurrent;
+    public Material pantCurrent;
+    
 
     public PlayerAttackState attack = new PlayerAttackState();
     public PlayerMoveState move = new PlayerMoveState();   
@@ -21,6 +25,7 @@ public class PlayerCtrl : Character
         base.OnInit();
         this.ChangeState(idle);
         this.AssignWeapon();
+        pantCurrent = pantType.material;
         collider = GetComponent<Collider>();
         rangeAttack = 5;
         speed = 5;

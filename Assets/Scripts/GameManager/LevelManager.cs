@@ -10,6 +10,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public List<GameObject> prefabsLevelState;
     public int countCharacterCurrent = 0;
+    
 
     private int maxCharacter = 50; 
     private int countCharacter = 0;
@@ -30,6 +31,8 @@ public class LevelManager : Singleton<LevelManager>
         {
             this.SpawnEnemy();
         }
+        if (GameManager.Instance.currentState != GameState.InGame && GameManager.Instance.currentState != GameState.Question && GameManager.Instance.currentState != GameState.Pause) player.attackRoundObject.SetActive(false);
+        else player.attackRoundObject.SetActive(true);
     }
     private Vector3 RandomPos()
     {
