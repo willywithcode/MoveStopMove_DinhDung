@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class ShopSkinMenu : BaseGameState
 {
@@ -12,13 +15,40 @@ public class ShopSkinMenu : BaseGameState
     public Transform contentPantShop;
     public Transform contentShieldShop;
 
+    private  Dictionary<GameObject,Image> buttonViews = new Dictionary<GameObject,Image>();
+    public List<GameObject> buttons = new List<GameObject>();
+    public List<GameObject> views = new List<GameObject>();
     public PlayerCtrl player;
     private void Start()
     {
-
+        this.AddDictButtonView();
         this.LoadShopHatUI();
         this.LoadShopPantUI();
         this.LoadShopShieldUI();
+    }
+    private void AddDictButtonView()
+    {
+        foreach (GameObject button in buttons)
+        {
+            buttonViews.Add(button, button.GetComponent<Image>());
+            button.GetComponent<ButtonNavi>().action += CheckOnClickButton;
+        }
+    }
+    public void CheckOnClickButton(GameObject button)
+    {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            if (buttons[i] == button)
+            {
+                buttonViews[buttons[i]].enabled = true;
+                views[i].SetActive(true);
+            }
+            else
+            {
+                buttonViews[buttons[i]].enabled = false;
+                views[i].SetActive(false);
+            }
+        }
     }
     private void LoadShopHatUI()
     {
@@ -70,3 +100,21 @@ public class ShopSkinMenu : BaseGameState
         Debug.Log(index);
     }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(ShopSkinMenu))]
+public class ShopSkinMenuEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+
+        ShopSkinMenu fillCanvas = (ShopSkinMenu)target;
+
+        if (GUILayout.Button("Fill"))
+        {
+
+        }
+    }
+}
+#endif
