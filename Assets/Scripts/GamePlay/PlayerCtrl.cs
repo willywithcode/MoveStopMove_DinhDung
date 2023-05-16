@@ -11,6 +11,7 @@ public class PlayerCtrl : Character
     public GameObject attackRoundObject;
 
     public GameObject hatCurrent;
+    public GameObject shieldCurrent;
     public Material pantCurrent;
     
 

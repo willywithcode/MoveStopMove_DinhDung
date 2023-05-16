@@ -14,7 +14,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private int maxCharacter = 50; 
     private int countCharacter = 0;
-    private int maxCharacterCurrent = 10;
+    private int maxCharacterCurrent = 15;
 
 
     private void Start()

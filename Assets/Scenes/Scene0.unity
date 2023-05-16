@@ -313,6 +313,7 @@ MonoBehaviour:
   typeWeapon: 2
   weaponData: {fileID: 11400000, guid: 4923f96a73f4d014b84830f909952a5d, type: 2}
   hatContainer: {fileID: 1571818053}
+  shieldContainer: {fileID: 1309257744}
   pantType: {fileID: 607331282}
   animator: {fileID: 581087653}
   rangeAttack: 0
@@ -326,6 +327,7 @@ MonoBehaviour:
   collider: {fileID: 0}
   attackRoundObject: {fileID: 1312331848}
   hatCurrent: {fileID: 0}
+  shieldCurrent: {fileID: 0}
   pantCurrent: {fileID: 607331282}
 --- !u!136 &70284521
 CapsuleCollider:
@@ -6201,6 +6203,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297283502}
   m_CullTransparentMesh: 1
+--- !u!1 &1309257743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1309257744}
+  m_Layer: 0
+  m_Name: ShieldContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1309257744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309257743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1566893757}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1310401326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7230,6 +7263,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562200276}
   m_CullTransparentMesh: 1
+--- !u!4 &1566893757 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6204169937033342801, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
+  m_PrefabInstance: {fileID: 1920262035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1571818052
 GameObject:
   m_ObjectHideFlags: 0

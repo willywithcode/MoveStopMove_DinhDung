@@ -25,6 +25,7 @@ public class ShopSkinMenu : BaseGameState
     public PlayerCtrl player;
 
     GameObject tempHat;
+    GameObject tempShield;
     private void Start()
     {
         this.AddDictButtonView();
@@ -68,6 +69,8 @@ public class ShopSkinMenu : BaseGameState
         player.pantType.material = player.pantCurrent;
         if (player.hatCurrent != null) player.hatCurrent.SetActive(true);
         Destroy(this.tempHat);
+        if (player.shieldCurrent != null) player.shieldCurrent.SetActive(true);
+        Destroy(this.tempShield);
     }
     public void ChooseItem()
     {
@@ -77,6 +80,12 @@ public class ShopSkinMenu : BaseGameState
         {
             player.hatCurrent = Instantiate(tempHat, player.hatContainer);
             Destroy(tempHat);
+        }
+        if (player.shieldCurrent != null && tempShield != null) Destroy(player.shieldCurrent);
+        if (tempShield != null)
+        {
+            player.shieldCurrent = Instantiate(tempShield, player.shieldContainer);
+            Destroy(tempShield);
         }
     }
 
@@ -133,7 +142,9 @@ public class ShopSkinMenu : BaseGameState
     }
     public void ChangeShield(int index)
     {
-        Debug.Log(index);
+        if (player.shieldCurrent != null) player.shieldCurrent.SetActive(false);
+        if (tempShield != null) Destroy(tempShield);
+        tempShield = Instantiate(EquipmentManager.Instance.shieldDatas[index].weaponImg, player.shieldContainer);
         textMeshPrice.text = EquipmentManager.Instance.hatDatas[index].price;
 
     }

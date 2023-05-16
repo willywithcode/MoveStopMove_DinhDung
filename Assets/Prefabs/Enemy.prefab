@@ -34,6 +34,37 @@ Transform:
   m_Father: {fileID: 9202695082561830403}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3078904611561800940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2292624016564565348}
+  m_Layer: 0
+  m_Name: ShieldContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2292624016564565348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3078904611561800940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 540195164365561576}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5865528449475522129
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +290,7 @@ MonoBehaviour:
   typeWeapon: 0
   weaponData: {fileID: 11400000, guid: 7bbfe76790d86a849a4a85d8220ea77a, type: 2}
   hatContainer: {fileID: 5363095842578076818}
+  shieldContainer: {fileID: 2292624016564565348}
   pantType: {fileID: 3008809981897318960}
   animator: {fileID: 8833313703688288217}
   rangeAttack: 0
@@ -586,6 +618,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e1e8b230564161b46843fb8b63afac54, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
+--- !u!4 &540195164365561576 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6204169937033342801, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
+  m_PrefabInstance: {fileID: 5865528448728117689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1449103285112445603 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}

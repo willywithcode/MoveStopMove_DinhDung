@@ -13,6 +13,7 @@ public class Character : GameUnit
     public PoolType typeWeapon;
     public EquipmentSO weaponData;
     public Transform hatContainer;
+    public Transform shieldContainer;
     public Renderer pantType;
 
     public Animator animator;
