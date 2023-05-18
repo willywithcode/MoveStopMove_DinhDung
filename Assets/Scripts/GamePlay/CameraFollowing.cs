@@ -6,6 +6,7 @@ using UnityEngine;
 public class CameraFollowing : Singleton<CameraFollowing>
 {
     [SerializeField] private Transform player;
+    [SerializeField] private PlayerCtrl playerCtrl;
 
     private float speed;
     private Transform TF;
@@ -19,11 +20,11 @@ public class CameraFollowing : Singleton<CameraFollowing>
     {
         if (GameManager.Instance.currentState != GameState.ShopSkinMenu)
         {
-            TF.position = Vector3.Lerp(transform.position, player.position + new Vector3(0, 15, -15), Time.deltaTime * speed);
+            TF.position = Vector3.Lerp(transform.position, player.position + new Vector3(0, 10 + playerCtrl.rangeAttack*1.5f, -10 - playerCtrl.rangeAttack*1.5f), Time.deltaTime * speed);
             TF.rotation = Quaternion.Euler(45, 0, 0);
             return;
         }
-        TF.position = player.position + new Vector3(0,-1.551f,-10);
+        TF.position = Vector3.Lerp(transform.position, player.position + new Vector3(0, -1.551f, -10), Time.deltaTime * speed) ;
         TF.rotation = Quaternion.Euler(0, 0, 0);
     }
 }

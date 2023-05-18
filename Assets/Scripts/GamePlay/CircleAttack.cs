@@ -5,12 +5,13 @@ using UnityEngine;
 public class CircleAttack : MonoBehaviour
 {
     public int segments = 360;
-    public float radius = 10f;
+    public float radius;
 
     [SerializeField] private LineRenderer line;
 
     void Start()
     {
+        radius = 5f;
         line.positionCount = segments + 1;
         line.useWorldSpace = false;
         Draw();
@@ -19,6 +20,20 @@ public class CircleAttack : MonoBehaviour
     void Draw()
     {
         float angle = 0f;
+        for (int i = 0; i < (segments + 1); i++)
+        {
+            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
+            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+
+            line.SetPosition(i, new Vector3(x, y, 0f));
+
+            angle += (360f / segments);
+        }
+    }
+    public void ChangeAttackRange(float range)
+    {
+        float angle = 0f;
+        radius = range;
         for (int i = 0; i < (segments + 1); i++)
         {
             float x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;

@@ -17,14 +17,15 @@ public class Character : GameUnit
     public Renderer pantType;
 
     public Animator animator;
+
+    public float scaleGrowth;
     public float rangeAttack;
-    public Vector3 positionTarget;
     public float speed;
+
+    public Vector3 positionTarget;
     public NavMeshAgent agent;
     public Character target;
-
-    protected float scaleGrowth;
-    [SerializeField]protected string currentAnimName;
+    protected string currentAnimName;
 
     public void Awake()
     {

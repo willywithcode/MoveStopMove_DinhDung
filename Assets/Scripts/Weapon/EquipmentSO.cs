@@ -14,4 +14,6 @@ public class EquipmentSO : ScriptableObject
     public string price;
     public Sprite imageInShop;
     public Material material;
+    public float speed;
+    public float attackRange;
 }

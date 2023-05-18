@@ -316,19 +316,23 @@ MonoBehaviour:
   shieldContainer: {fileID: 1309257744}
   pantType: {fileID: 607331282}
   animator: {fileID: 581087653}
+  scaleGrowth: 0
   rangeAttack: 0
-  positionTarget: {x: 0, y: 0, z: 0}
   speed: 0
+  positionTarget: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   target: {fileID: 0}
-  currentAnimName: 
   joystick: {fileID: 500148264}
   direct: {x: 0, y: 0, z: 0}
   collider: {fileID: 0}
   attackRoundObject: {fileID: 1312331848}
+  rangeCtrl: {fileID: 0}
   hatCurrent: {fileID: 0}
   shieldCurrent: {fileID: 0}
   pantCurrent: {fileID: 607331282}
+  speedTempPant: 0
+  rangeTempWeapon: 0
+  rangeTempHat: 0
 --- !u!136 &70284521
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1719,7 +1723,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.8642, y: -324.1094}
+  m_AnchoredPosition: {x: 4.8642, y: -463}
   m_SizeDelta: {x: 620.8887, y: 99.2056}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &274635523
@@ -1751,8 +1755,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279703508
+  m_fontColor: {r: 0.8301887, g: 0.08928439, b: 0.08928439, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1769,15 +1773,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 73.59
+  m_fontSizeBase: 73.59
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4452,7 +4456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: -468.4346}
+  m_AnchoredPosition: {x: -12, y: -663}
   m_SizeDelta: {x: 325.9769, y: 85.832}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &955856670
@@ -4647,6 +4651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 70284524}
+  playerCtrl: {fileID: 70284520}
 --- !u!1 &1000166781
 GameObject:
   m_ObjectHideFlags: 0
@@ -4758,8 +4763,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: -561.43005}
-  m_SizeDelta: {x: 330.4411, y: 81.1399}
+  m_AnchoredPosition: {x: 49.032593, y: -562.6859}
+  m_SizeDelta: {x: 675.0844, y: 78.6283}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1011311185
 MonoBehaviour:
@@ -4790,8 +4795,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279374360
+  m_fontColor: {r: 0.09433961, g: 0.071555704, b: 0.071555704, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4808,15 +4813,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.23
-  m_fontSizeBase: 54.23
+  m_fontSize: 54.29
+  m_fontSizeBase: 54.29
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4976,8 +4981,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf12ffe9473e816448992c180e875a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStateSkin: 0
+  currentEquipment: {fileID: 0}
   prefabButton: {fileID: 2605028748006997506, guid: ecf9b678f61d4e64a91ed67cae4279b1, type: 3}
   textMeshPrice: {fileID: 120846997}
+  textMeshDescription: {fileID: 1011311185}
   contentHatShop: {fileID: 497042917}
   contentPantShop: {fileID: 1453476879}
   contentShieldShop: {fileID: 1324582292}
@@ -7656,7 +7664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -29.9268, y: -4.1075}
+  m_AnchoredPosition: {x: -9, y: -4.1075}
   m_SizeDelta: {x: 103.3549, y: 91.7852}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1685004910

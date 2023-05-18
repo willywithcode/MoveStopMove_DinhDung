@@ -15,7 +15,10 @@ MonoBehaviour:
   weaponType: {fileID: 8720232865380185368, guid: fd75101b1d66c314c8bee53826931afb, type: 3}
   weaponCtrl: {fileID: 8720232865380185368, guid: fd75101b1d66c314c8bee53826931afb, type: 3}
   weaponImg: {fileID: 2019041745332949954, guid: df4560439a1839249a549a9ac4d6434e, type: 3}
-  description: 
+  description: + 5 attack range
   nameWeapon: Arrow
   price: 200
   imageInShop: {fileID: 21300000, guid: 317ab2e33cd06af499894eac0b795074, type: 3}
+  material: {fileID: 0}
+  speed: 0
+  attackRange: 5

@@ -4,22 +4,32 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Reflection;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
+public enum StateShopSkin
+{
+    Hat,
+    Pant,
+    Shield,
+    FullSet
+}
 public class ShopSkinMenu : BaseGameState
 {
+    public StateShopSkin currentStateSkin;
+    public EquipmentSO currentEquipment;
 
     public GameObject prefabButton;
     public TextMeshProUGUI textMeshPrice;
+    public TextMeshProUGUI textMeshDescription;
 
 
     public Transform contentHatShop;
     public Transform contentPantShop;
     public Transform contentShieldShop;
 
-    private  Dictionary<GameObject,Image> buttonViews = new Dictionary<GameObject,Image>();
+    private Dictionary<GameObject,Image> buttonViews = new Dictionary<GameObject,Image>();
     public List<GameObject> buttons = new List<GameObject>();
     public List<GameObject> views = new List<GameObject>();
     public PlayerCtrl player;
@@ -32,6 +42,7 @@ public class ShopSkinMenu : BaseGameState
         this.LoadShopHatUI();
         this.LoadShopPantUI();
         this.LoadShopShieldUI();
+        currentStateSkin = StateShopSkin.Hat;
     }
     private void AddDictButtonView()
     {
@@ -56,6 +67,7 @@ public class ShopSkinMenu : BaseGameState
             {
                 buttonViews[buttons[i]].enabled = true;
                 views[i].SetActive(true);
+                currentStateSkin = (StateShopSkin)i;
             }
             else
             {
@@ -74,6 +86,7 @@ public class ShopSkinMenu : BaseGameState
     }
     public void ChooseItem()
     {
+        
         if (player.pantCurrent != player.pantType.material) player.pantCurrent = player.pantType.material;
         if (player.hatCurrent != null && tempHat != null) Destroy(player.hatCurrent);
         if (tempHat != null)
@@ -87,6 +100,26 @@ public class ShopSkinMenu : BaseGameState
             player.shieldCurrent = Instantiate(tempShield, player.shieldContainer);
             Destroy(tempShield);
         }
+        this.UpdateItem();
+    }
+    private void UpdateItem()
+    {
+        switch (currentStateSkin) 
+        {
+            case StateShopSkin.Hat:
+                player.rangeTempHat = currentEquipment.attackRange;
+                break;
+            case StateShopSkin.Pant:
+                player.speedTempPant = currentEquipment.speed;
+                break;
+            case StateShopSkin.Shield:
+                break;
+            case StateShopSkin.FullSet:
+                break;
+        }
+        player.speed = 5 + player.speedTempPant;
+        player.rangeAttack = 5 + player.rangeTempHat + player.rangeTempWeapon;
+        player.rangeCtrl.ChangeAttackRange(player.rangeAttack);
     }
 
     private void LoadShopHatUI()
@@ -123,7 +156,6 @@ public class ShopSkinMenu : BaseGameState
             myButton.GetComponent<ButtonCtrl>().index = i;
             myButton.GetComponent<Image>().sprite = EquipmentManager.Instance.shieldDatas[i].imageInShop;
             myButton.GetComponent<ButtonCtrl>().action += ChangeShield;
-
         }
 
     }
@@ -132,12 +164,12 @@ public class ShopSkinMenu : BaseGameState
         if (player.hatCurrent != null) player.hatCurrent.SetActive(false);
         if(tempHat != null) Destroy(tempHat);
         tempHat = Instantiate(EquipmentManager.Instance.hatDatas[index].weaponImg, player.hatContainer);
-        textMeshPrice.text = EquipmentManager.Instance.hatDatas[index].price;
+        this.ChangeDescription(index, EquipmentManager.Instance.hatDatas);
     }
     public void ChangePant(int index)
     {
         player.pantType.material = EquipmentManager.Instance.pantDatas[index].material;
-        textMeshPrice.text = EquipmentManager.Instance.hatDatas[index].price;
+        this.ChangeDescription(index, EquipmentManager.Instance.pantDatas);
 
     }
     public void ChangeShield(int index)
@@ -145,8 +177,13 @@ public class ShopSkinMenu : BaseGameState
         if (player.shieldCurrent != null) player.shieldCurrent.SetActive(false);
         if (tempShield != null) Destroy(tempShield);
         tempShield = Instantiate(EquipmentManager.Instance.shieldDatas[index].weaponImg, player.shieldContainer);
-        textMeshPrice.text = EquipmentManager.Instance.hatDatas[index].price;
-
+        this.ChangeDescription(index, EquipmentManager.Instance.shieldDatas);
+    }
+    private void ChangeDescription(int index,List<EquipmentSO> list)
+    {
+        textMeshPrice.text = list[index].price;
+        textMeshDescription.text = list[index].description;
+        currentEquipment = list[index];
     }
 }
 

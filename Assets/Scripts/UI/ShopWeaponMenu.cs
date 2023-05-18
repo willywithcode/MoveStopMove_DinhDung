@@ -45,6 +45,9 @@ public class ShopWeaponMenu : BaseGameState
     {
         this.playerCtrl.typeWeapon = currentWeapon.weaponType.poolType;
         this.playerCtrl.AssignWeapon();
+        playerCtrl.rangeTempWeapon = currentWeapon.attackRange;
+        playerCtrl.rangeAttack = 5 + playerCtrl.rangeTempWeapon + playerCtrl.rangeTempHat;
+        playerCtrl.rangeCtrl.ChangeAttackRange(playerCtrl.rangeAttack);
         this.GoMainMenu();
     }
 }

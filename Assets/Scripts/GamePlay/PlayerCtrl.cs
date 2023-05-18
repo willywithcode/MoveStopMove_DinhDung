@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCtrl : Character
@@ -9,10 +10,15 @@ public class PlayerCtrl : Character
     public Vector3 direct;
     public Collider collider;
     public GameObject attackRoundObject;
+    public CircleAttack rangeCtrl;
 
     public GameObject hatCurrent;
     public GameObject shieldCurrent;
     public Material pantCurrent;
+
+    public float speedTempPant;
+    public float rangeTempWeapon;
+    public float rangeTempHat;
     
 
     public PlayerAttackState attack = new PlayerAttackState();
@@ -26,8 +32,10 @@ public class PlayerCtrl : Character
         base.OnInit();
         this.ChangeState(idle);
         this.AssignWeapon();
+        speedTempPant = rangeTempWeapon = rangeTempHat = 0;
         pantCurrent = pantType.material;
         collider = GetComponent<Collider>();
+        rangeCtrl = attackRoundObject.GetComponent<CircleAttack>();
         rangeAttack = 5;
         speed = 5;
     }
