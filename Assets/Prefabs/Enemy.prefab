@@ -292,13 +292,15 @@ MonoBehaviour:
   hatContainer: {fileID: 5363095842578076818}
   shieldContainer: {fileID: 2292624016564565348}
   pantType: {fileID: 3008809981897318960}
+  wayPoint: {fileID: 0}
   animator: {fileID: 8833313703688288217}
+  scaleGrowth: 0
   rangeAttack: 0
-  positionTarget: {x: 0, y: 0, z: 0}
   speed: 0
+  positionTarget: {x: 0, y: 0, z: 0}
   agent: {fileID: 5865528449853639621}
   target: {fileID: 0}
-  currentAnimName: 
+  prefab: {fileID: 7054695745597867148, guid: 9a6a607404611e6478a563a4f2808e30, type: 3}
   collider: {fileID: 0}
 --- !u!195 &5865528449853639621
 NavMeshAgent:

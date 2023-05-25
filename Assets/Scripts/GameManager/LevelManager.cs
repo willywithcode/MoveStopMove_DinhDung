@@ -7,8 +7,10 @@ using UnityEngine.UIElements;
 public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] private PlayerCtrl player;
+    public MissionWayPoint wayPointPrfab;
 
     public List<GameObject> prefabsLevelState;
+    public List<EnemyCtrl> enemyCurrent;
     public int countCharacterCurrent = 0;
     
 
@@ -33,6 +35,10 @@ public class LevelManager : Singleton<LevelManager>
         }
         if (GameManager.Instance.currentState != GameState.InGame && GameManager.Instance.currentState != GameState.Question && GameManager.Instance.currentState != GameState.Pause) player.attackRoundObject.SetActive(false);
         else player.attackRoundObject.SetActive(true);
+        if(GameManager.Instance.currentState == GameState.InGame)
+        {
+            this.SpawnWayPoint();
+        }
     }
     private Vector3 RandomPos()
     {
@@ -47,9 +53,20 @@ public class LevelManager : Singleton<LevelManager>
     private void SpawnEnemy()
     {
         EnemyCtrl bot = SimplePool.Spawn<EnemyCtrl>(PoolType.EnemyCtrl);
+        enemyCurrent.Add(bot);
         bot.OnInit();
         bot.TF.position = RandomPos();
         countCharacter++;
         countCharacterCurrent++;
+    }
+    private void SpawnWayPoint()
+    {
+        foreach (EnemyCtrl bot in enemyCurrent)
+        {
+            if (bot.wayPoint != null) return;
+            bot.wayPoint = SimplePool.Spawn<MissionWayPoint>(wayPointPrfab);
+            bot.wayPoint.OnInit();
+            bot.wayPoint.target = bot.TF;
+        }
     }
 }

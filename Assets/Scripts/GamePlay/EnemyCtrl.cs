@@ -12,11 +12,13 @@ public class EnemyCtrl : Character
     internal EnemyPauseState pause = new EnemyPauseState();
 
     public BaseState<EnemyCtrl> currentState;
+    public MissionWayPoint prefab;
     public Collider collider;
 
     public override void OnInit()
     {
         base.OnInit();
+        this.SpawnNewWayPoint();
         this.ClearOldWeapon();
         this.RandomWeapon();
         this.AssignWeapon();
@@ -30,7 +32,13 @@ public class EnemyCtrl : Character
     {
         currentState.Update(this);
     }
-
+    public override void OnDespawn()
+    {
+        base.OnDespawn();
+        if (LevelManager.Instance.enemyCurrent.Contains(this)) LevelManager.Instance.enemyCurrent.Remove(this);
+        this.wayPoint.OnDespawn();
+        this.wayPoint = null;
+    }
     public void ChangeState(BaseState<EnemyCtrl> newState)
     {
         if (currentState != null) currentState.ExitState(this);

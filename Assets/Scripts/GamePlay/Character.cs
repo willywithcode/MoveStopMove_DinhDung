@@ -15,6 +15,7 @@ public class Character : GameUnit
     public Transform hatContainer;
     public Transform shieldContainer;
     public Renderer pantType;
+    public MissionWayPoint wayPoint;
 
     public Animator animator;
 
@@ -96,8 +97,14 @@ public class Character : GameUnit
     }
     public override void OnDespawn()
     {
-        
         SimplePool.Despawn(this);
+    }
+    public void SpawnNewWayPoint()
+    {
+        if (GameManager.Instance.currentState != GameState.InGame) return;
+        wayPoint = SimplePool.Spawn<MissionWayPoint>(LevelManager.Instance.wayPointPrfab);
+        wayPoint.OnInit();
+        wayPoint.target = this.TF;
     }
 }
 
