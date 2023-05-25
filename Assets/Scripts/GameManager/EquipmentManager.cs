@@ -37,7 +37,6 @@ public class EquipmentManager : Singleton<EquipmentManager>
     }
     public void LoadHatData()
     {
-        //container = GameObject.Find("WeaponPool").transform;
         hatDatas.Clear();
         EquipmentSO[] hatDatasResource = Resources.LoadAll<EquipmentSO>(Constant.pathHatData);
         foreach (EquipmentSO hatData in hatDatasResource)
@@ -47,7 +46,6 @@ public class EquipmentManager : Singleton<EquipmentManager>
     }
     public void LoadPantData()
     {
-        //container = GameObject.Find("WeaponPool").transform;
         pantDatas.Clear();
         EquipmentSO[] pantDatasResource = Resources.LoadAll<EquipmentSO>(Constant.pathPantData);
         foreach (EquipmentSO pantData in pantDatasResource)
@@ -57,7 +55,6 @@ public class EquipmentManager : Singleton<EquipmentManager>
     }
     public void LoadShieldData()
     {
-        //container = GameObject.Find("WeaponPool").transform;
         shieldDatas.Clear();
         EquipmentSO[] shieldDatasResource = Resources.LoadAll<EquipmentSO>(Constant.pathShieldData);
         foreach (EquipmentSO shieldData in shieldDatasResource)
