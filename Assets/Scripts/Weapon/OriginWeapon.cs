@@ -29,6 +29,8 @@ public class OriginWeapon : GameUnit
         if (other.gameObject == this.owner.gameObject) return;
         if (other.CompareTag(Constant.CHARACTER))
         {
+            this.AddPoint(1);
+            owner.GrowthCharacter();
             this.EndAttack();
             EnemyCtrl enemy = other.GetComponent<EnemyCtrl>();
             enemy.ChangeState(enemy.dead);
@@ -70,7 +72,9 @@ public class OriginWeapon : GameUnit
         count += Time.deltaTime;
         if (count >= timeAttach) this.EndAttack();
     }
-
-
-
+    private void AddPoint(int addPoint)
+    {
+        owner.point += addPoint;
+        owner.wayPoint.UpdatePoint(owner.point);
+    }
 }

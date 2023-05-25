@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerCtrl : Character
 {
@@ -30,6 +31,7 @@ public class PlayerCtrl : Character
     public override void OnInit()
     {
         base.OnInit();
+        //this.SpawnNewWayPoint();
         this.ChangeState(idle);
         this.AssignWeapon();
         speedTempPant = rangeTempWeapon = rangeTempHat = 0;

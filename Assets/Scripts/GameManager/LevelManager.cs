@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
-
+public struct PointStone
+{
+    public int point;
+    public float scale;
+}
 public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] private PlayerCtrl player;
@@ -11,6 +15,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public List<GameObject> prefabsLevelState;
     public List<EnemyCtrl> enemyCurrent;
+    public List<PointStone> pointStones = new List<PointStone>();
     public int countCharacterCurrent = 0;
     
 
@@ -25,6 +30,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             this.SpawnEnemy();
         }
+        this.InitPointScale();
     }
     private void Update()
     {
@@ -66,7 +72,15 @@ public class LevelManager : Singleton<LevelManager>
             if (bot.wayPoint != null) return;
             bot.wayPoint = SimplePool.Spawn<MissionWayPoint>(wayPointPrfab);
             bot.wayPoint.OnInit();
-            bot.wayPoint.target = bot.TF;
+            bot.wayPoint.target = bot.wayPointTarget;
         }
+    }
+    private void InitPointScale()
+    {
+        pointStones.Add(new PointStone { point = 2, scale = 1.2f });
+        pointStones.Add(new PointStone { point = 6, scale = 1.5f });
+        pointStones.Add(new PointStone { point = 10, scale = 1.8f });
+        pointStones.Add(new PointStone { point = 15, scale = 2.1f });
+        pointStones.Add(new PointStone { point = 22, scale = 2.5f });
     }
 }

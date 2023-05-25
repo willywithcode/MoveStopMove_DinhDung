@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
@@ -18,10 +19,12 @@ public class Character : GameUnit
     public MissionWayPoint wayPoint;
 
     public Animator animator;
+    public Transform wayPointTarget;
 
     public float scaleGrowth;
     public float rangeAttack;
     public float speed;
+    public int point;
 
     public Vector3 positionTarget;
     public NavMeshAgent agent;
@@ -94,6 +97,7 @@ public class Character : GameUnit
     public override void OnInit()
     {
         currentAnimName = Constant.ANIM_IDLE;
+        point = 1;
     }
     public override void OnDespawn()
     {
@@ -104,7 +108,18 @@ public class Character : GameUnit
         if (GameManager.Instance.currentState != GameState.InGame) return;
         wayPoint = SimplePool.Spawn<MissionWayPoint>(LevelManager.Instance.wayPointPrfab);
         wayPoint.OnInit();
-        wayPoint.target = this.TF;
+        wayPoint.target = this.wayPointTarget;
+    }
+    public void GrowthCharacter()
+    {
+        for (int i = 0; i < LevelManager.Instance.pointStones.Count -1; i++)
+        {
+            if (point >= LevelManager.Instance.pointStones[i].point && point < LevelManager.Instance.pointStones[i + 1].point) scaleGrowth = LevelManager.Instance.pointStones[i].scale;
+            if (point >= LevelManager.Instance.pointStones.Last().point) scaleGrowth = LevelManager.Instance.pointStones.Last().scale;
+        }
+        this.TF.localScale = Vector3.one * scaleGrowth;
+        rangeAttack = 5 *scaleGrowth;
+        speed = 5 *scaleGrowth;
     }
 }
 

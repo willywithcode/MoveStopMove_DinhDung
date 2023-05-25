@@ -317,6 +317,7 @@ MonoBehaviour:
   pantType: {fileID: 607331282}
   wayPoint: {fileID: 0}
   animator: {fileID: 581087653}
+  wayPointTarget: {fileID: 0}
   scaleGrowth: 0
   rangeAttack: 0
   speed: 0
