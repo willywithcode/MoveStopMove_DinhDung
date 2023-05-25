@@ -16,7 +16,7 @@ public class OriginWeapon : GameUnit
 
     public override void OnInit()
     {
-        
+        this.TF.localScale = Vector3.one * owner.scaleGrowth;
     }
     public override void OnDespawn()
     {
@@ -29,10 +29,10 @@ public class OriginWeapon : GameUnit
         if (other.gameObject == this.owner.gameObject) return;
         if (other.CompareTag(Constant.CHARACTER))
         {
-            this.AddPoint(1);
+            EnemyCtrl enemy = other.GetComponent<EnemyCtrl>();
+            this.AddPoint(enemy.defeatPoint);
             owner.GrowthCharacter();
             this.EndAttack();
-            EnemyCtrl enemy = other.GetComponent<EnemyCtrl>();
             enemy.ChangeState(enemy.dead);
             LevelManager.Instance.countCharacterCurrent--;
         }

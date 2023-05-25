@@ -7,6 +7,7 @@ public struct PointStone
 {
     public int point;
     public float scale;
+    public int defeatPoint;
 }
 public class LevelManager : Singleton<LevelManager>
 {
@@ -77,10 +78,10 @@ public class LevelManager : Singleton<LevelManager>
     }
     private void InitPointScale()
     {
-        pointStones.Add(new PointStone { point = 2, scale = 1.2f });
-        pointStones.Add(new PointStone { point = 6, scale = 1.5f });
-        pointStones.Add(new PointStone { point = 10, scale = 1.8f });
-        pointStones.Add(new PointStone { point = 15, scale = 2.1f });
-        pointStones.Add(new PointStone { point = 22, scale = 2.5f });
+        pointStones.Add(new PointStone { point = 2, scale = 1.2f , defeatPoint = 2});
+        pointStones.Add(new PointStone { point = 6, scale = 1.5f , defeatPoint = 3 });
+        pointStones.Add(new PointStone { point = 10, scale = 1.8f , defeatPoint = 4 });
+        pointStones.Add(new PointStone { point = 15, scale = 2.1f , defeatPoint = 7 });
+        pointStones.Add(new PointStone { point = 22, scale = 2.5f , defeatPoint = 11 });
     }
 }

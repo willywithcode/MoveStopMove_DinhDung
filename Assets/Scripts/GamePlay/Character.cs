@@ -25,6 +25,7 @@ public class Character : GameUnit
     public float rangeAttack;
     public float speed;
     public int point;
+    public int defeatPoint;
 
     public Vector3 positionTarget;
     public NavMeshAgent agent;
@@ -98,6 +99,8 @@ public class Character : GameUnit
     {
         currentAnimName = Constant.ANIM_IDLE;
         point = 1;
+        scaleGrowth = 1;
+        defeatPoint = 1;
     }
     public override void OnDespawn()
     {
@@ -114,8 +117,17 @@ public class Character : GameUnit
     {
         for (int i = 0; i < LevelManager.Instance.pointStones.Count -1; i++)
         {
-            if (point >= LevelManager.Instance.pointStones[i].point && point < LevelManager.Instance.pointStones[i + 1].point) scaleGrowth = LevelManager.Instance.pointStones[i].scale;
-            if (point >= LevelManager.Instance.pointStones.Last().point) scaleGrowth = LevelManager.Instance.pointStones.Last().scale;
+            if (point >= LevelManager.Instance.pointStones[i].point && point < LevelManager.Instance.pointStones[i + 1].point)
+            {
+                scaleGrowth = LevelManager.Instance.pointStones[i].scale;
+                defeatPoint = LevelManager.Instance.pointStones[i].defeatPoint;
+            }
+            if (point >= LevelManager.Instance.pointStones.Last().point)
+            {
+                scaleGrowth = LevelManager.Instance.pointStones.Last().scale;
+                scaleGrowth = LevelManager.Instance.pointStones.Last().defeatPoint;
+
+            }
         }
         this.TF.localScale = Vector3.one * scaleGrowth;
         rangeAttack = 5 *scaleGrowth;
