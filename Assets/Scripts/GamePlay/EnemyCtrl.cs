@@ -38,6 +38,9 @@ public class EnemyCtrl : Character
         if (LevelManager.Instance.enemyCurrent.Contains(this)) LevelManager.Instance.enemyCurrent.Remove(this);
         this.wayPoint.OnDespawn();
         this.wayPoint = null;
+        this.nameUI.OnDespawn();
+        this.nameUI = null;
+
     }
     public void ChangeState(BaseState<EnemyCtrl> newState)
     {

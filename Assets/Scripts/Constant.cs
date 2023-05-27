@@ -23,5 +23,5 @@ public class Constant
     public static readonly string pathPantData = "PantData";
     public static readonly string pathShieldData = "ShieldData";
 
-
+    public static readonly string killAlermMessage = " kill ";
 }

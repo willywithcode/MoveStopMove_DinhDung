@@ -10,6 +10,7 @@ public class MissionWayPoint : GameUnit
     [SerializeField] private GameObject image;
     [SerializeField] private RectTransform sizeImage;
     [SerializeField] private GameObject arrow;
+    public Image color;
     public TextMeshProUGUI point;
     public Transform target;
     public override void OnInit()

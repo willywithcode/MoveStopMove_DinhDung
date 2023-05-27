@@ -17,9 +17,11 @@ public class Character : GameUnit
     public Transform shieldContainer;
     public Renderer pantType;
     public MissionWayPoint wayPoint;
+    public Renderer skinColor;
 
     public Animator animator;
     public Transform wayPointTarget;
+    public Transform nameBoardTarget;
 
     public float scaleGrowth;
     public float rangeAttack;
@@ -31,6 +33,9 @@ public class Character : GameUnit
     public NavMeshAgent agent;
     public Character target;
     protected string currentAnimName;
+
+    public NameBoard nameUI;
+    public string namePlayer;
 
     public void Awake()
     {
@@ -93,7 +98,6 @@ public class Character : GameUnit
         Quaternion targetRotation = Quaternion.Euler(0f, targetAngleY, 0f);
         float rotationSpeed = 50f; 
         TF.rotation = Quaternion.Slerp(TF.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-
     }
     public override void OnInit()
     {
@@ -112,6 +116,13 @@ public class Character : GameUnit
         wayPoint = SimplePool.Spawn<MissionWayPoint>(LevelManager.Instance.wayPointPrfab);
         wayPoint.OnInit();
         wayPoint.target = this.wayPointTarget;
+        wayPoint.color.color = skinColor.material.color;
+
+        nameUI = SimplePool.Spawn<NameBoard>(WayPointManager.Instance.prefabNameBoard);
+        nameUI.OnInit();
+        nameUI.target = this.nameBoardTarget;
+        nameUI.nameChar.text = Name.GetName();
+        namePlayer = nameUI.nameChar.text;
     }
     public void GrowthCharacter()
     {
@@ -126,7 +137,6 @@ public class Character : GameUnit
             {
                 scaleGrowth = LevelManager.Instance.pointStones.Last().scale;
                 scaleGrowth = LevelManager.Instance.pointStones.Last().defeatPoint;
-
             }
         }
         this.TF.localScale = Vector3.one * scaleGrowth;

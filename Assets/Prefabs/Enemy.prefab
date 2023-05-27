@@ -96,6 +96,37 @@ Transform:
   m_Father: {fileID: 5865528449853639623}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4272874821371642004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6180683001896902723}
+  m_Layer: 0
+  m_Name: NameBoard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6180683001896902723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272874821371642004}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.20142794, y: 3.89, z: 0.18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5865528449853639623}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5865528449475522129
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +326,7 @@ Transform:
   - {fileID: 1449103285112445603}
   - {fileID: 5865528449475522128}
   - {fileID: 5724485554256804728}
+  - {fileID: 6180683001896902723}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -325,14 +357,19 @@ MonoBehaviour:
   shieldContainer: {fileID: 2292624016564565348}
   pantType: {fileID: 3008809981897318960}
   wayPoint: {fileID: 0}
+  skinColor: {fileID: 6206080351780284243}
   animator: {fileID: 8833313703688288217}
   wayPointTarget: {fileID: 5724485554256804728}
+  nameBoardTarget: {fileID: 6180683001896902723}
   scaleGrowth: 0
   rangeAttack: 0
   speed: 0
+  point: 0
+  defeatPoint: 0
   positionTarget: {x: 0, y: 0, z: 0}
   agent: {fileID: 5865528449853639621}
   target: {fileID: 0}
+  nameUI: {fileID: 0}
   prefab: {fileID: 7054695745597867148, guid: 9a6a607404611e6478a563a4f2808e30, type: 3}
   collider: {fileID: 0}
 --- !u!195 &5865528449853639621
@@ -671,6 +708,11 @@ Transform:
 --- !u!137 &3008809981897318960 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -529177695146175607, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
+  m_PrefabInstance: {fileID: 5865528448728117689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6206080351780284243 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -8699012472884554006, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
   m_PrefabInstance: {fileID: 5865528448728117689}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &8833313703688288217 stripped

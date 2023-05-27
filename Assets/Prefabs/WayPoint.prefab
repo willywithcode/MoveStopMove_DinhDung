@@ -178,6 +178,7 @@ MonoBehaviour:
   image: {fileID: 4219189484455527100}
   sizeImage: {fileID: 7054695745597867151}
   arrow: {fileID: 7302555657207876083}
+  color: {fileID: 3698724454785452569}
   point: {fileID: 8130438533646256181}
   target: {fileID: 0}
 --- !u!1 &7302555657207876083

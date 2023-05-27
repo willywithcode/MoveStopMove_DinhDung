@@ -30,6 +30,7 @@ public class OriginWeapon : GameUnit
         if (other.CompareTag(Constant.CHARACTER))
         {
             EnemyCtrl enemy = other.GetComponent<EnemyCtrl>();
+            GameManager.Instance.AlermMassageKill(this.owner.namePlayer, enemy.namePlayer);
             this.AddPoint(enemy.defeatPoint);
             owner.GrowthCharacter();
             this.EndAttack();

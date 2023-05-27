@@ -44,7 +44,19 @@ public class LevelManager : Singleton<LevelManager>
         else player.attackRoundObject.SetActive(true);
         if(GameManager.Instance.currentState == GameState.InGame)
         {
+            if (!string.IsNullOrEmpty( player.nameUI.nameChar.text))
+            {
+                if (!string.IsNullOrEmpty( player.namePlayer))
+                {
+                    player.nameUI.nameChar.text = player.namePlayer;
+                } else
+                {
+                    player.nameUI.nameChar.text = "You";
+
+                }
+            }
             this.SpawnWayPoint();
+            this.SpawnNameBoard();
         }
     }
     private Vector3 RandomPos()
@@ -60,6 +72,7 @@ public class LevelManager : Singleton<LevelManager>
     private void SpawnEnemy()
     {
         EnemyCtrl bot = SimplePool.Spawn<EnemyCtrl>(PoolType.EnemyCtrl);
+        Name.SetRandomColor(bot.skinColor);
         enemyCurrent.Add(bot);
         bot.OnInit();
         bot.TF.position = RandomPos();
@@ -74,6 +87,19 @@ public class LevelManager : Singleton<LevelManager>
             bot.wayPoint = SimplePool.Spawn<MissionWayPoint>(wayPointPrfab);
             bot.wayPoint.OnInit();
             bot.wayPoint.target = bot.wayPointTarget;
+            bot.wayPoint.color.color = bot.skinColor.material.color;
+        }
+    }
+    private void SpawnNameBoard()
+    {
+        foreach (EnemyCtrl bot in enemyCurrent)
+        {
+            if (bot.nameUI != null) return;
+            bot.nameUI = SimplePool.Spawn<NameBoard>(WayPointManager.Instance.prefabNameBoard);
+            bot.nameUI.OnInit();
+            bot.nameUI.target = bot.nameBoardTarget;
+            bot.nameUI.nameChar.text = Name.GetName();
+            bot.namePlayer = bot.nameUI.nameChar.text;
         }
     }
     private void InitPointScale()

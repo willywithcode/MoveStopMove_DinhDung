@@ -14,4 +14,18 @@ public enum GameState
 public class GameManager : Singleton<GameManager>
 {
     public GameState currentState;
+    public bool isHavingKilled;
+    private string killer;
+    private string victim;
+
+    public void AlermMassageKill(string kill, string killed)
+    {
+        isHavingKilled = true;
+        killer = kill;
+        victim = killed;
+    }
+    public string GetMessageKill()
+    {
+        return killer + Constant.killAlermMessage + victim;
+    }
 }

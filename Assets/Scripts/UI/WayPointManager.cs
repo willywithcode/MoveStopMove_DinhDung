@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class WayPointManager : Singleton<WayPointManager>
 {
-    public MissionWayPoint prefabs;
-    public Transform container;
+    public MissionWayPoint prefabWayPoint;
+    public NameBoard prefabNameBoard;
+    public Transform containerWayPoint;
+    public Transform containerNameBoard;
     private void Awake()
     {
-            SimplePool.Preload(prefabs, 25, container, false, false);
+            SimplePool.Preload(prefabWayPoint, 25, containerWayPoint, false, false);
+            SimplePool.Preload(prefabNameBoard, 25, containerNameBoard, false, false);
     }
 }

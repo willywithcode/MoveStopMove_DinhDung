@@ -20,7 +20,7 @@ public class PlayerCtrl : Character
     public float speedTempPant;
     public float rangeTempWeapon;
     public float rangeTempHat;
-    
+   
 
     public PlayerAttackState attack = new PlayerAttackState();
     public PlayerMoveState move = new PlayerMoveState();   
