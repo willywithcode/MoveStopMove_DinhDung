@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Name 
 {
-    public static int currentIndex = 0;
+    public static int currentIndex;
     public static List<string> names = new List<string>
        {
             "John",
@@ -170,14 +170,19 @@ public class Name
     public static string GetName()
     {
         string name = names[currentIndex];
-        currentIndex += 1;
+        if (currentIndex == names.Count - 1) currentIndex = 0;
+        else currentIndex += 1;
         return name;
     }
     public static void SetRandomColor(Renderer renderer)
     {
-        Material material = new Material(Shader.Find("Standard"));
+        Material material = new Material(Shader.Find(Constant.standard));
         Color randomColor = new Color(Random.value, Random.value, Random.value);
         material.color = randomColor;
         renderer.material = material;
+    }
+    public static void RandomIndex()
+    {
+        currentIndex = Random.Range(0, names.Count -1);
     }
 }

@@ -24,4 +24,7 @@ public class Constant
     public static readonly string pathShieldData = "ShieldData";
 
     public static readonly string killAlermMessage = " kill ";
+    public static readonly string saveGame = "SaveGame";
+    public static readonly string standard = "Standard";
+
 }

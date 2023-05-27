@@ -27,6 +27,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Start()
     {
+        Name.RandomIndex();
         for (int i = 0; i < maxCharacterCurrent; i++)
         {
             this.SpawnEnemy();
