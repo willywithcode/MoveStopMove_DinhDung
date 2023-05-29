@@ -22,12 +22,13 @@ public class LevelManager : Singleton<LevelManager>
 
     private int maxCharacter = 50; 
     private int countCharacter = 0;
-    private int maxCharacterCurrent = 15;
+    private int maxCharacterCurrent = 7;
 
 
     private void Start()
     {
         Name.RandomIndex();
+        UIManager.Instance.txtCoinCurrent.text = GameManager.Instance.currentCoin.ToString();
         for (int i = 0; i < maxCharacterCurrent; i++)
         {
             this.SpawnEnemy();
@@ -36,6 +37,7 @@ public class LevelManager : Singleton<LevelManager>
     }
     private void Update()
     {
+
         if (countCharacter >= maxCharacter) return;
         if (countCharacterCurrent < maxCharacterCurrent)
         {
@@ -59,6 +61,8 @@ public class LevelManager : Singleton<LevelManager>
             this.SpawnWayPoint();
             this.SpawnNameBoard();
         }
+        if (GameManager.Instance.currentState == GameState.MainMenu || GameManager.Instance.currentState == GameState.ShopWeaponMenu || GameManager.Instance.currentState == GameState.ShopSkinMenu) UIManager.Instance.coinDesplayContainer.SetActive(true);
+        else UIManager.Instance.coinDesplayContainer.SetActive(false) ;
     }
     private Vector3 RandomPos()
     {
@@ -66,6 +70,12 @@ public class LevelManager : Singleton<LevelManager>
         Vector3 randomPos = Random.insideUnitSphere * 40f + currentPosition;
         if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, Mathf.Infinity, NavMesh.AllAreas))
         {
+            Vector3 tmp = hit.position;
+            if (Vector3.Distance(new Vector3(tmp.x, 0, tmp.z), new Vector3(player.TF.position.x, 0, player.TF.position.z)) < 7f)
+            {
+                randomPos = this.RandomPos();
+                Debug.Log(1);
+            }
             randomPos = hit.position;
         }
         return randomPos;

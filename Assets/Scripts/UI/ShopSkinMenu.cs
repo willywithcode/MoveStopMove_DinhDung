@@ -36,6 +36,7 @@ public class ShopSkinMenu : BaseGameState
 
     GameObject tempHat;
     GameObject tempShield;
+    int currenrtIndex;
     private void Start()
     {
         this.AddDictButtonView();
@@ -86,7 +87,40 @@ public class ShopSkinMenu : BaseGameState
     }
     public void ChooseItem()
     {
-        
+        if (String.Equals(textMeshPrice.text, Constant.selectStringBtn))
+        {
+            this.ChangeItem();
+            return;
+        }
+        if (GameManager.Instance.currentCoin >= int.Parse(textMeshPrice.text))
+        {
+            this.ChangeItem();
+            int lossCoin = int.Parse(textMeshPrice.text);
+            GameManager.Instance.currentCoin -= lossCoin;
+            UIManager.Instance.UpdateCoinCurrent();
+            this.AddDataID();
+            this.ChangeButtonSellect();
+        }
+    }
+    private void AddDataID() 
+    {
+        switch (currentStateSkin)
+        {
+            case StateShopSkin.Hat:
+                GameManager.Instance.listBoughtHatID.Add(currenrtIndex);
+                break;
+            case StateShopSkin.Pant:
+                GameManager.Instance.listBoughtPantID.Add(currenrtIndex);
+                break;
+            case StateShopSkin.Shield:
+                GameManager.Instance.listBoughtShieldID.Add(currenrtIndex);
+                break;
+            case StateShopSkin.FullSet:
+                break;
+        }
+    }
+    public void ChangeItem ()
+    {
         if (player.pantCurrent != player.pantType.material) player.pantCurrent = player.pantType.material;
         if (player.hatCurrent != null && tempHat != null) Destroy(player.hatCurrent);
         if (tempHat != null)
@@ -161,29 +195,39 @@ public class ShopSkinMenu : BaseGameState
     }
     public void ChangeHat(int index)
     {
+        currenrtIndex = index;
         if (player.hatCurrent != null) player.hatCurrent.SetActive(false);
         if(tempHat != null) Destroy(tempHat);
         tempHat = Instantiate(EquipmentManager.Instance.hatDatas[index].weaponImg, player.hatContainer);
-        this.ChangeDescription(index, EquipmentManager.Instance.hatDatas);
+        if (GameManager.Instance.listBoughtHatID.Contains(index)) this.ChangeButtonSellect();
+        else this.ChangeDescription(index, EquipmentManager.Instance.hatDatas);
     }
     public void ChangePant(int index)
     {
+        currenrtIndex = index;
         player.pantType.material = EquipmentManager.Instance.pantDatas[index].material;
-        this.ChangeDescription(index, EquipmentManager.Instance.pantDatas);
+        if (GameManager.Instance.listBoughtPantID.Contains(index)) this.ChangeButtonSellect();  
+        else this.ChangeDescription(index, EquipmentManager.Instance.pantDatas);
 
     }
     public void ChangeShield(int index)
     {
+        currenrtIndex = index;
         if (player.shieldCurrent != null) player.shieldCurrent.SetActive(false);
         if (tempShield != null) Destroy(tempShield);
         tempShield = Instantiate(EquipmentManager.Instance.shieldDatas[index].weaponImg, player.shieldContainer);
-        this.ChangeDescription(index, EquipmentManager.Instance.shieldDatas);
+        if (GameManager.Instance.listBoughtShieldID.Contains(index)) this.ChangeButtonSellect();
+        else this.ChangeDescription(index, EquipmentManager.Instance.shieldDatas);
     }
     private void ChangeDescription(int index,List<EquipmentSO> list)
     {
         textMeshPrice.text = list[index].price;
         textMeshDescription.text = list[index].description;
         currentEquipment = list[index];
+    }
+    private void ChangeButtonSellect()
+    {
+        textMeshPrice.text = Constant.selectStringBtn;
     }
 }
 

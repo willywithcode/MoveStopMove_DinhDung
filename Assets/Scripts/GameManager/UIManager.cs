@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,6 +12,7 @@ public class UIManager : Singleton<UIManager>
 {
     public Dictionary<GameState,Canvas> dictStateCanvas = new Dictionary<GameState, Canvas>();
     public Dictionary<GameState,GameObject> dictStateGameObject = new Dictionary<GameState, GameObject>();
+    public TextMeshProUGUI txtCoinCurrent;
 
     public Canvas mainMenu;
     public Canvas inGame;
@@ -27,7 +29,7 @@ public class UIManager : Singleton<UIManager>
     public GameObject endGameContainer;
     public GameObject pauseGameContainer;
     public GameObject questionContainer;
-
+    public GameObject coinDesplayContainer;
     private void Awake()
     {
         this.AddStates();
@@ -51,6 +53,10 @@ public class UIManager : Singleton<UIManager>
                 dictStateGameObject[state.Key].SetActive(false);
             }
         }
+    }
+    public void UpdateCoinCurrent()
+    {
+        txtCoinCurrent.text = GameManager.Instance.currentCoin.ToString();
     }
     public void AwakeState()
     {
@@ -99,6 +105,7 @@ public class UIManager : Singleton<UIManager>
         shopWeaponMenuContainer = GameObject.Find("ShopWeaponMenu");
         endGameContainer = GameObject.Find("EndGame");
         questionContainer = GameObject.Find("Question");
+        coinDesplayContainer = GameObject.Find("CoinCurrentDesplay");
 
         mainMenu = mainMenuContainer.GetComponent<Canvas>();
         pauseGame = pauseGameContainer.GetComponent<Canvas>();

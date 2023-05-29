@@ -136,7 +136,7 @@ public class Character : GameUnit
             if (point >= LevelManager.Instance.pointStones.Last().point)
             {
                 scaleGrowth = LevelManager.Instance.pointStones.Last().scale;
-                scaleGrowth = LevelManager.Instance.pointStones.Last().defeatPoint;
+                defeatPoint = LevelManager.Instance.pointStones.Last().defeatPoint;
             }
         }
         this.TF.localScale = Vector3.one * scaleGrowth;

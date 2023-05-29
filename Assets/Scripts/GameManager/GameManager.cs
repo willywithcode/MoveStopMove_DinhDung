@@ -21,8 +21,6 @@ public class GameManager : Singleton<GameManager>
     public List<int> listBoughtHatID;
     public List<int> listBoughtShieldID;
     public int currentCoin;
-
-
     public void AlermMassageKill(string kill, string killed)
     {
         isHavingKilled = true;

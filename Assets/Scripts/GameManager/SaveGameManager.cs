@@ -9,7 +9,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
     private const string SAVE_1 = "save_1";
     private const string SAVE_2 = "save_2";
     private const string SAVE_3 = "save_3";
-    private void Start()
+    private void Awake()
     {
         this.LoadSaveGame();
     }
@@ -30,6 +30,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
         if (savedData.dataShieldID.Count > 0) GameManager.Instance.listBoughtShieldID = savedData.dataShieldID;
         if (savedData.dataHatID.Count > 0) GameManager.Instance.listBoughtHatID = savedData.dataHatID;
         if (savedData.dataCoin != null) GameManager.Instance.currentCoin = savedData.dataCoin;
+
     }
     public virtual void SaveGame()
     {
