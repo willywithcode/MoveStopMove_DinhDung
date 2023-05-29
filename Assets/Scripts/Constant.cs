@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Constant 
 {
+    public static readonly float foudationSpeed = 3f;
+    public static readonly float foudationAttackRange = 5;
+
     public static readonly string ANIM_IDLE = "Idle";
     public static readonly string ANIM_RUN = "Run";
     public static readonly string ANIM_ATTACK = "Attack";

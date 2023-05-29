@@ -378,6 +378,8 @@ MonoBehaviour:
   speedTempPant: 0
   rangeTempWeapon: 0
   rangeTempHat: 0
+  initSpeed: 5
+  initAttackRange: 5
 --- !u!136 &70284521
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2998,7 +3000,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 465473383}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1013736978}
+        m_TargetAssemblyTypeName: ShopSkinMenu, Assembly-CSharp
+        m_MethodName: ChangeShield
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &465473383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3626,7 +3640,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 574893800}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1013736978}
+        m_TargetAssemblyTypeName: ShopSkinMenu, Assembly-CSharp
+        m_MethodName: ChangePant
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &574893800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4693,7 +4719,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 761693402}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1013736978}
+        m_TargetAssemblyTypeName: ShopSkinMenu, Assembly-CSharp
+        m_MethodName: ChangeHat
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &761693402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5800,6 +5838,7 @@ MonoBehaviour:
   - {fileID: 320020085}
   - {fileID: 1796590653}
   player: {fileID: 70284520}
+  tempHat: {fileID: 0}
 --- !u!1 &1049798975
 GameObject:
   m_ObjectHideFlags: 0

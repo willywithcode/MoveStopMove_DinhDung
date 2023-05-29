@@ -74,9 +74,8 @@ public class LevelManager : Singleton<LevelManager>
             if (Vector3.Distance(new Vector3(tmp.x, 0, tmp.z), new Vector3(player.TF.position.x, 0, player.TF.position.z)) < 7f)
             {
                 randomPos = this.RandomPos();
-                Debug.Log(1);
             }
-            randomPos = hit.position;
+            else randomPos = hit.position;
         }
         return randomPos;
     }

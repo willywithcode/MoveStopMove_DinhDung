@@ -30,6 +30,9 @@ public class SaveGameManager : Singleton<SaveGameManager>
         if (savedData.dataShieldID.Count > 0) GameManager.Instance.listBoughtShieldID = savedData.dataShieldID;
         if (savedData.dataHatID.Count > 0) GameManager.Instance.listBoughtHatID = savedData.dataHatID;
         if (savedData.dataCoin != null) GameManager.Instance.currentCoin = savedData.dataCoin;
+        if (savedData.currentHatID != null) GameManager.Instance.currentHat = savedData.currentHatID;
+        if(savedData.currentPantID != null) GameManager.Instance.currentPant = savedData.currentPantID;
+        if(savedData.currentShieldID != null) GameManager.Instance.currentShield = savedData.currentShieldID;
 
     }
     public virtual void SaveGame()
@@ -40,6 +43,9 @@ public class SaveGameManager : Singleton<SaveGameManager>
         saveData.dataHatID   = GameManager.Instance.listBoughtHatID;
         saveData.namePlayer = player.namePlayer;
         saveData.dataCoin = GameManager.Instance.currentCoin;
+        saveData.currentHatID = GameManager.Instance.currentHat;
+        saveData.currentPantID = GameManager.Instance.currentPant;
+        saveData.currentShieldID = GameManager.Instance.currentShield;
         string json = JsonUtility.ToJson(saveData);
         PlayerPrefs.SetString(this.GetSaveName(), json);
     }
@@ -51,5 +57,8 @@ class SaveData
     public List<int> dataShieldID;
     public string namePlayer;
     public int dataCoin;
+    public int currentHatID;
+    public int currentShieldID;
+    public int currentPantID;
 }
 

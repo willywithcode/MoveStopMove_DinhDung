@@ -15,10 +15,10 @@ MonoBehaviour:
   weaponType: {fileID: 0}
   weaponCtrl: {fileID: 0}
   weaponImg: {fileID: 8013013009913966026, guid: b38aa3d54cb254446a7d5e62a965ee84, type: 3}
-  description: + 5 attack range
+  description: + 9 attack range
   nameWeapon: 
-  price: 100
+  price: 500
   imageInShop: {fileID: 21300000, guid: 76e934370403f35428e37cc379bed4c7, type: 3}
   material: {fileID: 0}
   speed: 0
-  attackRange: 5
+  attackRange: 9

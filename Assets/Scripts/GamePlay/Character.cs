@@ -41,6 +41,17 @@ public class Character : GameUnit
     {
         OnInit();
     }
+    public override void OnInit()
+    {
+        currentAnimName = Constant.ANIM_IDLE;
+        point = 1;
+        scaleGrowth = 1;
+        defeatPoint = 1;
+    }
+    public override void OnDespawn()
+    {
+        SimplePool.Despawn(this);
+    }
     public void ChangeAnim(string animName)
     {
         if (currentAnimName != animName)
@@ -99,17 +110,7 @@ public class Character : GameUnit
         float rotationSpeed = 50f; 
         TF.rotation = Quaternion.Slerp(TF.rotation, targetRotation, Time.deltaTime * rotationSpeed);
     }
-    public override void OnInit()
-    {
-        currentAnimName = Constant.ANIM_IDLE;
-        point = 1;
-        scaleGrowth = 1;
-        defeatPoint = 1;
-    }
-    public override void OnDespawn()
-    {
-        SimplePool.Despawn(this);
-    }
+    
     public void SpawnNewWayPoint()
     {
         if (GameManager.Instance.currentState != GameState.InGame) return;
@@ -124,7 +125,7 @@ public class Character : GameUnit
         nameUI.nameChar.text = Name.GetName();
         namePlayer = nameUI.nameChar.text;
     }
-    public void GrowthCharacter()
+    public virtual void GrowthCharacter()
     {
         for (int i = 0; i < LevelManager.Instance.pointStones.Count -1; i++)
         {
@@ -140,8 +141,6 @@ public class Character : GameUnit
             }
         }
         this.TF.localScale = Vector3.one * scaleGrowth;
-        rangeAttack = 5 *scaleGrowth;
-        speed = 5 *scaleGrowth;
     }
 }
 

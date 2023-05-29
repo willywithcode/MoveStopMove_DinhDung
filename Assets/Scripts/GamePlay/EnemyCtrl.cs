@@ -22,7 +22,8 @@ public class EnemyCtrl : Character
         this.ClearOldWeapon();
         this.RandomWeapon();
         this.AssignWeapon();
-        rangeAttack = 5;
+        rangeAttack = Constant.foudationAttackRange;
+        agent.speed = Constant.foudationSpeed;
         this.ChangeState(move);
         collider= this.GetComponent<Collider>();
         collider.enabled = true;
@@ -41,6 +42,12 @@ public class EnemyCtrl : Character
         this.nameUI.OnDespawn();
         this.nameUI = null;
 
+    }
+    public override void GrowthCharacter()
+    {
+        base.GrowthCharacter();
+        rangeAttack = Constant.foudationAttackRange * scaleGrowth;
+        this.agent.speed = Constant.foudationSpeed * scaleGrowth;
     }
     public void ChangeState(BaseState<EnemyCtrl> newState)
     {
