@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class EnemyCtrl : Character
 {
@@ -18,13 +19,15 @@ public class EnemyCtrl : Character
     public override void OnInit()
     {
         base.OnInit();
+        this.ChangeState(move);
+        this.point = LevelManager.Instance.RandomPoint();
         this.SpawnNewWayPoint();
         this.ClearOldWeapon();
         this.RandomWeapon();
         this.AssignWeapon();
         rangeAttack = Constant.foudationAttackRange;
         agent.speed = Constant.foudationSpeed;
-        this.ChangeState(move);
+        this.GrowthCharacter();
         collider= this.GetComponent<Collider>();
         collider.enabled = true;
     }

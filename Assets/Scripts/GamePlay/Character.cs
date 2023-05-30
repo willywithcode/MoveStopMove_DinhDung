@@ -37,16 +37,13 @@ public class Character : GameUnit
     public NameBoard nameUI;
     public string namePlayer;
 
-    public void Awake()
+    public  void Awake()
     {
-        OnInit();
+        //OnInit();
     }
     public override void OnInit()
     {
         currentAnimName = Constant.ANIM_IDLE;
-        point = 1;
-        scaleGrowth = 1;
-        defeatPoint = 1;
     }
     public override void OnDespawn()
     {

@@ -28,31 +28,44 @@ public class LevelManager : Singleton<LevelManager>
     private void Start()
     {
         Name.RandomIndex();
+        this.InitPointScale();
         UIManager.Instance.txtCoinCurrent.text = GameManager.Instance.currentCoin.ToString();
         for (int i = 0; i < maxCharacterCurrent; i++)
         {
             this.SpawnEnemy();
         }
-        this.InitPointScale();
     }
     private void Update()
     {
-
+        this.CheckEnemyNum();
+        this.CheckRangeCircle();
+        this.CheckGameNamePlayer();
+        this.CheckCoinDesplay();
+    }
+    private void CheckEnemyNum()
+    {
         if (countCharacter >= maxCharacter) return;
         if (countCharacterCurrent < maxCharacterCurrent)
         {
             this.SpawnEnemy();
         }
+    }
+    private void CheckRangeCircle()
+    {
         if (GameManager.Instance.currentState != GameState.InGame && GameManager.Instance.currentState != GameState.Question && GameManager.Instance.currentState != GameState.Pause) player.attackRoundObject.SetActive(false);
         else player.attackRoundObject.SetActive(true);
-        if(GameManager.Instance.currentState == GameState.InGame)
+    }
+    private void CheckGameNamePlayer()
+    {
+        if (GameManager.Instance.currentState == GameState.InGame)
         {
-            if (!string.IsNullOrEmpty( player.nameUI.nameChar.text))
+            if (!string.IsNullOrEmpty(player.nameUI.nameChar.text))
             {
-                if (!string.IsNullOrEmpty( player.namePlayer))
+                if (!string.IsNullOrEmpty(player.namePlayer))
                 {
                     player.nameUI.nameChar.text = player.namePlayer;
-                } else
+                }
+                else
                 {
                     player.nameUI.nameChar.text = "You";
 
@@ -61,12 +74,15 @@ public class LevelManager : Singleton<LevelManager>
             this.SpawnWayPoint();
             this.SpawnNameBoard();
         }
+    }
+    private void CheckCoinDesplay()
+    {
         if (GameManager.Instance.currentState == GameState.MainMenu || GameManager.Instance.currentState == GameState.ShopWeaponMenu || GameManager.Instance.currentState == GameState.ShopSkinMenu) UIManager.Instance.coinDesplayContainer.SetActive(true);
-        else UIManager.Instance.coinDesplayContainer.SetActive(false) ;
+        else UIManager.Instance.coinDesplayContainer.SetActive(false);
     }
     private Vector3 RandomPos()
     {
-        Vector3 currentPosition = player.TF.position;
+        Vector3 currentPosition = new(player.TF.position.x, 0f, player.TF.position.z);
         Vector3 randomPos = Random.insideUnitSphere * 40f + currentPosition;
         if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, Mathf.Infinity, NavMesh.AllAreas))
         {
@@ -82,12 +98,22 @@ public class LevelManager : Singleton<LevelManager>
     private void SpawnEnemy()
     {
         EnemyCtrl bot = SimplePool.Spawn<EnemyCtrl>(PoolType.EnemyCtrl);
-        Name.SetRandomColor(bot.skinColor);
+        bot.skinColor.material = ColorManager.Instance.SetRandomColor();
         enemyCurrent.Add(bot);
-        bot.OnInit();
         bot.TF.position = RandomPos();
+        bot.OnInit();
         countCharacter++;
         countCharacterCurrent++;
+        if (GameManager.Instance.currentState == GameState.InGame)
+        {
+            bot.wayPoint.UpdatePoint(bot.point);
+        }
+    }
+    public int RandomPoint()
+    {
+        int point = Random.Range(player.point - 3, player.point + 3);
+        if (point <= 0) point = 1;
+        return point;
     }
     private void SpawnWayPoint()
     {
@@ -96,6 +122,7 @@ public class LevelManager : Singleton<LevelManager>
             if (bot.wayPoint != null) return;
             bot.wayPoint = SimplePool.Spawn<MissionWayPoint>(wayPointPrfab);
             bot.wayPoint.OnInit();
+            bot.wayPoint.UpdatePoint(bot.point);
             bot.wayPoint.target = bot.wayPointTarget;
             bot.wayPoint.color.color = bot.skinColor.material.color;
         }
@@ -114,10 +141,11 @@ public class LevelManager : Singleton<LevelManager>
     }
     private void InitPointScale()
     {
+        pointStones.Add(new PointStone { point = 1, scale = 1f, defeatPoint = 1 });
         pointStones.Add(new PointStone { point = 2, scale = 1.2f , defeatPoint = 2});
         pointStones.Add(new PointStone { point = 6, scale = 1.5f , defeatPoint = 3 });
         pointStones.Add(new PointStone { point = 10, scale = 1.8f , defeatPoint = 4 });
-        pointStones.Add(new PointStone { point = 15, scale = 2.1f , defeatPoint = 7 });
-        pointStones.Add(new PointStone { point = 22, scale = 2.5f , defeatPoint = 11 });
+        pointStones.Add(new PointStone { point = 15, scale = 2.1f , defeatPoint = 5 });
+        pointStones.Add(new PointStone { point = 22, scale = 2.5f , defeatPoint = 6 });
     }
 }

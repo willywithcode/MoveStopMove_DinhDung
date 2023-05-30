@@ -29,14 +29,14 @@ public class MissionWayPoint : GameUnit
         float minY = sizeImage.rect.height/2;
         float maxY = Screen.height - minY;
 
-        Vector2 pos = Camera.main.WorldToScreenPoint(target.transform.position);
-        Vector2 direction = pos - new Vector2(Screen.width/2,Screen.height/2);
+        Vector3 pos = Camera.main.WorldToScreenPoint(target.transform.position);
+        Vector2 direction = (Vector2)pos - new Vector2(Screen.width/2,Screen.height/2);
         float angle = Vector2.Angle(direction, Vector3.right);
 
-        if (Vector3.Dot((target.position -  TF.position), TF.forward) < 0)
+        if (pos.z < 0)
         {
-            if ( pos.x < Screen.width /2) pos.x = maxX;
-            else pos.x = minX;
+            pos.y = Screen.height - pos.y;
+            pos.x = Screen.width - pos.x;
         }
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);

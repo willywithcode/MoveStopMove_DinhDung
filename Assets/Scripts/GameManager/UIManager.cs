@@ -10,17 +10,8 @@ using UnityEditor;
 
 public class UIManager : Singleton<UIManager>
 {
-    public Dictionary<GameState,Canvas> dictStateCanvas = new Dictionary<GameState, Canvas>();
     public Dictionary<GameState,GameObject> dictStateGameObject = new Dictionary<GameState, GameObject>();
     public TextMeshProUGUI txtCoinCurrent;
-
-    public Canvas mainMenu;
-    public Canvas inGame;
-    public Canvas shopSkinMenu;
-    public Canvas shopWeaponMenu;
-    public Canvas endGame;
-    public Canvas pauseGame;
-    public Canvas question;
 
     public GameObject mainMenuContainer;
     public GameObject inGameContainer;
@@ -30,6 +21,8 @@ public class UIManager : Singleton<UIManager>
     public GameObject pauseGameContainer;
     public GameObject questionContainer;
     public GameObject coinDesplayContainer;
+
+    public InGame inGame;
     private void Awake()
     {
         this.AddStates();
@@ -40,17 +33,15 @@ public class UIManager : Singleton<UIManager>
     {
         if (GameManager.Instance.currentState == nextGameState) return;
         GameManager.Instance.currentState = nextGameState;
-        foreach (var state in dictStateCanvas)
+        foreach (var state in dictStateGameObject)
         {
             if (state.Key == GameManager.Instance.currentState)
             {
-                state.Value.enabled = true;
-                dictStateGameObject[state.Key].SetActive(true);
+                state.Value.SetActive(true);
             }
             else
             {
-                state.Value.enabled = false;
-                dictStateGameObject[state.Key].SetActive(false);
+                state.Value.SetActive(false);
             }
         }
     }
@@ -61,29 +52,20 @@ public class UIManager : Singleton<UIManager>
     public void AwakeState()
     {
         GameManager.Instance.currentState = GameState.MainMenu;
-        foreach (var state in dictStateCanvas)
+        foreach (var state in dictStateGameObject)
         {
             if (state.Key == GameManager.Instance.currentState)
             {
-                state.Value.enabled = true;
-                dictStateGameObject[state.Key].SetActive(true);
+                state.Value.SetActive(true);
             }
             else
             {
-                state.Value.enabled = false;
-                dictStateGameObject[state.Key].SetActive(false);
+                state.Value.SetActive(false);
             }
         }
     }
     private void AddStates()
     {
-        dictStateCanvas.Add(GameState.MainMenu, mainMenu);
-        dictStateCanvas.Add(GameState.InGame, inGame);
-        dictStateCanvas.Add(GameState.ShopSkinMenu, shopSkinMenu);
-        dictStateCanvas.Add(GameState.ShopWeaponMenu, shopWeaponMenu);
-        dictStateCanvas.Add(GameState.Pause, pauseGame);
-        dictStateCanvas.Add(GameState.EndGame, endGame);
-        dictStateCanvas.Add(GameState.Question, question);
 
         dictStateGameObject.Add(GameState.MainMenu, mainMenuContainer);
         dictStateGameObject.Add(GameState.InGame, inGameContainer);
@@ -107,15 +89,7 @@ public class UIManager : Singleton<UIManager>
         questionContainer = GameObject.Find("Question");
         coinDesplayContainer = GameObject.Find("CoinCurrentDesplay");
 
-        mainMenu = mainMenuContainer.GetComponent<Canvas>();
-        pauseGame = pauseGameContainer.GetComponent<Canvas>();
-        mainMenu = mainMenuContainer.GetComponent<Canvas>();
-        inGame = inGameContainer.GetComponent<Canvas>();
-        shopSkinMenu = shopSkinMenuContainer.GetComponent<Canvas>();
-        shopWeaponMenu = shopWeaponMenuContainer.GetComponent<Canvas>();
-        endGame = endGameContainer.GetComponent<Canvas>();
-        question = questionContainer.GetComponent<Canvas>();
-
+        inGame = inGameContainer.GetComponent<InGame>();
     }
 }
 #if UNITY_EDITOR

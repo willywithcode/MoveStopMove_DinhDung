@@ -174,13 +174,7 @@ public class Name
         else currentIndex += 1;
         return name;
     }
-    public static void SetRandomColor(Renderer renderer)
-    {
-        Material material = new Material(Shader.Find(Constant.standard));
-        Color randomColor = new Color(Random.value, Random.value, Random.value);
-        material.color = randomColor;
-        renderer.material = material;
-    }
+    
     public static void RandomIndex()
     {
         currentIndex = Random.Range(0, names.Count -1);

@@ -30,9 +30,18 @@ public class PlayerCtrl : Character
     public PlayerIdleState idle = new PlayerIdleState();
     public PlayerPauseState pause = new PlayerPauseState();
     public BaseState<PlayerCtrl> currentState;
+
+    public void Awake()
+    {
+        OnInit();
+    }
+
     public override void OnInit()
     {
         base.OnInit();
+        point = 1;
+        scaleGrowth = 1;
+        defeatPoint = 1;
         this.ChangeState(idle);
         this.AssignWeapon();
         speedTempPant = rangeTempWeapon = rangeTempHat = 0;
@@ -46,9 +55,7 @@ public class PlayerCtrl : Character
     }
     private void Start()
     {
-        if (GameManager.Instance.currentHat != 0) hatCurrent = Instantiate(EquipmentManager.Instance.hatDatas[GameManager.Instance.currentHat-1].weaponImg,hatContainer);
-        if (GameManager.Instance.currentShield != 0) shieldCurrent = Instantiate(EquipmentManager.Instance.shieldDatas[GameManager.Instance.currentShield-1].weaponImg, shieldContainer);
-        if (GameManager.Instance.currentPant != 0) pantType.material = EquipmentManager.Instance.pantDatas[GameManager.Instance.currentPant-1].material;
+        this.UpdateSaveData();
     }
 
     void Update()
@@ -71,5 +78,32 @@ public class PlayerCtrl : Character
         base.GrowthCharacter();
         rangeAttack = initAttackRange * scaleGrowth;
         speed = initSpeed * scaleGrowth;
+    }
+    private void UpdateSaveData()
+    {
+        if (SaveGameManager.Instance.currentHat != 0)
+        {
+            hatCurrent = Instantiate(EquipmentManager.Instance.hatDatas[SaveGameManager.Instance.currentHat - 1].weaponImg, hatContainer);
+            rangeTempHat = EquipmentManager.Instance.hatDatas[SaveGameManager.Instance.currentHat - 1].attackRange;
+        }
+        if (SaveGameManager.Instance.currentShield != 0)
+        {
+            shieldCurrent = Instantiate(EquipmentManager.Instance.shieldDatas[SaveGameManager.Instance.currentShield - 1].weaponImg, shieldContainer);
+        }
+        if (SaveGameManager.Instance.currentPant != 0)
+        {
+            pantType.material = EquipmentManager.Instance.pantDatas[SaveGameManager.Instance.currentPant - 1].material;
+            speedTempPant = EquipmentManager.Instance.pantDatas[SaveGameManager.Instance.currentPant - 1].speed;
+        }
+        if (SaveGameManager.Instance.currentWeapon != 0)
+        {
+            typeWeapon = EquipmentManager.Instance.weaponDatas[SaveGameManager.Instance.currentWeapon - 1].weaponType.poolType;
+            rangeTempWeapon = EquipmentManager.Instance.weaponDatas[SaveGameManager.Instance.currentWeapon - 1].attackRange;
+            this.AssignWeapon();
+        }
+        initSpeed = Constant.foudationSpeed + speedTempPant * 0.1f;
+        initAttackRange = Constant.foudationAttackRange + (rangeTempHat + rangeTempWeapon) * 0.1f;
+        speed = initSpeed;
+        rangeAttack = initAttackRange;
     }
 }

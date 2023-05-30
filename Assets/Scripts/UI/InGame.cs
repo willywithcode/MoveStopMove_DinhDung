@@ -7,14 +7,15 @@ using UnityEngine.UI;
 
 public class InGame : BaseGameState
 {
-    public TextMeshProUGUI killAlerm;
+    public TextMeshProUGUI killAlermTxt;
     public GameObject killAlermArea;
+    public KillMessge killMessageUI;
     private void Update()
     {
-        if (GameManager.Instance.isHavingKilled == true)
+        if (PopupManager.Instance.isHavingKilled == true)
         {
             killAlermArea.SetActive(true);
-            this.killAlerm.text = GameManager.Instance.GetMessageKill();
+            this.killAlermTxt.text = PopupManager.Instance.GetMessageKill();
         }
     }
     public void PauseGame()

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class KillMessge : MonoBehaviour
 {
     private float timeDestroy;
     private float timeCount;
+    public UnityAction killUI;
     private void Start()
     {
         timeDestroy = 1;
@@ -20,6 +22,6 @@ public class KillMessge : MonoBehaviour
     {
         timeCount= 0;
         this.gameObject.SetActive(false);
-        GameManager.Instance.isHavingKilled = false;
+        PopupManager.Instance.isHavingKilled = false;
     }
 }

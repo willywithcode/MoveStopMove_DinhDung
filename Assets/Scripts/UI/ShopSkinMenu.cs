@@ -141,16 +141,16 @@ public class ShopSkinMenu : BaseGameState
         switch (currentStateSkin)
         {
             case StateShopSkin.Hat:
-                GameManager.Instance.currentHat = currenrtIndex;
-                GameManager.Instance.listBoughtHatID.Add(currenrtIndex);
+                SaveGameManager.Instance.currentHat = currenrtIndex;
+                SaveGameManager.Instance.listBoughtHatID.Add(currenrtIndex);
                 break;
             case StateShopSkin.Pant:
-                GameManager.Instance.currentPant = currenrtIndex;
-                GameManager.Instance.listBoughtPantID.Add(currenrtIndex);
+                SaveGameManager.Instance.currentPant = currenrtIndex;
+                SaveGameManager.Instance.listBoughtPantID.Add(currenrtIndex);
                 break;
             case StateShopSkin.Shield:
-                GameManager.Instance.currentShield = currenrtIndex;
-                GameManager.Instance.listBoughtShieldID.Add(currenrtIndex);
+                SaveGameManager.Instance.currentShield = currenrtIndex;
+                SaveGameManager.Instance.listBoughtShieldID.Add(currenrtIndex);
                 break;
             case StateShopSkin.FullSet:
                 break;
@@ -161,13 +161,13 @@ public class ShopSkinMenu : BaseGameState
         switch (currentStateSkin)
         {
             case StateShopSkin.Hat:
-                GameManager.Instance.currentHat = currenrtIndex +1;
+                SaveGameManager.Instance.currentHat = currenrtIndex +1;
                 break;
             case StateShopSkin.Pant:
-                GameManager.Instance.currentPant = currenrtIndex+1 ;
+                SaveGameManager.Instance.currentPant = currenrtIndex+1 ;
                 break;
             case StateShopSkin.Shield:
-                GameManager.Instance.currentShield = currenrtIndex+1;
+                SaveGameManager.Instance.currentShield = currenrtIndex+1;
                 break;
             case StateShopSkin.FullSet:
                 break;
@@ -255,14 +255,14 @@ public class ShopSkinMenu : BaseGameState
         if (player.hatCurrent != null) player.hatCurrent.SetActive(false);
         if(tempHat != null) Destroy(tempHat);
         tempHat = Instantiate(EquipmentManager.Instance.hatDatas[index].weaponImg, player.hatContainer);
-        if (GameManager.Instance.listBoughtHatID.Contains(index)) this.ChangeButtonSellect();
+        if (SaveGameManager.Instance.listBoughtHatID.Contains(index)) this.ChangeButtonSellect();
         else this.ChangeDescription(index, EquipmentManager.Instance.hatDatas);
     }
     public void ChangePant(int index)
     {
         this.ChangeCurrentEquiment(index, EquipmentManager.Instance.pantDatas);
         player.pantType.material = EquipmentManager.Instance.pantDatas[index].material;
-        if (GameManager.Instance.listBoughtPantID.Contains(index)) this.ChangeButtonSellect();  
+        if (SaveGameManager.Instance.listBoughtPantID.Contains(index)) this.ChangeButtonSellect();  
         else this.ChangeDescription(index, EquipmentManager.Instance.pantDatas);
 
     }
@@ -272,7 +272,7 @@ public class ShopSkinMenu : BaseGameState
         if (player.shieldCurrent != null) player.shieldCurrent.SetActive(false);
         if (tempShield != null) Destroy(tempShield);
         tempShield = Instantiate(EquipmentManager.Instance.shieldDatas[index].weaponImg, player.shieldContainer);
-        if (GameManager.Instance.listBoughtShieldID.Contains(index)) this.ChangeButtonSellect();
+        if (SaveGameManager.Instance.listBoughtShieldID.Contains(index)) this.ChangeButtonSellect();
         else this.ChangeDescription(index, EquipmentManager.Instance.shieldDatas);
     }
     private void ChangeDescription(int index,List<EquipmentSO> list)
