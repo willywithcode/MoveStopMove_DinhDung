@@ -19,7 +19,7 @@ public class EnemyCtrl : Character
     public override void OnInit()
     {
         base.OnInit();
-        this.ChangeState(move);
+        this.ChangeState(idle);
         this.point = LevelManager.Instance.RandomPoint();
         this.SpawnNewWayPoint();
         this.ClearOldWeapon();

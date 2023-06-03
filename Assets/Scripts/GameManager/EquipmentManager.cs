@@ -21,10 +21,10 @@ public class EquipmentManager : Singleton<EquipmentManager>
     {
         for (int i = 0; i < weaponDatas.Count; i++)
         {
-            SimplePool.Preload(weaponDatas[i].weaponType, 25, container, false, false);
+            SimplePool.Preload(weaponDatas[i].weaponType, 25, container, true, false);
         }
     }
-    
+    #region Load Data in Editor
     public void LoadWeaponData()
     {
         container = GameObject.Find("WeaponPool").transform;
@@ -69,6 +69,7 @@ public class EquipmentManager : Singleton<EquipmentManager>
         weapon.OnInit();
         weapon.TF.position = character.TF.position + Vector3.up * 1f;
     }
+    #endregion
 }
 
 #if UNITY_EDITOR

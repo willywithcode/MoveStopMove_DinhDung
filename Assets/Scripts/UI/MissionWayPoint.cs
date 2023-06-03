@@ -26,12 +26,13 @@ public class MissionWayPoint : GameUnit
         float minX = sizeImage.rect.width/2;
         float maxX = Screen.width - minX;
 
-        float minY = sizeImage.rect.height/2;
+        float minY = sizeImage.rect.width/2;
         float maxY = Screen.height - minY;
 
         Vector3 pos = Camera.main.WorldToScreenPoint(target.transform.position);
         Vector2 direction = (Vector2)pos - new Vector2(Screen.width/2,Screen.height/2);
         float angle = Vector2.Angle(direction, Vector3.right);
+        if (direction.y <= 0) angle  = 360 -angle;
 
         if (pos.z < 0)
         {

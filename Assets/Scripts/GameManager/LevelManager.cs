@@ -20,9 +20,9 @@ public class LevelManager : Singleton<LevelManager>
     public int countCharacterCurrent = 0;
     
 
-    private int maxCharacter = 50; 
+    private int maxCharacter = 100; 
     private int countCharacter = 0;
-    private int maxCharacterCurrent = 7;
+    private int maxCharacterCurrent = 15 ;
 
 
     private void Start()
@@ -115,7 +115,7 @@ public class LevelManager : Singleton<LevelManager>
         if (point <= 0) point = 1;
         return point;
     }
-    private void SpawnWayPoint()
+    public void SpawnWayPoint()
     {
         foreach (EnemyCtrl bot in enemyCurrent)
         {

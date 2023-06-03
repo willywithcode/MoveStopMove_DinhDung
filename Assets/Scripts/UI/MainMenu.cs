@@ -35,4 +35,9 @@ public class MainMenu : BaseGameState
     {
         player.namePlayer = nameString.text;
     }
+    public override void EnterInGame()
+    {
+        base.EnterInGame();
+        LevelManager.Instance.SpawnWayPoint();
+    }
 }

@@ -22,16 +22,14 @@ public class OriginWeapon : GameUnit
     {
         SimplePool.Despawn(this);
     }
-   
-
     protected void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == this.owner.gameObject) return;
         if (other.CompareTag(Constant.CHARACTER))
         {
             EnemyCtrl enemy = other.GetComponent<EnemyCtrl>();
-            PopupManager.Instance.AlermMassageKill(this.owner.namePlayer, enemy.namePlayer);
-            PopupManager.Instance.isHavingKilled = true;
+            KillManager.Instance.ReportKill(owner.namePlayer,enemy.namePlayer);
+            EffectSystemManager.Instance.ExplodeBlood(enemy);
             this.AddPoint(enemy.defeatPoint);
             owner.GrowthCharacter();
             this.EndAttack();

@@ -12,11 +12,11 @@ public class InGame : BaseGameState
     public KillMessge killMessageUI;
     private void Update()
     {
-        if (PopupManager.Instance.isHavingKilled == true)
-        {
-            killAlermArea.SetActive(true);
-            this.killAlermTxt.text = PopupManager.Instance.GetMessageKill();
-        }
+        //if (KillUIMananger.Instance.isHavingKilled == true)
+        //{
+        //    killAlermArea.SetActive(true);
+        //    this.killAlermTxt.text = KillUIMananger.Instance.GetMessageKill();
+        //}
     }
     public void PauseGame()
     {

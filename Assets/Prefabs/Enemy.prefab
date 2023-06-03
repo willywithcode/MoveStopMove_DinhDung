@@ -96,6 +96,37 @@ Transform:
   m_Father: {fileID: 5865528449853639623}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3592852028745308264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7315492639681050945}
+  m_Layer: 3
+  m_Name: BloodExplosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7315492639681050945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3592852028745308264}
+  m_LocalRotation: {x: 0.33926645, y: -0, z: -0, w: 0.94069034}
+  m_LocalPosition: {x: 0, y: 0.95, z: 0.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5865528449853639623}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 39.664, y: 0, z: 0}
 --- !u!1 &4272874821371642004
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +358,7 @@ Transform:
   - {fileID: 5865528449475522128}
   - {fileID: 5724485554256804728}
   - {fileID: 6180683001896902723}
+  - {fileID: 7315492639681050945}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -370,6 +402,8 @@ MonoBehaviour:
   agent: {fileID: 5865528449853639621}
   target: {fileID: 0}
   nameUI: {fileID: 0}
+  namePlayer: 
+  bloodExplosionContainer: {fileID: 7315492639681050945}
   prefab: {fileID: 7054695745597867148, guid: 9a6a607404611e6478a563a4f2808e30, type: 3}
   collider: {fileID: 0}
 --- !u!195 &5865528449853639621

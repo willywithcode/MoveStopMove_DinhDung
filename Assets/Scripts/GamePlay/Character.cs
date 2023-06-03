@@ -37,6 +37,8 @@ public class Character : GameUnit
     public NameBoard nameUI;
     public string namePlayer;
 
+    public Transform bloodExplosionContainer;
+
     public  void Awake()
     {
         //OnInit();

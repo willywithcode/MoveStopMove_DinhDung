@@ -21,8 +21,6 @@ public class UIManager : Singleton<UIManager>
     public GameObject pauseGameContainer;
     public GameObject questionContainer;
     public GameObject coinDesplayContainer;
-
-    public InGame inGame;
     private void Awake()
     {
         this.AddStates();
@@ -88,8 +86,6 @@ public class UIManager : Singleton<UIManager>
         endGameContainer = GameObject.Find("EndGame");
         questionContainer = GameObject.Find("Question");
         coinDesplayContainer = GameObject.Find("CoinCurrentDesplay");
-
-        inGame = inGameContainer.GetComponent<InGame>();
     }
 }
 #if UNITY_EDITOR
