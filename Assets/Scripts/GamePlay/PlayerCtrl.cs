@@ -35,13 +35,13 @@ public class PlayerCtrl : Character
     {
         OnInit();
     }
-
     public override void OnInit()
     {
         base.OnInit();
         point = 1;
         scaleGrowth = 1;
         defeatPoint = 1;
+        TF.localScale = Vector3.one * scaleGrowth;
         this.ChangeState(idle);
         this.AssignWeapon();
         speedTempPant = rangeTempWeapon = rangeTempHat = 0;
@@ -66,12 +66,17 @@ public class PlayerCtrl : Character
     
     public void ChangeState(BaseState<PlayerCtrl> nextState)
     {
-        if (currentState != null) currentState.ExitState(this);
+        if(currentState != null) currentState.ExitState(this);
         if(currentState != nextState)
         {
             currentState = nextState;
             currentState.EnterState(this);
         }
+    }
+    public override void ChangeDeadState()
+    {
+        base.ChangeDeadState();
+        this.ChangeState(dead);
     }
     public override void GrowthCharacter()
     {
@@ -79,7 +84,7 @@ public class PlayerCtrl : Character
         rangeAttack = initAttackRange * scaleGrowth;
         speed = initSpeed * scaleGrowth;
     }
-    private void UpdateSaveData()
+    public void UpdateSaveData()
     {
         if (SaveGameManager.Instance.currentHat != 0)
         {

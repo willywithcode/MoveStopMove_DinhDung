@@ -31,7 +31,6 @@ public class EnemyCtrl : Character
         collider= this.GetComponent<Collider>();
         collider.enabled = true;
     }
-
     void Update()
     {
         currentState.Update(this);
@@ -39,10 +38,9 @@ public class EnemyCtrl : Character
     public override void OnDespawn()
     {
         base.OnDespawn();
-        if (LevelManager.Instance.enemyCurrent.Contains(this)) LevelManager.Instance.enemyCurrent.Remove(this);
+        this.nameUI.OnDespawn();
         this.wayPoint.OnDespawn();
         this.wayPoint = null;
-        this.nameUI.OnDespawn();
         this.nameUI = null;
 
     }
@@ -60,5 +58,9 @@ public class EnemyCtrl : Character
             currentState = newState;
             currentState.EnterState(this);
         }
+    }
+    public override void ChangeDeadState()
+    {
+        this.ChangeState(dead);
     }
 }

@@ -7,15 +7,18 @@ using static UnityEngine.GraphicsBuffer;
 public class OriginWeapon : GameUnit
 {
     public Character owner;
+    public Character victim;
     public float speed;
     public Vector3 direct;
 
     protected bool isHitObtacle;
-    protected float count = 0;
+    protected float count;
     protected float timeAttach = 0.5f;
-
+   
     public override void OnInit()
     {
+        this.count = 0;
+        this.victim= null;
         this.TF.localScale = Vector3.one * owner.scaleGrowth;
     }
     public override void OnDespawn()
@@ -27,26 +30,19 @@ public class OriginWeapon : GameUnit
         if (other.gameObject == this.owner.gameObject) return;
         if (other.CompareTag(Constant.CHARACTER))
         {
-            EnemyCtrl enemy = other.GetComponent<EnemyCtrl>();
-            KillManager.Instance.ReportKill(owner.namePlayer,enemy.namePlayer);
-            EffectSystemManager.Instance.ExplodeBlood(enemy);
-            this.AddPoint(enemy.defeatPoint);
-            owner.GrowthCharacter();
-            this.EndAttack();
-            enemy.ChangeState(enemy.dead);
-            LevelManager.Instance.countCharacterCurrent--;
+            this.victim = Cache.GetScript(other);
+            this.PostEvent(EventID.OnWeaponHitEnemy,this);
         }
-        //else if (other.CompareTag(Constant.PLAYER))
-        //{
-        //    this.EndAttack();
-        //    PlayerCtrl playerCrtl = other.GetComponent<PlayerCtrl>();
-        //    playerCrtl.ChangeState(playerCrtl.dead);
-        //}
+        else if (other.CompareTag(Constant.PLAYER))
+        {
+            this.victim = Cache.GetScript(other);
+            this.PostEvent(EventID.OnPlayerDie,this);
+        }
         else if (other.CompareTag(Constant.OBTACLE)) isHitObtacle = true;
     }
-    protected  void MoveToEnemy()
+    #region Movement
+    protected void MoveToEnemy()
     {
-
         TF.position += direct * speed * Time.deltaTime;
         if (Vector3.Distance(TF.position, this.owner.TF.position) >= this.owner.rangeAttack)
         {
@@ -62,19 +58,21 @@ public class OriginWeapon : GameUnit
     {
         TF.rotation = this.owner.TF.rotation;
     }
-    protected void EndAttack()
+    #endregion
+    #region Condition
+    public void EndAttack()
     {
         this.OnDespawn();
-        this.owner.weaponImg.SetActive(true);
+        owner.weaponImg.SetActive(true);
     }
     protected void WaitForAttach()
     {
         count += Time.deltaTime;
-        if (count >= timeAttach) this.EndAttack();
+        if (count >= timeAttach)
+        {
+            this.EndAttack();
+            this.isHitObtacle = false;
+        }
     }
-    private void AddPoint(int addPoint)
-    {
-        owner.point += addPoint;
-        owner.wayPoint.UpdatePoint(owner.point);
-    }
+    #endregion
 }

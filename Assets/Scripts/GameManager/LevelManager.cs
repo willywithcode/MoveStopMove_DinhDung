@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -12,21 +13,26 @@ public struct PointStone
 public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] private PlayerCtrl player;
+    public PlayerCtrl Player { get { return player; } }
     public MissionWayPoint wayPointPrfab;
 
     public List<GameObject> prefabsLevelState;
-    public List<EnemyCtrl> enemyCurrent;
+    public List<Character> enemyCurrent;
     public List<PointStone> pointStones = new List<PointStone>();
     public int countCharacterCurrent = 0;
     
 
-    private int maxCharacter = 100; 
+    private int maxCharacter = 99; 
     private int countCharacter = 0;
     private int maxCharacterCurrent = 15 ;
 
 
     private void Start()
     {
+        this.RegisterListener(EventID.OnWeaponHitEnemy, (param) => OnWeaponHitEnemy((OriginWeapon) param));
+        this.RegisterListener(EventID.OnEndGame, (param) => OnEndGame());
+        this.RegisterListener(EventID.OnStartGame, (param) => OnStartGame());
+        this.RegisterListener(EventID.OnPlayerDie, (param) => OnPlayerDie((OriginWeapon) param));
         Name.RandomIndex();
         this.InitPointScale();
         UIManager.Instance.txtCoinCurrent.text = GameManager.Instance.currentCoin.ToString();
@@ -35,14 +41,26 @@ public class LevelManager : Singleton<LevelManager>
             this.SpawnEnemy();
         }
     }
-    private void Update()
+    #region Register Listener 
+    private void OnWeaponHitEnemy(OriginWeapon weapon)
     {
-        this.CheckEnemyNum();
-        this.CheckRangeCircle();
-        this.CheckGameNamePlayer();
-        this.CheckCoinDesplay();
+        if (enemyCurrent.Contains(weapon.victim)) this.enemyCurrent.Remove(weapon.victim);
+        this.MinusNumOfCharacterCurrent();
+        this.SpawnEnemyInGame();
+        weapon.owner.AddPoint(weapon.victim.defeatPoint);
+        weapon.owner.GrowthCharacter();
+        weapon.owner.weaponImg.SetActive(true);
+        weapon.victim.ChangeDeadState();
     }
-    private void CheckEnemyNum()
+    private void OnPlayerDie(OriginWeapon weapon)
+    {
+        weapon.victim.ChangeDeadState();
+    }
+    private void MinusNumOfCharacterCurrent()
+    {
+        this.countCharacterCurrent--;
+    }
+    private void SpawnEnemyInGame()
     {
         if (countCharacter >= maxCharacter) return;
         if (countCharacterCurrent < maxCharacterCurrent)
@@ -50,40 +68,58 @@ public class LevelManager : Singleton<LevelManager>
             this.SpawnEnemy();
         }
     }
-    private void CheckRangeCircle()
+
+    private void OnEndGame()
     {
-        if (GameManager.Instance.currentState != GameState.InGame && GameManager.Instance.currentState != GameState.Question && GameManager.Instance.currentState != GameState.Pause) player.attackRoundObject.SetActive(false);
-        else player.attackRoundObject.SetActive(true);
+        this.player.OnInit();
+        this.player.UpdateSaveData();
+        this.player.wayPoint.UpdatePoint(player.point);
+        SimplePool.CollectAll();
+        countCharacterCurrent = 0;
+        countCharacter = 0;
+        foreach(Character enemy in enemyCurrent)
+        {
+            enemy.wayPoint = null;
+            enemy.nameUI = null;
+        }
+        enemyCurrent.Clear();
+        for (int i = 0; i < maxCharacterCurrent; i++)
+        {
+            this.SpawnEnemy();
+        }
+    }
+    private void OnStartGame()
+    {
+        this.SpawnWayPoint();
+        this.SpawnNameBoard();
+        this.TurnOnCirclePlayer();
+        this.CheckGameNamePlayer();
+    }
+    private void TurnOnCirclePlayer()
+    {
+        player.attackRoundObject.SetActive(true);
     }
     private void CheckGameNamePlayer()
     {
-        if (GameManager.Instance.currentState == GameState.InGame)
+        if (!string.IsNullOrEmpty(player.nameUI.nameChar.text))
         {
-            if (!string.IsNullOrEmpty(player.nameUI.nameChar.text))
+            if (!string.IsNullOrEmpty(player.namePlayer))
             {
-                if (!string.IsNullOrEmpty(player.namePlayer))
-                {
-                    player.nameUI.nameChar.text = player.namePlayer;
-                }
-                else
-                {
-                    player.nameUI.nameChar.text = "You";
-
-                }
+                player.nameUI.nameChar.text = player.namePlayer;
             }
-            this.SpawnWayPoint();
-            this.SpawnNameBoard();
+            else
+            {
+                player.nameUI.nameChar.text = "You";
+
+            }
         }
     }
-    private void CheckCoinDesplay()
-    {
-        if (GameManager.Instance.currentState == GameState.MainMenu || GameManager.Instance.currentState == GameState.ShopWeaponMenu || GameManager.Instance.currentState == GameState.ShopSkinMenu) UIManager.Instance.coinDesplayContainer.SetActive(true);
-        else UIManager.Instance.coinDesplayContainer.SetActive(false);
-    }
+    #endregion
+    #region Spawn
     private Vector3 RandomPos()
     {
         Vector3 currentPosition = new(player.TF.position.x, 0f, player.TF.position.z);
-        Vector3 randomPos = Random.insideUnitSphere * 40f + currentPosition;
+        Vector3 randomPos = Random.insideUnitSphere * 7 * player.rangeAttack + currentPosition;
         if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, Mathf.Infinity, NavMesh.AllAreas))
         {
             Vector3 tmp = hit.position;
@@ -127,7 +163,7 @@ public class LevelManager : Singleton<LevelManager>
             bot.wayPoint.color.color = bot.skinColor.material.color;
         }
     }
-    private void SpawnNameBoard()
+    public void SpawnNameBoard()
     {
         foreach (EnemyCtrl bot in enemyCurrent)
         {
@@ -138,6 +174,15 @@ public class LevelManager : Singleton<LevelManager>
             bot.nameUI.nameChar.text = Name.GetName();
             bot.namePlayer = bot.nameUI.nameChar.text;
         }
+    }
+    #endregion
+    public string GetNumAlive()
+    {
+        return (maxCharacter - (countCharacter - countCharacterCurrent)).ToString();
+    }
+    public string GetRank()
+    {
+        return (maxCharacter - (countCharacter - countCharacterCurrent)+1).ToString();
     }
     private void InitPointScale()
     {

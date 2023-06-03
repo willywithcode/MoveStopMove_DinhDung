@@ -9,12 +9,13 @@ public class EffectSystemManager : Singleton<EffectSystemManager>
     private void Start()
     {
         SimplePool.Preload(prefabBloodExplodePS,15, parentContainer,true,false);
+        this.RegisterListener(EventID.OnWeaponHitEnemy, (param) => ExplodeBlood((OriginWeapon) param));
     }
-    public void ExplodeBlood(Character enemy)
+    public void ExplodeBlood(OriginWeapon weapon)
     {
         BloodExplode bloodExplode = SimplePool.Spawn<BloodExplode>(prefabBloodExplodePS);
-        bloodExplode.TF.position = enemy.bloodExplosionContainer.position;
-        bloodExplode.TF.localScale = Vector3.one * enemy.scaleGrowth;
+        bloodExplode.TF.position = weapon.victim.bloodExplosionContainer.position;
+        bloodExplode.TF.localScale = Vector3.one * weapon.victim.scaleGrowth;
         bloodExplode.OnInit();
     }
 }

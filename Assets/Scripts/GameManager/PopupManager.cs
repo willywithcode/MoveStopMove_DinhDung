@@ -8,13 +8,8 @@ public class PopupManager : Singleton<PopupManager>
     [SerializeField] private GameUnit prefabTxtKillUI;
     [SerializeField] private Transform parentTxtKillUI;
 
-    private string nameVictim;
-    private string nameKiller;
     private float notificationDuration = 1f;
     private float scrollSpeed = 2f;
-
-    public string NameVictim { get { return nameVictim; }  set { nameVictim = value; } }
-    public string NameKiller { get { return nameKiller; } set { nameKiller = value; } }
 
     private Coroutine scrollCoroutine;
 
@@ -24,11 +19,11 @@ public class PopupManager : Singleton<PopupManager>
         SimplePool.Preload(prefabTxtKillUI, 10, parentTxtKillUI, true, false);
     }
 
-    private void ShowKillNotification()
+    private void ShowKillNotification(OriginWeapon weapon)
     {
         TxtKillUI notification = SimplePool.Spawn<TxtKillUI>(prefabTxtKillUI);
         notification.OnInit();
-        notification.TxtContent = this.nameKiller + Constant.killAlermMessage + this.nameVictim;
+        notification.TxtContent = weapon.owner.namePlayer + Constant.killAlermMessage + weapon.victim.namePlayer;
         StartCoroutine(RemoveNotification(notification));
         if (scrollCoroutine != null)
         {

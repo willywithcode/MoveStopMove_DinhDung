@@ -19,7 +19,6 @@ public class MainMenu : BaseGameState
             return;
         }
         inputName.SetActive(false);
-
     }
     public void WeaponShop()
     {
@@ -38,6 +37,6 @@ public class MainMenu : BaseGameState
     public override void EnterInGame()
     {
         base.EnterInGame();
-        LevelManager.Instance.SpawnWayPoint();
+        this.PostEvent(EventID.OnStartGame);
     }
 }

@@ -6,11 +6,13 @@ using UnityEngine.Events;
 public class KillManager : Singleton<KillManager> 
 {
 
-    public UnityAction OnKillEvent; 
-    public void ReportKill(string killer, string victim)
+    public UnityAction<OriginWeapon> OnKillEvent;
+    private void Start()
     {
-        PopupManager.Instance.NameKiller = killer;
-        PopupManager.Instance.NameVictim = victim;
-        OnKillEvent?.Invoke(); 
+        this.RegisterListener(EventID.OnWeaponHitEnemy,(param) => ReportKill((OriginWeapon) param));
+    }
+    public void ReportKill(OriginWeapon weapon)
+    {
+        OnKillEvent?.Invoke(weapon); 
     }
 }

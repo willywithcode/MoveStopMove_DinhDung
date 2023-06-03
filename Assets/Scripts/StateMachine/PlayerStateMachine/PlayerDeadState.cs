@@ -8,6 +8,8 @@ public class PlayerDeadState : BaseState<PlayerCtrl>
     {
         ctrl.ChangeAnim(Constant.ANIM_DEAD);
         ctrl.collider.enabled = false;
+        ctrl.joystick.enabled = false;
+        ctrl.direct = Vector3.zero;
     }
     public void Update(PlayerCtrl ctrl)
     {
@@ -19,6 +21,8 @@ public class PlayerDeadState : BaseState<PlayerCtrl>
     }
     public void ExitState(PlayerCtrl ctrl)
     {
+        ctrl.collider.enabled = true;
+        ctrl.joystick.enabled = true;
 
     }
 }

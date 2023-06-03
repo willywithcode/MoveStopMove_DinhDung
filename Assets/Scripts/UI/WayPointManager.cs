@@ -10,7 +10,7 @@ public class WayPointManager : Singleton<WayPointManager>
     public Transform containerNameBoard;
     private void Awake()
     {
-            SimplePool.Preload(prefabWayPoint, 25, containerWayPoint, true, false);
-            SimplePool.Preload(prefabNameBoard, 25, containerNameBoard, true, false);
+            SimplePool.Preload(prefabWayPoint, 30, containerWayPoint, true, false);
+            SimplePool.Preload(prefabNameBoard, 30, containerNameBoard, true, false);
     }
 }

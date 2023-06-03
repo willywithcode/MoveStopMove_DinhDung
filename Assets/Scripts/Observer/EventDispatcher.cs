@@ -111,6 +111,7 @@ public static class EventDispatcherExtension
         EventDispatcher.Instance.PostEvent(eventID, param);
     }
 
+
     /// Post event with no param (param = null)
     public static void PostEvent(this MonoBehaviour sender, EventID eventID)
     {

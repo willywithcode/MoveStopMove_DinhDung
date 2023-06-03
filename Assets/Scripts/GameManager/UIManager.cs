@@ -25,8 +25,14 @@ public class UIManager : Singleton<UIManager>
     {
         this.AddStates();
         this.AwakeState();
+        this.RegisterListener(EventID.OnPlayerWin,(param) => EnterEndGameState());
+        this.RegisterListener(EventID.OnPlayerDie, (param) => EnterEndGameState());
+
     }
-   
+    private void EnterEndGameState()
+    {
+        this.EnterStateUI(GameState.EndGame);
+    }
     public void EnterStateUI(GameState nextGameState)
     {
         if (GameManager.Instance.currentState == nextGameState) return;

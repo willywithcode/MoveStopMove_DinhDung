@@ -5,6 +5,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
+using static UnityEngine.UI.GridLayoutGroup;
+
 public class Character : GameUnit
 {
     [SerializeField] protected LayerMask layerCharacter;
@@ -59,6 +61,10 @@ public class Character : GameUnit
             currentAnimName = animName;
             animator.SetTrigger(currentAnimName);
         }
+    }
+    public virtual void ChangeDeadState()
+    {
+
     }
     public void RandomWeapon()
     {
@@ -140,6 +146,12 @@ public class Character : GameUnit
             }
         }
         this.TF.localScale = Vector3.one * scaleGrowth;
+    }
+
+    public void AddPoint(int addPoint)
+    {
+        point += addPoint;
+        wayPoint.UpdatePoint(point);
     }
 }
 

@@ -15,14 +15,21 @@ public class EquipmentManager : Singleton<EquipmentManager>
     public Transform container;
     private void Awake()
     {
+        this.RegisterListener(EventID.OnWeaponHitEnemy, (param) => OnWeaponHitEnemy((OriginWeapon) param));
+        this.RegisterListener(EventID.OnPlayerDie, (param) => OnWeaponHitEnemy((OriginWeapon)param));
+
         this.LoadWeapon();
     }
     private void LoadWeapon()
     {
         for (int i = 0; i < weaponDatas.Count; i++)
         {
-            SimplePool.Preload(weaponDatas[i].weaponType, 25, container, true, false);
+            SimplePool.Preload(weaponDatas[i].weaponType, 30, container, true, false);
         }
+    }
+    public void OnWeaponHitEnemy(OriginWeapon weapon)
+    {
+        weapon.EndAttack();
     }
     #region Load Data in Editor
     public void LoadWeaponData()
@@ -71,7 +78,7 @@ public class EquipmentManager : Singleton<EquipmentManager>
     }
     #endregion
 }
-
+#region Editor
 #if UNITY_EDITOR
 [CustomEditor(typeof(EquipmentManager))]
 public class EquipmentManagerEditor : Editor
@@ -92,3 +99,4 @@ public class EquipmentManagerEditor : Editor
     }
 }
 #endif
+#endregion

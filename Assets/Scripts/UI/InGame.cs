@@ -7,16 +7,15 @@ using UnityEngine.UI;
 
 public class InGame : BaseGameState
 {
-    public TextMeshProUGUI killAlermTxt;
-    public GameObject killAlermArea;
-    public KillMessge killMessageUI;
-    private void Update()
+    [SerializeField] private TextMeshProUGUI txtAliveUI;
+    private void Awake()
     {
-        //if (KillUIMananger.Instance.isHavingKilled == true)
-        //{
-        //    killAlermArea.SetActive(true);
-        //    this.killAlermTxt.text = KillUIMananger.Instance.GetMessageKill();
-        //}
+        this.RegisterListener(EventID.OnStartGame, (param) => ChangeAlive());
+        this.RegisterListener(EventID.OnWeaponHitEnemy, (param) => ChangeAlive());
+    }
+    public void ChangeAlive()
+    {
+        txtAliveUI.text = LevelManager.Instance.GetNumAlive();
     }
     public void PauseGame()
     {

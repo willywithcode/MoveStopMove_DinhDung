@@ -4,8 +4,9 @@ public enum EventID
 {
     None = 0,
     OnStartGame,
-    OnCharacterShoot,
-    OnEnemyDie,
+    OnEndGame,
+    OnWeaponHitEnemy,
     OnPlayerDie,
-    OnPlayerWin
+    OnPlayerWin,
+    OnCoinChange
 }

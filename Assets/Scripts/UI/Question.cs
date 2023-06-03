@@ -13,8 +13,6 @@ public class Question : BaseGameState
     {
 
         base.GoMainMenu();
-        SimplePool.CollectAll();
-        LevelManager.Instance.countCharacterCurrent= 0;
-        LevelManager.Instance.enemyCurrent.Clear();
+        this.PostEvent(EventID.OnEndGame);
     }
 }
