@@ -13,6 +13,7 @@ public struct PointStone
 public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] private PlayerCtrl player;
+    [SerializeField] private GameObject giftPrefab;
     public PlayerCtrl Player { get { return player; } }
     public MissionWayPoint wayPointPrfab;
 
@@ -20,6 +21,7 @@ public class LevelManager : Singleton<LevelManager>
     public List<Character> enemyCurrent;
     public List<PointStone> pointStones = new List<PointStone>();
     public int countCharacter = 0;
+    public float countTimeGift;
     
 
     private int maxCharacter = 99; 
@@ -27,6 +29,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Awake()
     {
+        countTimeGift = 0;
         this.RegisterListener(EventID.OnWeaponHitEnemy, (param) => OnWeaponHitEnemy((OriginWeapon)param));
         this.RegisterListener(EventID.OnEndGame, (param) => OnEndGame());
         this.RegisterListener(EventID.OnStartGame, (param) => OnStartGame());
@@ -46,6 +49,11 @@ public class LevelManager : Singleton<LevelManager>
     private void Update()
     {
         if (enemyCurrent.Count == 0) this.PostEvent(EventID.OnPlayerWin);
+        if  (!giftPrefab.activeSelf && GameManager.Instance.currentState == GameState.InGame)
+        {
+            countTimeGift += Time.deltaTime;
+            if (countTimeGift > 20) this.SpawnGift();
+        }
     }
     #region Register Listener 
     private void OnWeaponHitEnemy(OriginWeapon weapon)
@@ -87,6 +95,8 @@ public class LevelManager : Singleton<LevelManager>
         {
             this.SpawnEnemy();
         }
+        this.DespawnGift();
+        
     }
     private void OnStartGame()
     {
@@ -94,6 +104,7 @@ public class LevelManager : Singleton<LevelManager>
         this.SpawnNameBoard();
         this.TurnOnCirclePlayer();
         this.CheckGameNamePlayer();
+        this.SpawnGift();
     }
     private void TurnOnCirclePlayer()
     {
@@ -182,6 +193,16 @@ public class LevelManager : Singleton<LevelManager>
     public string GetRank()
     {
         return (maxCharacter - (countCharacter - enemyCurrent.Count) +1).ToString();
+    }
+    public void SpawnGift()
+    {
+        this.giftPrefab.SetActive(true);
+        giftPrefab.transform.position = RandomPos() + Vector3.up * 10;
+    }
+    public void DespawnGift()
+    {
+        this.giftPrefab.SetActive(false);
+        countTimeGift = 0;
     }
     private void InitPointScale()
     {

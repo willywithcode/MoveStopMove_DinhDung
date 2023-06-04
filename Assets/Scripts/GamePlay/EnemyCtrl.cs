@@ -38,7 +38,8 @@ public class EnemyCtrl : Character
     public override void OnDespawn()
     {
         if(nameUI != null) this.nameUI.OnDespawn();
-        if (wayPoint != null) this.wayPoint.OnDespawn();
+        if (wayPoint
+            != null) this.wayPoint.OnDespawn();
         this.wayPoint = null;
         this.nameUI = null;
         base.OnDespawn();
