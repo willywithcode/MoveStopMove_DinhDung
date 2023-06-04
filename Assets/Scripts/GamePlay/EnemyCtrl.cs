@@ -37,11 +37,11 @@ public class EnemyCtrl : Character
     }
     public override void OnDespawn()
     {
-        base.OnDespawn();
-        this.nameUI.OnDespawn();
-        this.wayPoint.OnDespawn();
+        if(nameUI != null) this.nameUI.OnDespawn();
+        if (wayPoint != null) this.wayPoint.OnDespawn();
         this.wayPoint = null;
         this.nameUI = null;
+        base.OnDespawn();
 
     }
     public override void GrowthCharacter()

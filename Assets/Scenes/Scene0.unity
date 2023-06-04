@@ -652,7 +652,7 @@ MonoBehaviour:
   direct: {x: 0, y: 0, z: 0}
   collider: {fileID: 0}
   attackRoundObject: {fileID: 1312331848}
-  rangeCtrl: {fileID: 0}
+  rangeCtrl: {fileID: 1312331850}
   hatCurrent: {fileID: 0}
   shieldCurrent: {fileID: 0}
   pantCurrent: {fileID: 607331282}
@@ -2459,7 +2459,7 @@ MonoBehaviour:
   wayPointPrfab: {fileID: 7054695745597867148, guid: 9a6a607404611e6478a563a4f2808e30, type: 3}
   prefabsLevelState: []
   enemyCurrent: []
-  countCharacterCurrent: 0
+  countCharacter: 0
 --- !u!1 &219948532
 GameObject:
   m_ObjectHideFlags: 0
@@ -11428,7 +11428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1312331849
 Transform:
   m_ObjectHideFlags: 0

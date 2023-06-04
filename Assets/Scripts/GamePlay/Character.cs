@@ -151,7 +151,7 @@ public class Character : GameUnit
     public void AddPoint(int addPoint)
     {
         point += addPoint;
-        wayPoint.UpdatePoint(point);
+        if(wayPoint != null)wayPoint.UpdatePoint(point);
     }
 }
 

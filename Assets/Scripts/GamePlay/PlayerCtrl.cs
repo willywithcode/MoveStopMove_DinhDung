@@ -86,12 +86,12 @@ public class PlayerCtrl : Character
     }
     public void UpdateSaveData()
     {
-        if (SaveGameManager.Instance.currentHat != 0)
+        if (SaveGameManager.Instance.currentHat != 0 && hatCurrent == null)
         {
             hatCurrent = Instantiate(EquipmentManager.Instance.hatDatas[SaveGameManager.Instance.currentHat - 1].weaponImg, hatContainer);
             rangeTempHat = EquipmentManager.Instance.hatDatas[SaveGameManager.Instance.currentHat - 1].attackRange;
         }
-        if (SaveGameManager.Instance.currentShield != 0)
+        if (SaveGameManager.Instance.currentShield != 0 && shieldCurrent == null)
         {
             shieldCurrent = Instantiate(EquipmentManager.Instance.shieldDatas[SaveGameManager.Instance.currentShield - 1].weaponImg, shieldContainer);
         }
@@ -100,7 +100,7 @@ public class PlayerCtrl : Character
             pantType.material = EquipmentManager.Instance.pantDatas[SaveGameManager.Instance.currentPant - 1].material;
             speedTempPant = EquipmentManager.Instance.pantDatas[SaveGameManager.Instance.currentPant - 1].speed;
         }
-        if (SaveGameManager.Instance.currentWeapon != 0)
+        if (SaveGameManager.Instance.currentWeapon != 0 )
         {
             typeWeapon = EquipmentManager.Instance.weaponDatas[SaveGameManager.Instance.currentWeapon - 1].weaponType.poolType;
             rangeTempWeapon = EquipmentManager.Instance.weaponDatas[SaveGameManager.Instance.currentWeapon - 1].attackRange;

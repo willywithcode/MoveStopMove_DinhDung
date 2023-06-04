@@ -8,7 +8,7 @@ public class EffectSystemManager : Singleton<EffectSystemManager>
     [SerializeField] private Transform parentContainer;
     private void Start()
     {
-        SimplePool.Preload(prefabBloodExplodePS,15, parentContainer,true,false);
+        SimplePool.Preload(prefabBloodExplodePS,30, parentContainer,true,false);
         this.RegisterListener(EventID.OnWeaponHitEnemy, (param) => ExplodeBlood((OriginWeapon) param));
     }
     public void ExplodeBlood(OriginWeapon weapon)

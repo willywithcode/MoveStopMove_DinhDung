@@ -35,7 +35,7 @@ public class OriginWeapon : GameUnit
         }
         else if (other.CompareTag(Constant.PLAYER))
         {
-            this.victim = Cache.GetScript(other);
+            this.victim = LevelManager.Instance.Player;
             this.PostEvent(EventID.OnPlayerDie,this);
         }
         else if (other.CompareTag(Constant.OBTACLE)) isHitObtacle = true;

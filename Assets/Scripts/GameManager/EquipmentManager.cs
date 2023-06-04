@@ -15,10 +15,14 @@ public class EquipmentManager : Singleton<EquipmentManager>
     public Transform container;
     private void Awake()
     {
-        this.RegisterListener(EventID.OnWeaponHitEnemy, (param) => OnWeaponHitEnemy((OriginWeapon) param));
-        this.RegisterListener(EventID.OnPlayerDie, (param) => OnWeaponHitEnemy((OriginWeapon)param));
+     
 
         this.LoadWeapon();
+    }
+    private void Start()
+    {
+        this.RegisterListener(EventID.OnWeaponHitEnemy, (param) => OnWeaponHitEnemy((OriginWeapon)param));
+        this.RegisterListener(EventID.OnPlayerDie, (param) => OnWeaponHitEnemy((OriginWeapon)param));
     }
     private void LoadWeapon()
     {

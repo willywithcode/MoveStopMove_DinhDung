@@ -9,7 +9,7 @@ public class CircleAttack : MonoBehaviour
 
     [SerializeField] private LineRenderer line;
 
-    void Start()
+    void Awake()
     {
         radius = 5f;
         line.positionCount = segments + 1;
