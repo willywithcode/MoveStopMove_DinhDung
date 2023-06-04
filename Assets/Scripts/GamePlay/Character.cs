@@ -40,7 +40,7 @@ public class Character : GameUnit
     public string namePlayer;
 
     public Transform bloodExplosionContainer;
-
+    public bool isUlti;
     public  void Awake()
     {
         //OnInit();
@@ -48,6 +48,7 @@ public class Character : GameUnit
     public override void OnInit()
     {
         currentAnimName = Constant.ANIM_IDLE;
+        isUlti = false;
     }
     public override void OnDespawn()
     {

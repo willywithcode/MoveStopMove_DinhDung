@@ -25,6 +25,8 @@ public class GiftCtrl : MonoBehaviour
         if(other.CompareTag(Constant.CHARACTER) || other.CompareTag(Constant.PLAYER)) {
             this.gameObject.SetActive(false);
             LevelManager.Instance.countTimeGift = 0;
+            Character character = Cache.GetScript(other);
+            character.isUlti = true;
         }
     }
 }

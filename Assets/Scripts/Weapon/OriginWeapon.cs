@@ -14,12 +14,16 @@ public class OriginWeapon : GameUnit
     protected bool isHitObtacle;
     protected float count;
     protected float timeAttach = 0.5f;
-   
+    protected float elapsedTime;
+    protected float duration = 2;
+    protected Vector3 initialScale;
     public override void OnInit()
     {
         this.count = 0;
+        elapsedTime = 0;
         this.victim= null;
         this.TF.localScale = Vector3.one * owner.scaleGrowth;
+        initialScale = this.TF.localScale;
     }
     public override void OnDespawn()
     {
@@ -44,9 +48,20 @@ public class OriginWeapon : GameUnit
     protected void MoveToEnemy()
     {
         TF.position += direct * speed * Time.deltaTime;
-        if (Vector3.Distance(TF.position, this.owner.TF.position) >= this.owner.rangeAttack)
+        if (Vector3.Distance(TF.position, this.owner.TF.position) >= this.owner.rangeAttack && !owner.isUlti)
         {
             this.EndAttack();
+        }
+        if (owner.isUlti)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration);
+            transform.localScale = Vector3.Lerp(initialScale, 5 * initialScale, t);
+            if (Vector3.Distance(transform.localScale ,initialScale *5) <= 0.1f)
+            {
+                this.EndAttack();
+                owner.isUlti = false;
+            }
         }
     }
     protected void Rotate()

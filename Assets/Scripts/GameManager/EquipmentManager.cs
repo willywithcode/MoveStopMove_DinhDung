@@ -73,6 +73,8 @@ public class EquipmentManager : Singleton<EquipmentManager>
             this.shieldDatas.Add(shieldData);
         }
     }
+
+    #endregion
     public void SpawnWeapon(Character character)
     {
         OriginWeapon weapon = SimplePool.Spawn<OriginWeapon>(character.typeWeapon);
@@ -80,7 +82,6 @@ public class EquipmentManager : Singleton<EquipmentManager>
         weapon.OnInit();
         weapon.TF.position = character.TF.position + Vector3.up * 1f;
     }
-    #endregion
 }
 #region Editor
 #if UNITY_EDITOR
