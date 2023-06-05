@@ -21,6 +21,10 @@ public class UIManager : Singleton<UIManager>
     public GameObject pauseGameContainer;
     public GameObject questionContainer;
     public GameObject coinDesplayContainer;
+    public GameObject settingContainer;
+
+    public Canvas mainmenuCanvas;
+
     private void Awake()
     {
         this.AddStates();
@@ -52,6 +56,16 @@ public class UIManager : Singleton<UIManager>
     public void UpdateCoinCurrent()
     {
         txtCoinCurrent.text = GameManager.Instance.currentCoin.ToString();
+    }
+    public void TurnOnDesplaySetting()
+    {
+        settingContainer.SetActive(true);
+        mainmenuCanvas.enabled = false;
+    }
+    public void TurnOffDesplaySetting()
+    {
+        settingContainer.SetActive(false);
+        mainmenuCanvas.enabled = true;
     }
     public void AwakeState()
     {
@@ -92,6 +106,7 @@ public class UIManager : Singleton<UIManager>
         endGameContainer = GameObject.Find("EndGame");
         questionContainer = GameObject.Find("Question");
         coinDesplayContainer = GameObject.Find("CoinCurrentDesplay");
+        settingContainer = GameObject.Find("Setting");
     }
 }
 #if UNITY_EDITOR

@@ -39,4 +39,8 @@ public class MainMenu : BaseGameState
         base.EnterInGame();
         this.PostEvent(EventID.OnStartGame);
     }
+    public void TurnOnSetting()
+    {
+        UIManager.Instance.TurnOnDesplaySetting();
+    }
 }

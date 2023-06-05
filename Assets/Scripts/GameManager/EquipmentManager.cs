@@ -33,7 +33,7 @@ public class EquipmentManager : Singleton<EquipmentManager>
     }
     public void OnWeaponHitEnemy(OriginWeapon weapon)
     {
-        weapon.EndAttack();
+        if(!weapon.owner.isUlti) weapon.EndAttack();
     }
     #region Load Data in Editor
     public void LoadWeaponData()

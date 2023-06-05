@@ -42,7 +42,7 @@ public class OriginWeapon : GameUnit
             this.victim = LevelManager.Instance.Player;
             this.PostEvent(EventID.OnPlayerDie,this);
         }
-        else if (other.CompareTag(Constant.OBTACLE)) isHitObtacle = true;
+        else if (other.CompareTag(Constant.OBTACLE) && !owner.isUlti) isHitObtacle = true;
     }
     #region Movement
     protected void MoveToEnemy()
