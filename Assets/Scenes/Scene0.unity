@@ -648,6 +648,7 @@ MonoBehaviour:
   nameUI: {fileID: 256199656436617376}
   namePlayer: 
   bloodExplosionContainer: {fileID: 1852945442}
+  isUlti: 0
   joystick: {fileID: 500148264}
   direct: {x: 0, y: 0, z: 0}
   collider: {fileID: 0}
@@ -852,6 +853,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78615636}
   m_CullTransparentMesh: 1
+--- !u!1 &99107845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 99107846}
+  - component: {fileID: 99107847}
+  m_Layer: 0
+  m_Name: Music Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &99107846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99107845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 744088419}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &99107847
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99107845}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b5108f275e4a28040b8b905c958bb219, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &120846995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,6 +1290,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &132943366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,6 +1543,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1013736978}
         m_TargetAssemblyTypeName: BaseGameState, Assembly-CSharp
         m_MethodName: GoMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2731,6 +2884,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1126666977}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: SkinShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4492,6 +4657,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1013736978}
         m_TargetAssemblyTypeName: ShopSkinMenu, Assembly-CSharp
         m_MethodName: ChangeShield
@@ -5431,6 +5608,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1013736978}
         m_TargetAssemblyTypeName: ShopSkinMenu, Assembly-CSharp
         m_MethodName: ChangePant
@@ -5977,6 +6166,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 139517228}
         m_TargetAssemblyTypeName: BaseGameState, Assembly-CSharp
         m_MethodName: TurnOnCirclePlayer
@@ -6217,7 +6418,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 645693343}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &645693343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6432,6 +6645,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1126666977}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: WeaponShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7020,6 +7245,88 @@ Material:
     - _Color: {r: 0.6158261, g: 0.5629445, b: 0.7192288, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
+--- !u!1 &744088418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 744088419}
+  - component: {fileID: 744088420}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &744088419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744088418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 99107846}
+  - {fileID: 1221303123}
+  m_Father: {fileID: 918016235}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &744088420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744088418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e268763bee64564ea0f5647e577fcf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 99107847}
+  effectSource: {fileID: 1221303124}
+  growthCharacterEffect:
+  - {fileID: 8300000, guid: bf5200a24b9fd9d4eb4780cb559e509e, type: 3}
+  - {fileID: 8300000, guid: 84159911c3981a2488380b0438e940ff, type: 3}
+  - {fileID: 8300000, guid: a53a781eca802874f865cae142cbc17d, type: 3}
+  - {fileID: 8300000, guid: c2f6e15dd95544944a829dd8d97b01dc, type: 3}
+  - {fileID: 8300000, guid: bd8d998c0f9f63b4d98cf16d5a08d1a4, type: 3}
+  effectClickButton: {fileID: 8300000, guid: 3b6425a632d4cfc4b9eb26a34e55071c, type: 3}
+  startGameEffect: {fileID: 8300000, guid: 50a1fbb59002a9a4a94c7f54a9060088, type: 3}
+  loseGameEffect: {fileID: 8300000, guid: b0ecab52e9a553142a999ebe0df5bfa6, type: 3}
+  winGameEffect: {fileID: 8300000, guid: 6363a9021e31a304ba1b643cb7722f3f, type: 3}
+  weaponHitEffect:
+  - {fileID: 8300000, guid: bf63cb033e5e6ef4e9bfe5553e44cbae, type: 3}
+  - {fileID: 8300000, guid: f2b69760ec964cf409615630d93eb0e6, type: 3}
+  - {fileID: 8300000, guid: f4e59084b141a76498a865bc81ef9a8a, type: 3}
+  deadCharacterEffect:
+  - {fileID: 8300000, guid: 73c89a3df6aaf9a42908d371eee88e7c, type: 3}
+  - {fileID: 8300000, guid: 6996f242dcb39ad4a973c0d0390fe84e, type: 3}
+  - {fileID: 8300000, guid: 2bb210d3f7895ca478e00faac507dfb5, type: 3}
+  - {fileID: 8300000, guid: 846025d21c618d8488d64ff84e048dd8, type: 3}
+  - {fileID: 8300000, guid: 557b41edafe873347ab6bb381cd77b98, type: 3}
+  - {fileID: 8300000, guid: ed590b8024b001c45b2c6b594621c47b, type: 3}
+  - {fileID: 8300000, guid: 5af657d1b80f4cd43abca6cb7dc45270, type: 3}
+  - {fileID: 8300000, guid: 09a8252c99ebb5b438543bd825652a44, type: 3}
+  - {fileID: 8300000, guid: 5a29f4b9a32ce964287771317937976a, type: 3}
+  - {fileID: 8300000, guid: 5a29f4b9a32ce964287771317937976a, type: 3}
+  - {fileID: 8300000, guid: f9d4f4d9354ea5c40936834a614d91b2, type: 3}
+  - {fileID: 8300000, guid: bbccdf9bca47845438db7f87ce5e0aea, type: 3}
+  - {fileID: 8300000, guid: bbccdf9bca47845438db7f87ce5e0aea, type: 3}
+  - {fileID: 8300000, guid: 9516d75981920544abf29839cf660b6d, type: 3}
+  - {fileID: 8300000, guid: 316406d29ef7d644b8d0d37833fd8b88, type: 3}
+  - {fileID: 8300000, guid: 2e3185adee6867e4a9bce1680c2b4077, type: 3}
+  - {fileID: 8300000, guid: 79d3263592faaeb4b889734c8747d9aa, type: 3}
+  - {fileID: 8300000, guid: 7e5049f6d9e8d9649bde51a52ccd84cd, type: 3}
+  - {fileID: 8300000, guid: 5dcbebae72b22b346beef35af985a7a4, type: 3}
 --- !u!1 &750876972
 GameObject:
   m_ObjectHideFlags: 0
@@ -7267,6 +7574,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1013736978}
         m_TargetAssemblyTypeName: ShopSkinMenu, Assembly-CSharp
         m_MethodName: ChangeHat
@@ -7425,9 +7744,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 761358346}
-        m_TargetAssemblyTypeName: BaseGameState, Assembly-CSharp
-        m_MethodName: TurnOnCoinDesplay
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: TurnOnMusicMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: TurnOnMusicMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8172,6 +8515,7 @@ Transform:
   - {fileID: 630880082}
   - {fileID: 36440537}
   - {fileID: 750876973}
+  - {fileID: 744088419}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8588,6 +8932,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1912198628}
         m_TargetAssemblyTypeName: ShopWeaponMenu, Assembly-CSharp
         m_MethodName: SelectWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9331,6 +9687,18 @@ MonoBehaviour:
       - m_Target: {fileID: 761358346}
         m_TargetAssemblyTypeName: Question, Assembly-CSharp
         m_MethodName: GoBackSetting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10766,6 +11134,134 @@ Material:
     - _Color: {r: 0.38802725, g: 0.61424905, b: 0.211113, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
+--- !u!1 &1221303122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1221303123}
+  - component: {fileID: 1221303124}
+  m_Layer: 0
+  m_Name: Effect Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1221303123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221303122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 744088419}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1221303124
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221303122}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1228253882
 GameObject:
   m_ObjectHideFlags: 0
@@ -13298,6 +13794,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: TurnOnMusicMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1485282388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13868,6 +14388,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1013736978}
         m_TargetAssemblyTypeName: ShopSkinMenu, Assembly-CSharp
         m_MethodName: ChooseItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15204,6 +15736,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1791375392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15580,6 +16124,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1808939437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15871,6 +16427,18 @@ MonoBehaviour:
       - m_Target: {fileID: 139517228}
         m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
         m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16464,6 +17032,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1912675066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16966,9 +17546,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 744088420}
+        m_TargetAssemblyTypeName: SoundManger, Assembly-CSharp
+        m_MethodName: EffectClickBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1126666977}
-        m_TargetAssemblyTypeName: BaseGameState, Assembly-CSharp
-        m_MethodName: TurnOnCirclePlayer
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: EnterInGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

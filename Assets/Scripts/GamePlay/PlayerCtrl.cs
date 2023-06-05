@@ -80,7 +80,9 @@ public class PlayerCtrl : Character
     }
     public override void GrowthCharacter()
     {
+        float tempScale = scaleGrowth;
         base.GrowthCharacter();
+        if (scaleGrowth != tempScale) SoundManger.Instance.TurnEffectGrowthCharacter();
         rangeAttack = initAttackRange * scaleGrowth;
         speed = initSpeed * scaleGrowth;
     }

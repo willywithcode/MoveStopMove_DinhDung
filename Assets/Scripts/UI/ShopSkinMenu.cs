@@ -257,6 +257,7 @@ public class ShopSkinMenu : BaseGameState
         tempHat = Instantiate(EquipmentManager.Instance.hatDatas[index].weaponImg, player.hatContainer);
         if (SaveGameManager.Instance.listBoughtHatID.Contains(index)) this.ChangeButtonSellect();
         else this.ChangeDescription(index, EquipmentManager.Instance.hatDatas);
+        SoundManger.Instance.EffectClickBtn();
     }
     public void ChangePant(int index)
     {
@@ -264,6 +265,7 @@ public class ShopSkinMenu : BaseGameState
         player.pantType.material = EquipmentManager.Instance.pantDatas[index].material;
         if (SaveGameManager.Instance.listBoughtPantID.Contains(index)) this.ChangeButtonSellect();  
         else this.ChangeDescription(index, EquipmentManager.Instance.pantDatas);
+        SoundManger.Instance.EffectClickBtn();
 
     }
     public void ChangeShield(int index)
@@ -274,6 +276,8 @@ public class ShopSkinMenu : BaseGameState
         tempShield = Instantiate(EquipmentManager.Instance.shieldDatas[index].weaponImg, player.shieldContainer);
         if (SaveGameManager.Instance.listBoughtShieldID.Contains(index)) this.ChangeButtonSellect();
         else this.ChangeDescription(index, EquipmentManager.Instance.shieldDatas);
+        SoundManger.Instance.EffectClickBtn();
+
     }
     private void ChangeDescription(int index,List<EquipmentSO> list)
     {
