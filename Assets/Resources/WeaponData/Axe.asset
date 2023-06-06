@@ -15,10 +15,10 @@ MonoBehaviour:
   weaponType: {fileID: 9057066549339552541, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
   weaponCtrl: {fileID: 9057066549339552541, guid: 31e59d3bee8c4f64fb904940a84a9ab2, type: 3}
   weaponImg: {fileID: 8018418483132483175, guid: 80cbf4e0c338c8843a49aa34a29ce847, type: 3}
-  description: + 5 attack range
+  description: + 3 attack range
   nameWeapon: Axe
-  price: 200
+  price: 1500
   imageInShop: {fileID: 21300000, guid: 29cf7060a95599b45b5032a6a3cd1798, type: 3}
   material: {fileID: 0}
   speed: 0
-  attackRange: 5
+  attackRange: 3

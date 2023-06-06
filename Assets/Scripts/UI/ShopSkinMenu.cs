@@ -86,10 +86,6 @@ public class ShopSkinMenu : BaseGameState
     }
     public void ChangeFirst()
     {
-        //int val;
-        //if (currentStateSkin == StateShopSkin.Hat) val = 0;
-        //else if (currentStateSkin == StateShopSkin.Pant) val = 1;
-        //else if (currentStateSkin == StateShopSkin.Shield) val = 2;
         this.ChangeFirstItem(Array.IndexOf(Enum.GetValues(typeof(StateShopSkin)), currentStateSkin));
     }
     private void ChangeFirstItem(int index)

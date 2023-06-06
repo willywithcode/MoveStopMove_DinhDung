@@ -6,7 +6,8 @@ public class PlayerPauseState : BaseState<PlayerCtrl>
 {
     public void EnterState(PlayerCtrl ctrl)
     {
-        ctrl.joystick.enabled= false;
+        
+        ctrl.joystick.ResetInput();
     }
     public void Update(PlayerCtrl ctrl)
     {
@@ -14,6 +15,6 @@ public class PlayerPauseState : BaseState<PlayerCtrl>
     }
     public void ExitState(PlayerCtrl ctrl)
     {
-        ctrl.joystick.enabled= true;
+        //ctrl.joystick.gameObject.SetActive(true);
     }
 }

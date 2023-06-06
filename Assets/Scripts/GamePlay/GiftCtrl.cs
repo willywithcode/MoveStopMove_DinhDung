@@ -36,7 +36,12 @@ public class GiftCtrl : MonoBehaviour
             LevelManager.Instance.countTimeGift = 0;
             Character character = Cache.GetScript(other);
             character.isUlti = true;
-            if (other.CompareTag(Constant.PLAYER)) SoundManger.Instance.TurnEffectGrowthCharacter();
+            character.SetGiftRange();
+            if (other.CompareTag(Constant.PLAYER))
+            {
+                SoundManger.Instance.TurnEffectGrowthCharacter();
+                character.ScaleRangeCircleGift(1.5f);
+            }
         }
     }
 }

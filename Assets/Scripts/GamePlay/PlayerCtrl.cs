@@ -31,6 +31,7 @@ public class PlayerCtrl : Character
     public PlayerPauseState pause = new PlayerPauseState();
     public BaseState<PlayerCtrl> currentState;
 
+    private float circleRangeInit;
     public void Awake()
     {
         OnInit();
@@ -38,6 +39,7 @@ public class PlayerCtrl : Character
     public override void OnInit()
     {
         base.OnInit();
+        TF.position = Constant.initPos ;
         point = 1;
         scaleGrowth = 1;
         defeatPoint = 1;
@@ -56,11 +58,12 @@ public class PlayerCtrl : Character
     private void Start()
     {
         this.UpdateSaveData();
+        this.rangeCtrl.ChangeAttackRange(rangeAttack);
     }
 
     void Update()
     {
-        direct = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+        if (currentState != dead) direct = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
         currentState.Update(this);
     }
     
@@ -112,5 +115,13 @@ public class PlayerCtrl : Character
         initAttackRange = Constant.foudationAttackRange + (rangeTempHat + rangeTempWeapon) * 0.1f;
         speed = initSpeed;
         rangeAttack = initAttackRange;
+    }
+    public override void ScaleRangeCircleGift(float scale)
+    {
+        rangeCtrl.ChangeAttackRange(circleRangeInit * scale);
+    }
+    public void SetInitRange()
+    {
+        circleRangeInit = rangeCtrl.radius;
     }
 }

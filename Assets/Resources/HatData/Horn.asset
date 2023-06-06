@@ -17,7 +17,7 @@ MonoBehaviour:
   weaponImg: {fileID: 6853216288393118667, guid: dd74bc52e4e0f9d4e83aed9fcf4a03c5, type: 3}
   description: + 10 attack range
   nameWeapon: 
-  price: 700
+  price: 3000
   imageInShop: {fileID: 21300000, guid: c72f60a9ff619e54ea03f81d8477c714, type: 3}
   material: {fileID: 0}
   speed: 0

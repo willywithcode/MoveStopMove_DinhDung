@@ -17,4 +17,9 @@ public class GameManager : Singleton<GameManager>
 
     public int currentCoin;
 
+    public void BuffCoin(int coin)
+    {
+        currentCoin += coin;
+    }
+
 }

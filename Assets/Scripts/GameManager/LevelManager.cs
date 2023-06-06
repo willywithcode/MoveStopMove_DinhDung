@@ -104,6 +104,7 @@ public class LevelManager : Singleton<LevelManager>
         this.SpawnNameBoard();
         this.TurnOnCirclePlayer();
         this.CheckGameNamePlayer();
+        player.SetInitRange();
         this.SpawnGift();
     }
     private void TurnOnCirclePlayer()

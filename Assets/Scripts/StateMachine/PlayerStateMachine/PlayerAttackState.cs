@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class PlayerAttackState : BaseState<PlayerCtrl>
 {
@@ -46,6 +47,9 @@ public class PlayerAttackState : BaseState<PlayerCtrl>
             isThrowing = true;
             ctrl.weaponImg.SetActive(false);
             EquipmentManager.Instance.SpawnWeapon(ctrl);
+            if (!ctrl.isUlti) return;
+            ctrl.ResetRange();
+            ctrl.ScaleRangeCircleGift(1);
         }
     }
 }

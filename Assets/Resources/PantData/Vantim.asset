@@ -17,7 +17,7 @@ MonoBehaviour:
   weaponImg: {fileID: 0}
   description: + 10 speed
   nameWeapon: 
-  price: 700
+  price: 5000
   imageInShop: {fileID: 21300000, guid: ce130da2d9627654994c26c5c9da1967, type: 3}
   material: {fileID: 2100000, guid: 209b8e5c5ab2acd4fa06e5db76d94d8d, type: 2}
   speed: 10

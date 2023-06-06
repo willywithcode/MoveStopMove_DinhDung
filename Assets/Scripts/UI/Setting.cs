@@ -36,4 +36,8 @@ public class Setting : MonoBehaviour
     {
         slider.value = val;
     }
+    public void TurnOnGiftCode()
+    {
+        UIManager.Instance.giftcode.SetActive(true);
+    }
 }

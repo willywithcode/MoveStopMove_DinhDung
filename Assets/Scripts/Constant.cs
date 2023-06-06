@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Constant 
 {
+    public static readonly Vector3 initPos = new Vector3(44.56f, 0.251f, 38.89f);
     public static readonly float foudationSpeed = 3f;
     public static readonly float foudationAttackRange = 5;
 
@@ -31,4 +32,7 @@ public class Constant
     public static readonly string standard = "Standard";
     public static readonly string selectStringBtn = "Select";
 
+    public static readonly string giftCode1 = "Dungdeptrai";
+    public static readonly string giftCode2 = "AnhThinhdeptrai";
+    public static readonly string giftCode3 = "AnhHadeptrai";
 }

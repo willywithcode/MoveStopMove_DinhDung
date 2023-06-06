@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class EnemyAttackState : BaseState<EnemyCtrl>
 {
@@ -45,6 +46,9 @@ public class EnemyAttackState : BaseState<EnemyCtrl>
             enemy.Rotate();
             enemy.weaponImg.SetActive(false);
             EquipmentManager.Instance.SpawnWeapon(enemy);
+            if (!enemy.isUlti) return;
+            enemy.ResetRange();
+            enemy.ScaleRangeCircleGift(1);
         }
     }
 }

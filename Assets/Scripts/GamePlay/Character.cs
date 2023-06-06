@@ -11,6 +11,7 @@ public class Character : GameUnit
 {
     [SerializeField] protected LayerMask layerCharacter;
     [SerializeField] protected List<WeaponImg> listWeapon;
+    private float tmpRange;
 
     public GameObject weaponImg;
     public PoolType typeWeapon;
@@ -47,7 +48,6 @@ public class Character : GameUnit
     }
     public override void OnInit()
     {
-        currentAnimName = Constant.ANIM_IDLE;
         isUlti = false;
     }
     public override void OnDespawn()
@@ -142,7 +142,7 @@ public class Character : GameUnit
             }
             if (point >= LevelManager.Instance.pointStones.Last().point)
             {
-                scaleGrowth = LevelManager.Instance.pointStones.Last().scale;
+                scaleGrowth = LevelManager.Instance.pointStones[^1].scale;
                 defeatPoint = LevelManager.Instance.pointStones.Last().defeatPoint;
             }
         }
@@ -153,6 +153,19 @@ public class Character : GameUnit
     {
         point += addPoint;
         if(wayPoint != null)wayPoint.UpdatePoint(point);
+    }
+    public void SetGiftRange()
+    {
+        tmpRange = rangeAttack;
+        rangeAttack = tmpRange * 1.5f;
+    }
+    public void ResetRange()
+    {
+        rangeAttack = tmpRange;
+    }
+    public virtual void ScaleRangeCircleGift(float scale)
+    {
+
     }
 }
 

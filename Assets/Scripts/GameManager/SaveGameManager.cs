@@ -28,7 +28,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
     }
     protected virtual string GetSaveName()
     {
-        return SaveGameManager.SAVE_3;
+        return Constant.saveGame;
     }
     public virtual void LoadSaveGame()
     {
@@ -39,6 +39,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
         if (savedData.dataShieldID.Count > 0) listBoughtShieldID = savedData.dataShieldID;
         if (savedData.dataHatID.Count > 0) listBoughtHatID = savedData.dataHatID;
         if (savedData.dataWeaponID.Count > 0) listBoughtWeaponID = savedData.dataWeaponID;
+        if (!listBoughtWeaponID.Contains(0)) listBoughtWeaponID.Add(0);
         if (savedData.dataCoin != 0) GameManager.Instance.currentCoin = savedData.dataCoin;
         if (savedData.currentHatID != 0) currentHat = savedData.currentHatID;
         if (savedData.currentPantID != 0) currentPant = savedData.currentPantID;

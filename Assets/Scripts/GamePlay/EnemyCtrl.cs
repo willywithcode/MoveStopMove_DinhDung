@@ -19,6 +19,7 @@ public class EnemyCtrl : Character
     public override void OnInit()
     {
         base.OnInit();
+        currentAnimName = Constant.ANIM_IDLE;
         this.ChangeState(idle);
         this.point = LevelManager.Instance.RandomPoint();
         this.SpawnNewWayPoint();

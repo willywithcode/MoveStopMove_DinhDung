@@ -26,12 +26,12 @@ public class EndGame : BaseGameState
         coinEarn = LevelManager.Instance.Player.point;
         txtCoinEarnUI.text = coinEarn.ToString();
     }
-    private void OnPlayerWin()
+    public void OnPlayerWin()
     {
         this.GetCoinEarn();
         txtCoinRankUI.text = "1";
     }
-    private void OnPlayerDie()
+    public void OnPlayerDie()
     {
         this.GetCoinEarn();
         txtCoinRankUI.text = LevelManager.Instance.GetRank();

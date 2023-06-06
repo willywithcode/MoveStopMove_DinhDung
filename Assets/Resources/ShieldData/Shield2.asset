@@ -17,6 +17,8 @@ MonoBehaviour:
   weaponImg: {fileID: 8397996765075602997, guid: c0db537b8a1814447b15b1f519d40dbe, type: 3}
   description: + 25% gold
   nameWeapon: 
-  price: 100
+  price: 3000
   imageInShop: {fileID: 21300000, guid: 747d642799c526143b4b58d8bb495bc4, type: 3}
   material: {fileID: 0}
+  speed: 0
+  attackRange: 0

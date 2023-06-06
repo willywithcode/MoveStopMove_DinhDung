@@ -22,6 +22,8 @@ public class UIManager : Singleton<UIManager>
     public GameObject questionContainer;
     public GameObject coinDesplayContainer;
     public GameObject settingContainer;
+    public GameObject giftcode;
+    [SerializeField] private EndGame endGame;
 
     public Canvas mainmenuCanvas;
 
