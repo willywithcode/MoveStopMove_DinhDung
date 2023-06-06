@@ -6,6 +6,7 @@ using TMPro;
 using System;
 using System.Reflection;
 using System.Xml.Serialization;
+using static UnityEditor.PlayerSettings;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -18,13 +19,17 @@ public enum StateShopSkin
 }
 public class ShopSkinMenu : BaseGameState
 {
+    [SerializeField] private RectTransform frameSelected;
+    [SerializeField] private RectTransform firstHat;
+    [SerializeField] private RectTransform firstPant;
+    [SerializeField] private RectTransform firstShield;
     public StateShopSkin currentStateSkin;
     public EquipmentSO currentEquipment;
 
     public GameObject prefabButton;
     public TextMeshProUGUI textMeshPrice;
     public TextMeshProUGUI textMeshDescription;
-
+    
 
     public Transform contentHatShop;
     public Transform contentPantShop;
@@ -38,7 +43,7 @@ public class ShopSkinMenu : BaseGameState
     [SerializeField]private GameObject tempHat;
     GameObject tempShield;
     int currenrtIndex;
-    private void Start()
+    private void Awake()
     {
         this.AddDictButtonView();
         this.LoadShopHatUI();
@@ -79,18 +84,26 @@ public class ShopSkinMenu : BaseGameState
             }
         }
     }
+    public void ChangeFirst()
+    {
+        //int val;
+        //if (currentStateSkin == StateShopSkin.Hat) val = 0;
+        //else if (currentStateSkin == StateShopSkin.Pant) val = 1;
+        //else if (currentStateSkin == StateShopSkin.Shield) val = 2;
+        this.ChangeFirstItem(Array.IndexOf(Enum.GetValues(typeof(StateShopSkin)), currentStateSkin));
+    }
     private void ChangeFirstItem(int index)
     {
         switch (index)
         {
             case 0:
-                this.ChangeHat(0);
+                this.ChangeHat(0,firstHat);
                 break;
             case 1:
-                this.ChangePant(0);
+                this.ChangePant(0,firstPant);
                 break;
             case 2:
-                this.ChangeShield(0);
+                this.ChangeShield(0,firstShield);
                 break;
             case 3:
                 break;
@@ -215,7 +228,12 @@ public class ShopSkinMenu : BaseGameState
     private void LoadShopHatUI()
     {
         int count = EquipmentManager.Instance.hatDatas.Count;
-        for (int i = 0; i < count; i++)
+        GameObject myFirstButton = Instantiate(prefabButton, contentHatShop);
+        myFirstButton.GetComponent<ButtonCtrl>().index = 0;
+        myFirstButton.GetComponent<Image>().sprite = EquipmentManager.Instance.hatDatas[0].imageInShop;
+        myFirstButton.GetComponent<ButtonCtrl>().action += ChangeHat;
+        firstHat = myFirstButton.GetComponent<RectTransform>();
+        for (int i = 1; i < count; i++)
         {
             GameObject myButton = Instantiate(prefabButton, contentHatShop);
             myButton.GetComponent<ButtonCtrl>().index = i;
@@ -227,20 +245,29 @@ public class ShopSkinMenu : BaseGameState
     private void LoadShopPantUI()
     {
         int count = EquipmentManager.Instance.pantDatas.Count;
-        for (int i = 0; i < count; i++)
+        GameObject myFirstButton = Instantiate(prefabButton, contentPantShop);
+        myFirstButton.GetComponent<ButtonCtrl>().index = 0;
+        myFirstButton.GetComponent<Image>().sprite = EquipmentManager.Instance.pantDatas[0].imageInShop;
+        myFirstButton.GetComponent<ButtonCtrl>().action += ChangePant;
+        firstPant = myFirstButton.GetComponent<RectTransform>();
+        for (int i = 1; i < count; i++)
         {
             GameObject myButton = Instantiate(prefabButton, contentPantShop);
             myButton.GetComponent<ButtonCtrl>().index = i;
             myButton.GetComponent<Image>().sprite = EquipmentManager.Instance.pantDatas[i].imageInShop;
             myButton.GetComponent<ButtonCtrl>().action += ChangePant;
-
         }
 
     }
     private void LoadShopShieldUI()
     {
         int count = EquipmentManager.Instance.shieldDatas.Count;
-        for (int i = 0; i < count; i++)
+        GameObject myFirstButton = Instantiate(prefabButton, contentShieldShop);
+        myFirstButton.GetComponent<ButtonCtrl>().index = 0;
+        myFirstButton.GetComponent<Image>().sprite = EquipmentManager.Instance.shieldDatas[0].imageInShop;
+        myFirstButton.GetComponent<ButtonCtrl>().action += ChangeShield;
+        firstShield = myFirstButton.GetComponent<RectTransform>();
+        for (int i = 1; i < count; i++)
         {
             GameObject myButton = Instantiate(prefabButton, contentShieldShop);
             myButton.GetComponent<ButtonCtrl>().index = i;
@@ -249,9 +276,11 @@ public class ShopSkinMenu : BaseGameState
         }
 
     }
-    public void ChangeHat(int index)
+    public void ChangeHat(int index , RectTransform pos)
     {
         this.ChangeCurrentEquiment(index, EquipmentManager.Instance.hatDatas);
+        frameSelected.position = pos.position;
+        frameSelected.SetParent(pos);
         if (player.hatCurrent != null) player.hatCurrent.SetActive(false);
         if(tempHat != null) Destroy(tempHat);
         tempHat = Instantiate(EquipmentManager.Instance.hatDatas[index].weaponImg, player.hatContainer);
@@ -259,18 +288,22 @@ public class ShopSkinMenu : BaseGameState
         else this.ChangeDescription(index, EquipmentManager.Instance.hatDatas);
         SoundManger.Instance.EffectClickBtn();
     }
-    public void ChangePant(int index)
+    public void ChangePant(int index, RectTransform pos)
     {
         this.ChangeCurrentEquiment(index, EquipmentManager.Instance.pantDatas);
+        frameSelected.position = pos.position;
+        frameSelected.SetParent(pos);
         player.pantType.material = EquipmentManager.Instance.pantDatas[index].material;
         if (SaveGameManager.Instance.listBoughtPantID.Contains(index)) this.ChangeButtonSellect();  
         else this.ChangeDescription(index, EquipmentManager.Instance.pantDatas);
         SoundManger.Instance.EffectClickBtn();
 
     }
-    public void ChangeShield(int index)
+    public void ChangeShield(int index, RectTransform pos)
     {
         this.ChangeCurrentEquiment(index, EquipmentManager.Instance.shieldDatas);
+        frameSelected.position = pos.position;
+        frameSelected.SetParent(pos);
         if (player.shieldCurrent != null) player.shieldCurrent.SetActive(false);
         if (tempShield != null) Destroy(tempShield);
         tempShield = Instantiate(EquipmentManager.Instance.shieldDatas[index].weaponImg, player.shieldContainer);

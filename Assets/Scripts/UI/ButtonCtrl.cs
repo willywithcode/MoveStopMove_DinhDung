@@ -7,15 +7,17 @@ using UnityEngine.Events;
 
 public class ButtonCtrl : MonoBehaviour
 {
-    public UnityAction<int> action;
+    public UnityAction<int,RectTransform> action;
     public int index;
+    private RectTransform rectTransform;
     private void Start()
     {
+        rectTransform = GetComponent<RectTransform>();
         Button button= GetComponent<Button>();
         button.onClick.AddListener(OnClick);
     }
     private void OnClick()
     {
-        action?.Invoke(index);
+        action?.Invoke(index,rectTransform);
     }
 }
