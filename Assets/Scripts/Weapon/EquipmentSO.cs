@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Data Weapon", menuName = "ScriptableObjects/EquipmentData", order = 1)]

@@ -6,7 +6,6 @@ using TMPro;
 using System;
 using System.Reflection;
 using System.Xml.Serialization;
-using static UnityEditor.PlayerSettings;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -170,18 +169,19 @@ public class ShopSkinMenu : BaseGameState
         switch (currentStateSkin)
         {
             case StateShopSkin.Hat:
-                SaveGameManager.Instance.currentHat = currenrtIndex +1;
+                SaveGameManager.Instance.currentHat = currenrtIndex + 1;
                 break;
             case StateShopSkin.Pant:
-                SaveGameManager.Instance.currentPant = currenrtIndex+1 ;
+                SaveGameManager.Instance.currentPant = currenrtIndex + 1;
                 break;
             case StateShopSkin.Shield:
-                SaveGameManager.Instance.currentShield = currenrtIndex+1;
+                SaveGameManager.Instance.currentShield = currenrtIndex + 1;
                 break;
             case StateShopSkin.FullSet:
                 break;
         }
     }
+
     public void ChangeItem ()
     {
         if (player.pantCurrent != player.pantType.material) player.pantCurrent = player.pantType.material;

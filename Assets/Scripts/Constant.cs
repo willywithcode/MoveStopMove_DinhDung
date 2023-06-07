@@ -35,4 +35,10 @@ public class Constant
     public static readonly string giftCode1 = "Dungdeptrai";
     public static readonly string giftCode2 = "AnhThinhdeptrai";
     public static readonly string giftCode3 = "AnhHadeptrai";
+    public static readonly string giftCode4 = "AnhHuydeptrai";
+    public static readonly string giftCode5 = "SieuNhan";
+    public static readonly string giftCode6 = "ThuongDan";
+
+
+
 }

@@ -21,6 +21,9 @@ public class GiftCode : BaseGameState
         if (tmp.Equals(Constant.giftCode1)) GameManager.Instance.BuffCoin(100000);
         else if (giftCodeString.text.Equals(Constant.giftCode2)) GameManager.Instance.BuffCoin(100);
         else if (giftCodeString.text.Equals(Constant.giftCode3)) GameManager.Instance.BuffCoin(100);
+        else if (giftCodeString.text.Equals(Constant.giftCode4)) GameManager.Instance.BuffCoin(100);
+        else if (giftCodeString.text.Equals(Constant.giftCode5)) LevelManager.Instance.Player.supper = true;
+        else if (giftCodeString.text.Equals(Constant.giftCode6)) LevelManager.Instance.Player.supper = false;
         this.GoMainMenu();
         UIManager.Instance.UpdateCoinCurrent();
     }

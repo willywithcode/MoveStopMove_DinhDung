@@ -15,7 +15,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
     public int currentPant;
     public int currentWeapon;
     //string for testing
-    private const string SAVE_1 = "save_1";
+    private const string SAVE_1 = "save_4";
     private const string SAVE_2 = "save_2";
     private const string SAVE_3 = "save_3";
     private void Awake()
@@ -28,12 +28,13 @@ public class SaveGameManager : Singleton<SaveGameManager>
     }
     protected virtual string GetSaveName()
     {
-        return Constant.saveGame;
+        return SAVE_1;
     }
     public virtual void LoadSaveGame()
     {
         string savedJson = PlayerPrefs.GetString(this.GetSaveName());
         SaveData savedData = JsonUtility.FromJson<SaveData>(savedJson);
+        if (savedData == null) return;
         if (!string.IsNullOrEmpty(savedData.namePlayer)) player.namePlayer = savedData.namePlayer;
         if (savedData.dataPantID.Count > 0) listBoughtPantID = savedData.dataPantID;
         if (savedData.dataShieldID.Count > 0) listBoughtShieldID = savedData.dataShieldID;

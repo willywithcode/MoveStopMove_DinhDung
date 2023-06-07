@@ -22,8 +22,8 @@ public class CircleAttack : MonoBehaviour
         float angle = 0f;
         for (int i = 0; i < (segments + 1); i++)
         {
-            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
-            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius * 0.83f;
+            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius * 0.83f;
 
             line.SetPosition(i, new Vector3(x, y, 0f));
 
@@ -36,8 +36,8 @@ public class CircleAttack : MonoBehaviour
         radius = range;
         for (int i = 0; i < (segments + 1); i++)
         {
-            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
-            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius * 0.83f;
+            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius * 0.83f;
 
             line.SetPosition(i, new Vector3(x, y, 0f));
 

@@ -37,7 +37,7 @@ public class OriginWeapon : GameUnit
             this.victim = Cache.GetScript(other);
             this.PostEvent(EventID.OnWeaponHitEnemy,this);
         }
-        else if (other.CompareTag(Constant.PLAYER))
+        else if (other.CompareTag(Constant.PLAYER) && !LevelManager.Instance.Player.supper)
         {
             this.victim = LevelManager.Instance.Player;
             this.PostEvent(EventID.OnPlayerDie,this);

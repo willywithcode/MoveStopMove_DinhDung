@@ -32,6 +32,7 @@ public class PlayerCtrl : Character
     public BaseState<PlayerCtrl> currentState;
 
     private float circleRangeInit;
+    public bool supper;
     public void Awake()
     {
         OnInit();
@@ -59,6 +60,7 @@ public class PlayerCtrl : Character
     {
         this.UpdateSaveData();
         this.rangeCtrl.ChangeAttackRange(rangeAttack);
+        supper = false;
     }
 
     void Update()
